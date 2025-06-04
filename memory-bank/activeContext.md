@@ -2,172 +2,138 @@
 
 ## Current Work Focus
 
-### Phase 1: Core Systems Implementation
-We are currently in **Phase 1** of development, focusing on establishing the foundational systems that will support all other game features.
+### ✅ MASSIVE SCOPE EXPANSION COMPLETED ✅
+**Status**: Successfully updated all project documentation and TaskMaster for **hybrid procedural approach**
+- **Previous scope**: 15-20 dungeons, 8-12 hours gameplay, basic procedural generation
+- **NEW SCOPE**: **50-70 hour epic campaign** across **three acts** with **hybrid procedural generation**
+- **Hybrid Approach**: **Handcrafted foundations + Procedural details + Semi-procedural lore**
+- **Completed**: Memory Bank updated, TaskMaster expanded with 23 new epic tasks (Tasks 26-48)
 
-### Immediate Priorities
-1. **Parse Error Resolution**: ✅ COMPLETED - Fixed signal naming conflict in player_stats.gd
-2. **Mobile Landscape Configuration**: ✅ COMPLETED - Updated project for mobile landscape development
-3. **PRD Update**: ✅ COMPLETED - Updated PRD to reflect mobile landscape touch controls
-4. **Documentation Update**: ✅ COMPLETED - Updated .cursorrules with mobile landscape requirements
-5. **Core System Architecture**: Need to implement basic player movement and combat framework
-6. **Touch Control System**: Implement virtual joystick and touch buttons for landscape layout
+### Immediate Priorities (Session Focus)
+1. ✅ **Update Memory Bank** - Reflecting new hybrid procedural scope and three-act structure
+2. ✅ **Expand TaskMaster** - Added 23 new tasks for hybrid systems (Tasks 26-48)
+3. ✅ **Document Hybrid Architecture** - Updated system patterns for hybrid approach
+4. 🔄 **Begin implementation** - Ready to start with next task from TaskMaster
 
-## Recent Changes
+### Revolutionary Hybrid Approach Established
+- **Base World Elements**: Handcrafted for quality (room layouts, key events, boss mechanics)
+- **Procedural Details**: Tag-based generation ([fast] + [deformed] + [fire] = unique combinations)
+- **Semi-Procedural Lore**: Curated narrative pools with contextual selection
+- **Safety Systems**: Comprehensive failsafe checkers ("Why did this nightmare spawn 4 priests inside a ladder?")
+- **Mobile Optimization**: All systems designed for 50+ hour mobile campaigns
 
-### Just Completed (This Session)
-- **Signal Naming Fix**: Fixed naming conflict between `level_up` signal and `level_up()` function
-  - Renamed signal to `level_up_achieved` to avoid conflict
-- **Mobile Landscape Configuration**: Updated project.godot for Android mobile landscape development
-  - Changed to landscape orientation (1920x1080)
-  - Removed desktop keyboard/mouse input mappings
-  - Set mobile renderer and compression
-  - Configured for touch input only
-- **PRD Mobile Landscape Update**: Completely revised PRD to focus on landscape touch controls
-- **Documentation Updates**: Updated .cursorrules with prominent mobile landscape requirements
-- **Platform Clarification**: Established mobile landscape as ONLY target until desktop explicitly requested
+### New Task Categories Added
+- **Core Hybrid Systems** (Tasks 41-44): Foundation, tag system, templates, safety
+- **Epic Campaign Systems** (Tasks 26-40): Sanity, UI corruption, three acts, endings
+- **Quality Assurance** (Tasks 45-48): Lore system, validation, analytics
 
-### Platform Requirements (CRITICAL)
-- **Primary Target**: Android mobile devices (LANDSCAPE orientation ONLY)
-- **Input Method**: Touch controls ONLY (virtual joystick, touch buttons)
-- **NO Desktop Support**: Until explicitly requested by user
-- **Resolution**: 1920x1080 landscape optimized
-- **Renderer**: Mobile renderer with ETC2/ASTC compression
+### Current Development Status
+- **Total Tasks**: 48 (previously 25)
+- **Completion**: 2% of epic scope (Task 1 complete)
+- **Next Priority**: Task 2 - Touch Input System (blocking other development)
+- **Epic Timeline**: 2-3 years for full 50-70 hour experience
+
+## Recent Changes and Discoveries
+
+### Hybrid Procedural Architecture
+- **Quality + Variety**: Handcrafted foundations ensure quality, procedural details ensure infinite variety
+- **Tag System Innovation**: Revolutionary approach to enemy/item generation with validation
+- **Template System**: Modular room generation with act-specific variations
+- **Safety First**: Comprehensive failsafe systems prevent game-breaking combinations
+
+### Three-Act Epic Structure
+- **Act I: The Descending City** (~15 hours) - Semi-open urban exploration
+- **Act II: The Drowning Depths** (~20 hours) - Dungeon-crawl with water hazards
+- **Act III: The Dream Realm** (~15 hours) - Reality distortion and impossible geometry
+
+### Mobile-First Epic Design
+- **50+ Hour Campaigns**: Unprecedented scope for mobile roguelikes
+- **Touch Controls**: All systems designed for mobile landscape orientation
+- **Performance Scaling**: Adaptive systems for different mobile hardware
+- **Battery Optimization**: Extended session support for epic campaigns
 
 ## Next Steps
 
-### Immediate (This Session)
-1. **Generate Mobile Landscape Tasks**: Use TaskMaster to create landscape-focused task breakdown
-2. **Touch Control System**: Implement virtual joystick and touch buttons for landscape
-3. **Mobile Player Movement**: Create touch-based character controller optimized for landscape
+### Immediate Implementation Focus
+1. **Complete Touch Input System** (Task 2) - Currently blocking other development
+2. **Begin Hybrid System Implementation** (Task 41) - Core hybrid architecture
+3. **Implement Tag System** (Task 42) - Revolutionary generation approach
+4. **Create Safety Systems** (Task 44) - Prevent game-breaking combinations
 
-### Short-term (Next Few Sessions)
-1. **Mobile Landscape UI Framework**: Touch-optimized interface systems for landscape layout
-2. **World Generation**: Mobile-optimized room generation system
-3. **Enemy Framework**: Mobile-optimized enemy AI and behavior
-4. **Performance Optimization**: Mobile-specific performance considerations
+### Development Workflow
+- **Mobile Testing**: Regular testing on Android devices/emulation
+- **Hybrid Validation**: Ensure generated content maintains handcrafted feel
+- **Performance Monitoring**: Track mobile performance during extended sessions
+- **Quality Assurance**: Validate safety systems prevent all major issues
 
-### Medium-term (Next Week)
-1. **Touch Combat System**: Tap/hold attack mechanics for landscape layout
-2. **Mobile Audio Framework**: Optimized for mobile devices
-3. **Mobile Save System**: Handle mobile app lifecycle
-4. **Battery Optimization**: Efficient rendering and processing
+### Documentation Maintenance
+- **Memory Bank**: Keep updated with hybrid system discoveries
+- **TaskMaster**: Track progress through epic scope tasks
+- **System Patterns**: Document hybrid architecture patterns as they emerge
+- **Mobile Optimization**: Track performance optimizations and battery usage
 
-## Active Decisions
+## Key Decisions Made
 
-### Platform Architecture (MOBILE LANDSCAPE ONLY)
-- **Android Primary**: Targeting API level 21+ for broad compatibility
-- **Landscape Orientation**: Optimized for two-handed landscape play
-- **Touch Controls**: Virtual joystick + touch buttons as ONLY input
-- **Mobile Renderer**: Using Godot's mobile rendering pipeline
-- **NO Desktop**: Until user explicitly requests it
+### Hybrid Approach Adoption
+- **Quality Preservation**: Handcrafted foundations maintain narrative and mechanical quality
+- **Infinite Variety**: Procedural details ensure no two 50+ hour runs feel identical
+- **Safety Engineering**: Comprehensive validation prevents procedural disasters
+- **Mobile Optimization**: All systems designed for mobile constraints and extended sessions
 
-### Technical Choices
-- **Touch Responsiveness**: Target <50ms input latency
-- **Memory Constraints**: Keep under 1.5GB RAM usage
-- **Performance**: 60 FPS on mid-range Android devices
-- **Battery Optimization**: Efficient background processing
+### Epic Scope Commitment
+- **50-70 Hour Campaigns**: Massive scope unprecedented for mobile roguelikes
+- **Three-Act Structure**: Distinct acts with unique mechanics and themes
+- **Multiple Endings**: Four endings reflecting player's epic journey
+- **Reality Distortion**: Sanity system affects UI, saves, and player perception
 
-### Design Adaptations (Landscape Layout)
-- **Touch-First Combat**: Tap/hold variations for attacks
-- **Landscape Mobile UI**: Larger touch targets, landscape-optimized interfaces
-- **Gesture Support**: Swipe patterns for special abilities across landscape screen
-- **Two-Handed Play**: Comfortable control layout for landscape orientation
+### Technical Architecture
+- **Event-Driven Design**: EventBus coordinates all hybrid systems
+- **Autoload Pattern**: Core systems as autoloads for global access
+- **Component Composition**: Modular entity design for flexibility
+- **Mobile Performance**: All systems optimized for mobile hardware constraints
 
 ## Current Challenges
 
-### Mobile Landscape Technical
-- **Performance Optimization**: Ensuring smooth generation on mobile GPU/CPU
-- **Memory Management**: Handling procedural content within mobile constraints
-- **Touch Precision**: Making landscape touch controls feel responsive and accurate
-- **Battery Life**: Optimizing for extended landscape play sessions
+### Technical Complexity
+- **Hybrid System Coordination**: Managing handcrafted + procedural integration
+- **Mobile Performance**: Maintaining 60 FPS during complex generation
+- **Epic Scope Management**: Coordinating 48 tasks across 2-3 year timeline
+- **Quality Assurance**: Ensuring procedural content maintains handcrafted feel
 
-### Mobile Landscape Design
-- **Screen Layout**: Optimizing UI for landscape mobile screens
-- **Touch Ergonomics**: Comfortable control placement for landscape orientation
-- **Visual Clarity**: Readable text and UI on landscape mobile screens
-- **Accessibility**: Supporting various hand sizes and landscape play styles
+### Design Balance
+- **Quality vs. Variety**: Balancing handcrafted quality with procedural variety
+- **Safety vs. Creativity**: Preventing softlocks while allowing creative combinations
+- **Mobile vs. Complexity**: Delivering epic scope within mobile constraints
+- **Horror vs. Playability**: Maintaining horror atmosphere without breaking gameplay
 
-### Development
-- **Mobile Testing**: Testing across different Android devices in landscape
-- **Performance Profiling**: Mobile-specific optimization
-- **Touch Debugging**: Ensuring reliable touch input in landscape
-- **Platform Differences**: Handling Android variations
+### Development Sustainability
+- **Solo Development**: Managing epic scope as single developer
+- **Documentation Maintenance**: Keeping comprehensive docs updated
+- **Testing Coverage**: Validating hybrid systems across all scenarios
+- **Performance Optimization**: Continuous mobile performance monitoring
 
-## Key Considerations
+## Success Metrics
 
-### Mobile Landscape User Experience
-- Players should understand landscape touch controls within 2 minutes
-- Comfortable two-handed landscape play experience
-- Haptic feedback for important interactions
-- Graceful handling of app interruptions (calls, notifications)
+### Hybrid System Quality
+- **Content Recognition**: Players distinguish handcrafted vs. procedural elements
+- **Variety Appreciation**: Infinite variety without quality loss
+- **Safety Validation**: Zero softlocks or game-breaking combinations
+- **Mobile Performance**: Stable 60 FPS during generation and extended sessions
 
-### Technical Constraints
-- Target 60fps on mid-range Android devices
-- Memory usage under 1.5GB
-- Generation time under 1 second per room
-- Touch responsiveness under 50ms latency
-- Battery optimization for 2+ hour landscape sessions
+### Epic Campaign Experience
+- **50+ Hour Engagement**: Players complete full epic campaigns
+- **Multiple Playthroughs**: Hybrid variety encourages replay
+- **Ending Satisfaction**: All four endings feel meaningful and earned
+- **Mobile Excellence**: Best-in-class mobile roguelike experience
 
-### Development Workflow
-- Use TaskMaster for mobile landscape-focused task tracking
-- Maintain Memory Bank for session continuity
-- Regular testing on actual Android devices in landscape
-- Iterative approach to landscape touch control refinement
+## Ready for Implementation
 
-## Session Goals
+The project is now fully scoped and documented for the hybrid procedural epic campaign. All systems are designed with mobile-first principles and comprehensive safety measures. The next step is to begin implementation with the Touch Input System (Task 2) to unblock other development, followed by the core Hybrid Procedural Generation System (Task 41).
 
-### Today's Objectives
-1. ✅ Fix parse errors in Godot project
-2. ✅ Update project configuration for mobile landscape
-3. ✅ Revise PRD for mobile landscape approach
-4. ✅ Update Memory Bank to reflect mobile landscape focus
-5. ✅ Update .cursorrules with mobile landscape requirements
-6. Generate mobile landscape-focused task list via TaskMaster
-7. Begin mobile landscape touch control implementation
+**Current Status**: Ready to begin epic development with complete architectural foundation and comprehensive task breakdown.
 
-### Success Criteria
-- All parse errors resolved
-- Project configured for Android landscape development
-- TaskMaster operational with mobile landscape-focused tasks
-- Touch control foundation implemented for landscape
-- Clear mobile landscape development path established
+---
 
-## Mobile Landscape Development Notes
-
-### Touch Control Layout (Landscape)
-- **Bottom Left**: Virtual joystick for movement
-- **Bottom Right**: Attack button (primary action)
-- **Right Side**: Dodge/roll button (above attack)
-- **Top Corners**: Menu/inventory buttons
-- **Context Sensitive**: Interact button appears when needed
-
-### Performance Considerations
-- Object pooling essential for mobile memory management
-- LOD system for distant objects
-- Efficient particle systems
-- Texture compression for mobile storage
-- Audio streaming for memory efficiency
-
-### Platform Integration
-- Handle Android app lifecycle (pause/resume)
-- Support for Android back button
-- Integration with Android notifications
-- Proper handling of phone calls/interruptions
-- Battery usage optimization for landscape play
-
-## Critical Reminders
-
-### MOBILE LANDSCAPE ONLY
-- **NO desktop support** until user explicitly requests it
-- **Touch controls are the ONLY input method**
-- **Landscape orientation is MANDATORY**
-- **Mobile performance is the PRIMARY concern**
-- **Test on mobile devices/emulation regularly**
-
-### Recent Fixes Applied
-- ✅ Fixed `level_up` signal naming conflict
-- ✅ Configured project for mobile landscape
-- ✅ Updated all documentation for mobile landscape focus
-- ✅ Removed desktop input mappings
-- ✅ Set mobile renderer and compression 
+**Current Phase**: Phase 1 - Core Systems Implementation (Epic Mobile Campaign)
+**Completion**: 2% of epic scope (1 of 40 tasks complete)
+**Next milestone**: Complete Touch Input System and begin Sanity Manager implementation 

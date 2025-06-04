@@ -1,0 +1,473 @@
+extends Node
+
+# Epic Campaign Structure - Three Acts
+enum Act {
+	DESCENDING_CITY = 1,    # Act I: The Descending City (~15 hours)
+	DROWNING_DEPTHS = 2,    # Act II: The Drowning Depths (~20 hours)
+	DREAM_REALM = 3         # Act III: The Dream Realm (~15 hours)
+}
+
+# Game state management for epic campaigns
+enum GameState {
+	MENU,
+	PLAYING,
+	PAUSED,
+	GAME_OVER,
+	LOADING,
+	SAVING
+}
+
+# Game state for epic campaigns
+var current_act: Act = Act.DESCENDING_CITY
+var current_game_state: GameState = GameState.MENU
+var current_area: String = "city_entrance"
+var current_dungeon: String = ""
+var current_level: int = 1
+
+# Epic campaign progression tracking
+var act_progress: Dictionary = {
+	Act.DESCENDING_CITY: {"completed": false, "progress": 0.0, "areas_discovered": []},
+	Act.DROWNING_DEPTHS: {"completed": false, "progress": 0.0, "areas_discovered": []},
+	Act.DREAM_REALM: {"completed": false, "progress": 0.0, "areas_discovered": []}
+}
+
+# Game session state
+var is_game_started: bool = false
+var is_game_paused: bool = false
+var session_start_time: float = 0.0
+var total_play_time: float = 0.0
+
+# Epic campaign statistics
+var total_dungeons_completed: int = 0
+var total_enemies_defeated: int = 0
+var total_blood_echoes_earned: int = 0
+var total_sanity_lost: float = 0.0
+var mutations_acquired: int = 0
+var endings_unlocked: Array[String] = []
+
+# Mobile performance tracking
+var mobile_performance_mode: bool = true
+var target_fps: int = 60
+var current_fps: float = 60.0
+var frame_time_history: Array[float] = []
+
+# Signals for epic campaign coordination
+signal game_started()
+signal game_ended()
+signal game_paused()
+signal game_resumed()
+signal act_changed(new_act: Act)
+signal area_changed(new_area: String)
+signal dungeon_entered(dungeon_id: String)
+signal dungeon_completed(dungeon_id: String)
+signal epic_milestone_reached(milestone: String)
+signal sanity_changed(new_value: float, max_value: float)
+signal mutation_acquired(mutation_id: String)
+signal ending_unlocked(ending_id: String)
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	# Initialize epic campaign systems
+	_initialize_epic_systems()
+	
+	# Connect to other autoload systems
+	_connect_epic_autoloads()
+	
+	# Start mobile performance monitoring
+	_start_mobile_monitoring()
+	
+	print("GameManager: Epic campaign system initialized for mobile")
+
+func _initialize_epic_systems() -> void:
+	# Set up epic campaign defaults
+	current_act = Act.DESCENDING_CITY
+	current_area = "city_entrance"
+	session_start_time = Time.get_unix_time_from_system()
+	
+	# Initialize act progress tracking
+	for act in Act.values():
+		if not act_progress.has(act):
+			act_progress[act] = {"completed": false, "progress": 0.0, "areas_discovered": []}
+
+func _connect_epic_autoloads() -> void:
+	# Connect to SanityManager
+	# TODO: Fix signal connections after autoload initialization
+	# if SanityManager:
+	#	SanityManager.sanity_changed.connect(_on_sanity_changed)
+	#	SanityManager.sanity_level_changed.connect(_on_sanity_level_changed)
+	
+	# Connect to HybridGenerator
+	# TODO: Fix signal connections after autoload initialization
+	# if HybridGenerator:
+	#	HybridGenerator.hybrid_generation_completed.connect(_on_hybrid_content_generated)
+	
+	# Connect to PlayerStats for epic progression
+	# TODO: Fix signal connections after autoload initialization
+	# if PlayerStats:
+	#	PlayerStats.level_up.connect(_on_player_level_up)
+	#	PlayerStats.mutation_acquired.connect(_on_mutation_acquired)
+	
+	pass  # Placeholder until autoload connections are fixed
+
+func _start_mobile_monitoring() -> void:
+	# Start FPS monitoring for mobile optimization
+	var timer = Timer.new()
+	timer.wait_time = 1.0
+	timer.timeout.connect(_update_mobile_performance)
+	timer.autostart = true
+	add_child(timer)
+
+func _update_mobile_performance() -> void:
+	current_fps = Engine.get_frames_per_second()
+	frame_time_history.append(current_fps)
+	
+	# Keep history manageable for mobile memory
+	if frame_time_history.size() > 60:  # Last 60 seconds
+		frame_time_history = frame_time_history.slice(30)
+	
+	# Adjust performance if needed
+	if current_fps < target_fps * 0.8:  # 20% below target
+		_adjust_mobile_performance()
+
+func _adjust_mobile_performance() -> void:
+	# Reduce quality settings for mobile performance
+	# TODO: Fix after autoload initialization
+	# if HybridGenerator:
+	#	HybridGenerator.max_concurrent_generations = 1
+	
+	# Notify other systems to reduce quality
+	EventBus.emit_signal("mobile_performance_degraded", current_fps)
+
+# Epic Campaign Management
+func start_new_epic_campaign() -> void:
+	is_game_started = true
+	session_start_time = Time.get_unix_time_from_system()
+	current_act = Act.DESCENDING_CITY
+	current_area = "city_entrance"
+	
+	# Reset epic progression
+	_reset_epic_progression()
+	
+	# Initialize starting sanity
+	# TODO: Fix after autoload initialization
+	# if SanityManager:
+	#	SanityManager.set_sanity(100.0, 100.0)
+	
+	game_started.emit()
+	print("GameManager: New epic campaign started")
+
+func _reset_epic_progression() -> void:
+	total_dungeons_completed = 0
+	total_enemies_defeated = 0
+	total_blood_echoes_earned = 0
+	total_sanity_lost = 0.0
+	mutations_acquired = 0
+	endings_unlocked.clear()
+	
+	for act in act_progress:
+		act_progress[act] = {"completed": false, "progress": 0.0, "areas_discovered": []}
+
+func advance_to_act(new_act: Act) -> void:
+	if new_act == current_act:
+		return
+	
+	var old_act = current_act
+	
+	# Mark previous act as completed
+	if act_progress.has(old_act):
+		act_progress[old_act]["completed"] = true
+		act_progress[old_act]["progress"] = 1.0
+	
+	current_act = new_act
+	
+	# Set starting area for new act
+	match new_act:
+		Act.DESCENDING_CITY:
+			change_area("city_entrance")
+		Act.DROWNING_DEPTHS:
+			change_area("depths_entrance")
+		Act.DREAM_REALM:
+			change_area("dream_threshold")
+	
+	act_changed.emit(new_act)
+	epic_milestone_reached.emit("act_" + str(new_act) + "_started")
+	
+	print("GameManager: Advanced to Act ", new_act)
+
+func change_area(new_area: String) -> void:
+	if new_area == current_area:
+		return
+	
+	var old_area = current_area
+	current_area = new_area
+	
+	# Track area discovery for epic progression
+	if not act_progress[current_act]["areas_discovered"].has(new_area):
+		act_progress[current_act]["areas_discovered"].append(new_area)
+	
+	area_changed.emit(new_area)
+	
+	# Update act progress based on area exploration
+	_update_act_progress()
+	
+	print("GameManager: Changed area from ", old_area, " to ", new_area)
+
+func enter_dungeon(dungeon_id: String) -> void:
+	current_dungeon = dungeon_id
+	dungeon_entered.emit(dungeon_id)
+	
+	# Generate dungeon content using hybrid system
+	if HybridGenerator:
+		var context = {
+			"act": current_act,
+			"area": current_area,
+			"player_level": PlayerStats.level if PlayerStats else 1,
+			"sanity_level": SanityManager.SanityLevel.HIGH  # TODO: Fix after autoload init
+		}
+		# TODO: Fix after autoload initialization
+		# HybridGenerator.generate_hybrid_content("dungeon", dungeon_id, context)
+
+func complete_dungeon(dungeon_id: String) -> void:
+	if current_dungeon != dungeon_id:
+		print("GameManager: Warning - completing dungeon that isn't current")
+	
+	total_dungeons_completed += 1
+	current_dungeon = ""
+	
+	dungeon_completed.emit(dungeon_id)
+	
+	# Update act progress
+	_update_act_progress()
+	
+	# Check for act completion
+	_check_act_completion()
+	
+	print("GameManager: Completed dungeon ", dungeon_id, " (Total: ", total_dungeons_completed, ")")
+
+func _update_act_progress() -> void:
+	# Calculate progress based on areas discovered and dungeons completed
+	var areas_count = act_progress[current_act]["areas_discovered"].size()
+	var expected_areas = _get_expected_areas_for_act(current_act)
+	
+	var progress = float(areas_count) / float(expected_areas)
+	progress = clamp(progress, 0.0, 1.0)
+	
+	act_progress[current_act]["progress"] = progress
+
+func _get_expected_areas_for_act(act: Act) -> int:
+	# Expected number of areas per act for epic campaign
+	match act:
+		Act.DESCENDING_CITY:
+			return 8  # City zones
+		Act.DROWNING_DEPTHS:
+			return 6  # Depth levels
+		Act.DREAM_REALM:
+			return 5  # Dream layers
+		_:
+			return 5
+
+func _check_act_completion() -> void:
+	var current_progress = act_progress[current_act]["progress"]
+	
+	# Act completion threshold
+	if current_progress >= 0.8:  # 80% completion
+		if not act_progress[current_act]["completed"]:
+			_complete_current_act()
+
+func _complete_current_act() -> void:
+	act_progress[current_act]["completed"] = true
+	epic_milestone_reached.emit("act_" + str(current_act) + "_completed")
+	
+	# Check if we should advance to next act
+	match current_act:
+		Act.DESCENDING_CITY:
+			if _should_advance_to_act_2():
+				advance_to_act(Act.DROWNING_DEPTHS)
+		Act.DROWNING_DEPTHS:
+			if _should_advance_to_act_3():
+				advance_to_act(Act.DREAM_REALM)
+		Act.DREAM_REALM:
+			_trigger_epic_ending()
+
+func _should_advance_to_act_2() -> bool:
+	# Conditions for advancing to Act 2
+	return (total_dungeons_completed >= 5 and 
+			PlayerStats.level >= 10 if PlayerStats else true)
+
+func _should_advance_to_act_3() -> bool:
+	# Conditions for advancing to Act 3
+	return (total_dungeons_completed >= 15 and 
+			PlayerStats.level >= 25 if PlayerStats else true)
+
+func _trigger_epic_ending() -> void:
+	# Determine ending based on player state
+	var ending_id = _calculate_ending()
+	
+	if not endings_unlocked.has(ending_id):
+		endings_unlocked.append(ending_id)
+		ending_unlocked.emit(ending_id)
+	
+	epic_milestone_reached.emit("epic_campaign_completed")
+
+func _calculate_ending() -> String:
+	# Calculate ending based on epic campaign choices
+	var sanity_percentage = 100.0  # TODO: Fix after autoload init - SanityManager.get_sanity_percentage()
+	var companion_survival = 1.0  # Placeholder for companion system
+	
+	if sanity_percentage >= 75.0 and companion_survival >= 0.8:
+		return "transcendence"
+	elif sanity_percentage <= 25.0 and mutations_acquired >= 2:
+		return "corruption"
+	else:
+		return "sacrifice"
+
+# Event handlers for epic systems
+func _on_sanity_changed(new_value: float, max_value: float) -> void:
+	sanity_changed.emit(new_value, max_value)
+	
+	# Track total sanity lost for epic statistics
+	var sanity_loss = max_value - new_value
+	if sanity_loss > total_sanity_lost:
+		total_sanity_lost = sanity_loss
+
+func _on_sanity_level_changed(old_level: SanityManager.SanityLevel, new_level: SanityManager.SanityLevel) -> void:
+	# React to sanity level changes in epic campaign
+	match new_level:
+		SanityManager.SanityLevel.ZERO:
+			epic_milestone_reached.emit("sanity_breakdown")
+		SanityManager.SanityLevel.LOW:
+			epic_milestone_reached.emit("sanity_critical")
+
+func _on_hybrid_content_generated(content_type: String, result: Dictionary) -> void:
+	# Handle completed hybrid generation
+	print("GameManager: Hybrid content generated - ", content_type)
+
+func _on_player_level_up(new_level: int) -> void:
+	epic_milestone_reached.emit("level_" + str(new_level))
+
+func _on_mutation_acquired(mutation_id: String) -> void:
+	mutations_acquired += 1
+	mutation_acquired.emit(mutation_id)
+	epic_milestone_reached.emit("mutation_acquired")
+
+# Game state management
+func change_game_state(new_state: GameState) -> void:
+	if new_state == current_game_state:
+		return
+	
+	var old_state = current_game_state
+	current_game_state = new_state
+	
+	# Handle state transitions
+	match new_state:
+		GameState.MENU:
+			_handle_menu_state()
+		GameState.PLAYING:
+			_handle_playing_state()
+		GameState.PAUSED:
+			_handle_paused_state()
+		GameState.GAME_OVER:
+			_handle_game_over_state()
+		GameState.LOADING:
+			_handle_loading_state()
+		GameState.SAVING:
+			_handle_saving_state()
+	
+	print("GameManager: State changed from ", old_state, " to ", new_state)
+
+func _handle_menu_state() -> void:
+	# Handle menu state
+	pass
+
+func _handle_playing_state() -> void:
+	# Handle playing state
+	if not is_game_started:
+		start_new_epic_campaign()
+
+func _handle_paused_state() -> void:
+	# Handle paused state
+	pause_game()
+
+func _handle_game_over_state() -> void:
+	# Handle game over state
+	end_game()
+
+func _handle_loading_state() -> void:
+	# Handle loading state
+	pass
+
+func _handle_saving_state() -> void:
+	# Handle saving state
+	pass
+
+func pause_game() -> void:
+	if is_game_paused:
+		return
+	
+	is_game_paused = true
+	get_tree().paused = true
+	game_paused.emit()
+
+func resume_game() -> void:
+	if not is_game_paused:
+		return
+	
+	is_game_paused = false
+	get_tree().paused = false
+	game_resumed.emit()
+
+func end_game() -> void:
+	is_game_started = false
+	total_play_time += Time.get_unix_time_from_system() - session_start_time
+	game_ended.emit()
+
+# Epic campaign statistics
+func get_epic_statistics() -> Dictionary:
+	return {
+		"current_act": current_act,
+		"current_area": current_area,
+		"total_play_time": total_play_time + (Time.get_unix_time_from_system() - session_start_time),
+		"dungeons_completed": total_dungeons_completed,
+		"enemies_defeated": total_enemies_defeated,
+		"blood_echoes_earned": total_blood_echoes_earned,
+		"sanity_lost": total_sanity_lost,
+		"mutations_acquired": mutations_acquired,
+		"endings_unlocked": endings_unlocked.size(),
+		"act_progress": act_progress
+	}
+
+func get_mobile_performance_stats() -> Dictionary:
+	return {
+		"current_fps": current_fps,
+		"target_fps": target_fps,
+		"average_fps": _calculate_average_fps(),
+		"performance_mode": mobile_performance_mode
+	}
+
+func _calculate_average_fps() -> float:
+	if frame_time_history.is_empty():
+		return current_fps
+	
+	var total = 0.0
+	for fps in frame_time_history:
+		total += fps
+	
+	return total / frame_time_history.size()
+
+# Debug and development functions
+func force_act(act: Act) -> void:
+	advance_to_act(act)
+
+func force_area(area: String) -> void:
+	change_area(area)
+
+func get_current_epic_state() -> Dictionary:
+	return {
+		"act": current_act,
+		"area": current_area,
+		"dungeon": current_dungeon,
+		"level": current_level,
+		"game_started": is_game_started,
+		"game_paused": is_game_paused
+	} 

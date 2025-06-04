@@ -1,0 +1,318 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqxvn8ywqp5ej"]
+
+[ext_resource type="Script" path="res://scripts/ui/virtual_joystick.gd" id="1_8k2vx"]
+[ext_resource type="Script" path="res://scripts/ui/touch_button.gd" id="2_9h3wy"]
+
+[node name="TestInput" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -300.0
+offset_right = 200.0
+offset_bottom = -250.0
+text = "Epic Touch Input Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instructions" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = -100.0
+text = "Test the virtual joystick (bottom left) and action buttons (bottom right)
+Movement vector and button presses will be displayed above"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovementDisplay" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 0.0
+text = "Movement: (0.0, 0.0)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionDisplay" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 70.0
+text = "Last Action: None"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SanityDisplay" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 90.0
+offset_right = 200.0
+offset_bottom = 140.0
+text = "Sanity: HIGH (100%)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VirtualJoystick" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = -50.0
+script = ExtResource("1_8k2vx")
+
+[node name="AttackButton" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+offset_right = -80.0
+offset_bottom = -80.0
+script = ExtResource("2_9h3wy")
+button_action = "attack"
+button_text = "ATK"
+
+[node name="DodgeButton" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -150.0
+offset_right = -200.0
+offset_bottom = -30.0
+script = ExtResource("2_9h3wy")
+button_action = "dodge"
+button_text = "DODGE"
+
+[node name="InteractButton" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -150.0
+offset_right = 40.0
+offset_bottom = -30.0
+script = ExtResource("2_9h3wy")
+button_action = "interact"
+button_text = "USE"
+
+[node name="TestControls" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 200.0
+
+[node name="SanityLabel" type="Label" parent="TestControls"]
+layout_mode = 2
+text = "Test Sanity Effects:"
+
+[node name="HighSanityButton" type="Button" parent="TestControls"]
+layout_mode = 2
+text = "High Sanity"
+
+[node name="MediumSanityButton" type="Button" parent="TestControls"]
+layout_mode = 2
+text = "Medium Sanity"
+
+[node name="LowSanityButton" type="Button" parent="TestControls"]
+layout_mode = 2
+text = "Low Sanity"
+
+[node name="ZeroSanityButton" type="Button" parent="TestControls"]
+layout_mode = 2
+text = "Zero Sanity"
+
+[node name="DistortionLabel" type="Label" parent="TestControls"]
+layout_mode = 2
+text = "Test Distortions:"
+
+[node name="InputCorruptionButton" type="Button" parent="TestControls"]
+layout_mode = 2
+text = "Input Corruption"
+
+[node name="ButtonCorruptionButton" type="Button" parent="TestControls"]
+layout_mode = 2
+text = "Button Corruption"
+
+[node name="TestScript" type="Node" parent="."]
+script_source = "extends Node
+
+# Test script for epic touch input system
+
+@onready var movement_display = $\"../MovementDisplay\"
+@onready var action_display = $\"../ActionDisplay\"
+@onready var sanity_display = $\"../SanityDisplay\"
+@onready var virtual_joystick = $\"../VirtualJoystick\"
+@onready var attack_button = $\"../AttackButton\"
+@onready var dodge_button = $\"../DodgeButton\"
+@onready var interact_button = $\"../InteractButton\"
+
+# Test controls
+@onready var high_sanity_btn = $\"../TestControls/HighSanityButton\"
+@onready var medium_sanity_btn = $\"../TestControls/MediumSanityButton\"
+@onready var low_sanity_btn = $\"../TestControls/LowSanityButton\"
+@onready var zero_sanity_btn = $\"../TestControls/ZeroSanityButton\"
+@onready var input_corruption_btn = $\"../TestControls/InputCorruptionButton\"
+@onready var button_corruption_btn = $\"../TestControls/ButtonCorruptionButton\"
+
+func _ready() -> void:
+	print(\"TestInput: Epic touch input test scene initialized\")
+	
+	# Connect joystick signals
+	if virtual_joystick:
+		virtual_joystick.movement_changed.connect(_on_movement_changed)
+		virtual_joystick.movement_started.connect(_on_movement_started)
+		virtual_joystick.movement_ended.connect(_on_movement_ended)
+	
+	# Connect button signals
+	if attack_button:
+		attack_button.button_pressed.connect(_on_button_pressed)
+		attack_button.button_released.connect(_on_button_released)
+		attack_button.button_held.connect(_on_button_held)
+	
+	if dodge_button:
+		dodge_button.button_pressed.connect(_on_button_pressed)
+		dodge_button.button_released.connect(_on_button_released)
+		dodge_button.button_held.connect(_on_button_held)
+	
+	if interact_button:
+		interact_button.button_pressed.connect(_on_button_pressed)
+		interact_button.button_released.connect(_on_button_released)
+		interact_button.button_held.connect(_on_button_held)
+	
+	# Connect test controls
+	high_sanity_btn.pressed.connect(_set_high_sanity)
+	medium_sanity_btn.pressed.connect(_set_medium_sanity)
+	low_sanity_btn.pressed.connect(_set_low_sanity)
+	zero_sanity_btn.pressed.connect(_set_zero_sanity)
+	input_corruption_btn.pressed.connect(_trigger_input_corruption)
+	button_corruption_btn.pressed.connect(_trigger_button_corruption)
+	
+	# Update initial display
+	_update_sanity_display()
+
+func _on_movement_changed(input_vector: Vector2) -> void:
+	movement_display.text = \"Movement: (%.2f, %.2f)\" % [input_vector.x, input_vector.y]
+
+func _on_movement_started() -> void:
+	print(\"TestInput: Movement started\")
+
+func _on_movement_ended() -> void:
+	movement_display.text = \"Movement: (0.0, 0.0)\"
+	print(\"TestInput: Movement ended\")
+
+func _on_button_pressed(action: String) -> void:
+	action_display.text = \"Action: %s PRESSED\" % action.to_upper()
+	print(\"TestInput: Button %s pressed\" % action)
+
+func _on_button_released(action: String) -> void:
+	action_display.text = \"Action: %s RELEASED\" % action.to_upper()
+	print(\"TestInput: Button %s released\" % action)
+
+func _on_button_held(action: String) -> void:
+	action_display.text = \"Action: %s HELD\" % action.to_upper()
+	print(\"TestInput: Button %s held\" % action)
+
+# Test sanity level changes
+func _set_high_sanity() -> void:
+	if SanityManager:
+		SanityManager.set_sanity(100.0)
+		_update_sanity_display()
+
+func _set_medium_sanity() -> void:
+	if SanityManager:
+		SanityManager.set_sanity(60.0)
+		_update_sanity_display()
+
+func _set_low_sanity() -> void:
+	if SanityManager:
+		SanityManager.set_sanity(30.0)
+		_update_sanity_display()
+
+func _set_zero_sanity() -> void:
+	if SanityManager:
+		SanityManager.set_sanity(0.0)
+		_update_sanity_display()
+
+func _trigger_input_corruption() -> void:
+	if SanityManager:
+		SanityManager.trigger_reality_distortion(\"input_corruption\", 0.8)
+
+func _trigger_button_corruption() -> void:
+	if SanityManager:
+		SanityManager.trigger_reality_distortion(\"button_corruption\", 0.8)
+
+func _update_sanity_display() -> void:
+	if SanityManager:
+		var sanity = SanityManager.current_sanity
+		var level = SanityManager.get_sanity_level()
+		var level_text = \"\"
+		
+		match level:
+			SanityManager.SanityLevel.HIGH:
+				level_text = \"HIGH\"
+			SanityManager.SanityLevel.MEDIUM:
+				level_text = \"MEDIUM\"
+			SanityManager.SanityLevel.LOW:
+				level_text = \"LOW\"
+			SanityManager.SanityLevel.ZERO:
+				level_text = \"ZERO\"
+		
+		sanity_display.text = \"Sanity: %s (%.0f%%)\" % [level_text, sanity]
+" 

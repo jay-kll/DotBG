@@ -25,15 +25,23 @@ func save_game(slot: int = current_save_slot) -> void:
 		"timestamp": Time.get_unix_time_from_system(),
 		"version": ProjectSettings.get_setting("application/config/version", "1.0.0"),
 		
-		# Game State
-		"current_act": GameManager.current_act,
-		"current_level": GameManager.current_level,
-		"discovered_areas": GameManager.discovered_areas,
-		"defeated_bosses": GameManager.defeated_bosses,
-		"blood_echoes": GameManager.blood_echoes,
-		"void_shards": GameManager.void_shards,
-		"current_sanity": GameManager.current_sanity,
-		"max_sanity": GameManager.max_sanity,
+		# Game State - TODO: Add these properties to GameManager
+		# "current_act": GameManager.current_act,
+		# "current_level": GameManager.current_level,
+		# "discovered_areas": GameManager.discovered_areas,
+		# "defeated_bosses": GameManager.defeated_bosses,
+		# "blood_echoes": GameManager.blood_echoes,
+		# "void_shards": GameManager.void_shards,
+		# "current_sanity": GameManager.current_sanity,
+		# "max_sanity": GameManager.max_sanity,
+		"current_act": 1,  # Placeholder
+		"current_level": "tutorial",  # Placeholder
+		"discovered_areas": [],  # Placeholder
+		"defeated_bosses": [],  # Placeholder
+		"blood_echoes": 0,  # Placeholder
+		"void_shards": 0,  # Placeholder
+		"current_sanity": 100.0,  # Placeholder
+		"max_sanity": 100.0,  # Placeholder
 		
 		# Player Stats
 		"player_class": PlayerStats.player_class,
@@ -81,14 +89,14 @@ func load_game(slot: int = current_save_slot) -> bool:
 	var save_data = json.get_data()
 	
 	# Load Game State
-	GameManager.current_act = save_data.current_act
-	GameManager.current_level = save_data.current_level
-	GameManager.discovered_areas = save_data.discovered_areas
-	GameManager.defeated_bosses = save_data.defeated_bosses
-	GameManager.blood_echoes = save_data.blood_echoes
-	GameManager.void_shards = save_data.void_shards
-	GameManager.current_sanity = save_data.current_sanity
-	GameManager.max_sanity = save_data.max_sanity
+	# GameManager.current_act = save_data.current_act
+	# GameManager.current_level = save_data.current_level
+	# GameManager.discovered_areas = save_data.discovered_areas
+	# GameManager.defeated_bosses = save_data.defeated_bosses
+	# GameManager.blood_echoes = save_data.blood_echoes
+	# GameManager.void_shards = save_data.void_shards
+	# GameManager.current_sanity = save_data.current_sanity
+	# GameManager.max_sanity = save_data.max_sanity
 	
 	# Load Player Stats
 	PlayerStats.player_class = save_data.player_class

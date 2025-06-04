@@ -194,7 +194,9 @@ func add_mutation(mutation_id: String) -> bool:
 	return false
 
 func die() -> void:
-	GameManager.change_game_state(GameManager.GameState.GAME_OVER)
+	# TODO: Fix GameManager state management after autoload setup
+	# GameManager.change_game_state(GameManager.GameState.GAME_OVER)
+	print("PlayerStats: Player died - TODO: Handle game over state")
 
 # Combat stat calculations
 func get_total_attack() -> float:

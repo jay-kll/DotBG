@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8k2m5lrn1x9f"]
+
+[ext_resource type="Script" path="res://scripts/tests/touch_test.gd" id="1_touch_test"]
+
+[node name="TouchTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_touch_test")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="UI" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = -20.0
+
+[node name="Title" type="Label" parent="UI"]
+layout_mode = 2
+text = "Multi-Touch Test Suite"
+theme_override_font_sizes/font_size = 24
+
+[node name="TouchCount" type="Label" parent="UI"]
+layout_mode = 2
+text = "Active Touches: 0"
+theme_override_font_sizes/font_size = 18
+
+[node name="LastGesture" type="Label" parent="UI"]
+layout_mode = 2
+text = "Last Gesture: None"
+theme_override_font_sizes/font_size = 16
+
+[node name="TouchDetails" type="RichTextLabel" parent="UI"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Touch Details:[/b]
+No active touches"
+fit_content = true
+
+[node name="TestControls" type="HBoxContainer" parent="UI"]
+layout_mode = 2
+
+[node name="EnableDebug" type="CheckBox" parent="UI/TestControls"]
+layout_mode = 2
+text = "Debug Visualization"
+
+[node name="EnableLogging" type="CheckBox" parent="UI/TestControls"]
+layout_mode = 2
+text = "Input Logging"
+
+[node name="ClearLog" type="Button" parent="UI/TestControls"]
+layout_mode = 2
+text = "Clear Log"
+
+[node name="Instructions" type="RichTextLabel" parent="UI"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Test Instructions:[/b]
+• [color=yellow]Single Tap[/color]: Quick tap and release
+• [color=yellow]Multi-Touch[/color]: Use multiple fingers simultaneously
+• [color=yellow]Gestures[/color]: Try swipes, holds, double-taps
+• [color=yellow]Rapid Changes[/color]: Quick finger movements
+• [color=yellow]Edge Cases[/color]: Touch edges, corners, rapid sequences"
+fit_content = true
+
+[connection signal="toggled" from="UI/TestControls/EnableDebug" to="." method="_on_debug_toggled"]
+[connection signal="toggled" from="UI/TestControls/EnableLogging" to="." method="_on_logging_toggled"]
+[connection signal="pressed" from="UI/TestControls/ClearLog" to="." method="_on_clear_log_pressed"] 

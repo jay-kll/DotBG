@@ -1,13 +1,13 @@
 # Technical Context: Depths of the Bastard God
 
-## Technology Stack
+## Technology Stack (Epic Mobile Campaign)
 
 ### Core Engine
-- **Godot 4.4.1**: Primary game engine
+- **Godot 4.4.1**: Primary game engine for epic 50+ hour mobile experience
   - Location: `Godot_v4.4.1-stable_linux.x86_64`
   - Platform: Linux (Ubuntu-based)
   - Architecture: x86_64
-  - Mobile Export: Android APK generation
+  - Mobile Export: Android APK generation for epic campaigns
 
 ### Development Environment
 - **OS**: Linux 6.8.0-60-generic
@@ -15,458 +15,314 @@
 - **Workspace**: `/home/island/Documentos/Depths%20of%20the%20Bastard%20God`
 - **Project Directory**: `dotbg/` (Godot project root)
 
-### Target Platform
-- **Primary**: Android (API level 21+)
-- **Orientation**: Portrait (1080x1920)
-- **Input**: Touch controls (virtual joystick, touch buttons)
-- **Future**: Desktop support planned for later phases
+### Target Platform (Epic Mobile Focus)
+- **Primary**: Android (API level 21+) for 50-70 hour campaigns
+- **Orientation**: **Landscape (1920x1080)** for epic mobile gaming
+- **Input**: Touch controls ONLY (virtual joystick, touch buttons)
+- **Session Length**: Optimized for 60+ minute continuous mobile sessions
+- **Future**: Desktop support planned for later phases (NOT until requested)
 
-### Programming Languages
-- **GDScript**: Primary scripting language for Godot
-- **C#**: Potential for performance-critical systems
-- **GLSL**: Custom shaders for visual effects
+### Programming Languages (Epic Scale)
+- **GDScript**: Primary scripting language for all epic systems
+- **C#**: Potential for performance-critical epic systems
+- **GLSL**: Custom shaders for three-act visual effects and UI corruption
+- **JSON**: Configuration for three acts, sanity system, save corruption
 
-### Project Management
-- **TaskMaster AI**: Task tracking and project management
-- **Memory Bank**: Documentation and context preservation
-- **Git**: Version control (implied)
+### Project Management (Epic Scope)
+- **TaskMaster AI**: Task tracking for 40-50 epic system tasks
+- **Memory Bank**: Documentation for 50+ hour development context
+- **Git**: Version control for epic codebase management
 
-## Mobile Development Configuration
+## Epic Mobile Architecture
 
-### Android Target Settings
+### Three-Act Technical Structure
+```gdscript
+# Act-specific technical requirements
+ActManager
+├── Act1_TechnicalSpecs (city generation, urban rendering)
+├── Act2_TechnicalSpecs (water physics, organic rendering)
+└── Act3_TechnicalSpecs (impossible geometry, reality distortion)
+
+# Each act requires distinct:
+- Rendering pipelines
+- Physics rules
+- Generation algorithms
+- Performance profiles
+```
+
+### UI Corruption System Architecture
+```gdscript
+# Technical implementation for interface lies
+UICorruption (Autoload)
+├── HealthBarCorruption (false health display)
+├── InventoryCorruption (item description lies)
+├── MapCorruption (false room layouts)
+├── MenuCorruption (fake options, broken navigation)
+├── TextCorruption (randomized descriptions)
+└── SaveUICorruption (fake save confirmations)
+
+# Corruption levels affect rendering:
+enum CorruptionLevel {
+    NONE,        # 75-100% sanity - normal rendering
+    SUBTLE,      # 50-74% sanity - minor visual lies
+    OBVIOUS,     # 25-49% sanity - major interface distortion
+    COMPLETE     # 0-24% sanity - complete UI unreliability
+}
+```
+
+### Save System Corruption Architecture
+```gdscript
+# Dual save system: real data + fake corruption
+SaveCorruption (Autoload)
+├── RealSaveManager (actual data persistence)
+├── FakeSaveManager (corruption simulation)
+├── ProgressLies (false completion states)
+├── RollbackSimulation (fake progress loss)
+└── SaveFileRenaming (cosmetic file name changes)
+
+# Technical requirements:
+- Real saves NEVER corrupted (data integrity)
+- Fake corruption affects UI only
+- Mobile storage optimization for 50+ hour saves
+- Android app lifecycle handling
+```
+
+## Mobile Development Configuration (Epic Scale)
+
+### Android Target Settings (Epic Campaign)
 - **Minimum SDK**: API level 21 (Android 5.0)
 - **Target SDK**: Latest stable Android API
 - **Architecture**: ARM64-v8a (primary), ARMv7 (compatibility)
-- **Permissions**: Storage, vibration, network (for future features)
+- **Permissions**: Storage (epic save files), vibration, network (future)
+- **Storage Requirements**: Optimized for 50+ hour save data
 
-### Mobile Rendering
-- **Renderer**: Mobile (optimized for mobile GPUs)
-- **Compression**: ETC2/ASTC for textures
-- **MSAA**: 2x for performance balance
-- **VSync**: Enabled for smooth frame pacing
+### Mobile Rendering (Three-Act Optimization)
+- **Renderer**: Mobile (optimized for three distinct visual styles)
+- **Compression**: ETC2/ASTC for textures across all acts
+- **MSAA**: 2x for performance balance across epic content
+- **VSync**: Enabled for smooth frame pacing during extended sessions
+- **Act-Specific Shaders**: Optimized rendering per act theme
 
-### Performance Targets
-- **Frame Rate**: 60 FPS on mid-range Android devices
-- **Memory**: Under 1.5GB RAM usage
-- **Generation Time**: Under 1 second per room
-- **Touch Latency**: Under 50ms response time
-- **Battery**: Optimized for 2+ hour sessions
+### Performance Targets (Epic Mobile Campaign)
+- **Frame Rate**: 60 FPS on mid-range Android devices across all three acts
+- **Memory**: Under 1.5GB RAM usage for 50+ hour save files
+- **Generation Time**: Under 2 seconds per room across three distinct acts
+- **Touch Latency**: Under 50ms response time despite UI corruption
+- **Battery**: Optimized for 2+ hour continuous play sessions
+- **Campaign Length**: 50-70 hours total gameplay time
+- **Save File Size**: Optimized mobile storage for epic campaigns
 
-## Input System Architecture
+## Input System Architecture (Epic Complexity)
 
-### Touch Controls
-- **Virtual Joystick**: Left side movement control
-- **Touch Buttons**: Right side action controls
+### Touch Controls (Sanity-Aware)
+- **Virtual Joystick**: Left side movement control (may lie at low sanity)
+- **Touch Buttons**: Right side action controls (corruption-capable)
 - **Gesture Recognition**: Swipe patterns for special abilities
-- **Haptic Feedback**: Tactile response for important actions
+- **Haptic Feedback**: Tactile response (may be false at low sanity)
+- **Context-Sensitive**: Interact buttons (may appear when nothing there)
 
-### Input Mapping
+### Input Mapping (Epic Systems)
 ```gdscript
-# Mobile touch input actions (no keyboard/mouse)
-move_up, move_down, move_left, move_right  # Virtual joystick
-attack                                      # Touch button
-dodge                                       # Touch button  
-interact                                    # Context-sensitive
-inventory                                   # Touch button
-pause                                       # Touch button
+# Mobile touch input actions (no keyboard/mouse until desktop requested)
+move_up, move_down, move_left, move_right  # Virtual joystick (sanity-aware)
+attack                                      # Touch button (may hallucinate)
+dodge                                       # Touch button (i-frames may lie)
+interact                                    # Context-sensitive (may be false)
+inventory                                   # Touch button (items may lie)
+pause                                       # Touch button (may not work)
+sanity_check                               # Debug: reveal reality vs. corruption
 ```
 
-### Touch Responsiveness
+### Touch Responsiveness (Reality-Aware)
 - **Input Polling**: High frequency for smooth response
 - **Touch Areas**: Generous hit boxes for finger accuracy
-- **Visual Feedback**: Immediate response to touch events
+- **Visual Feedback**: Immediate response (may be false at low sanity)
 - **Dead Zones**: Prevent accidental inputs
+- **Corruption Handling**: Touch events may be filtered by sanity state
 
-## Mobile Optimization Strategy
+## Mobile Optimization Strategy (Epic Scale)
 
-### Memory Management
-- **Object Pooling**: Reuse frequently created objects
-- **Asset Streaming**: Load/unload content as needed
-- **Texture Compression**: Mobile-optimized formats
-- **Audio Compression**: Efficient sound file formats
+### Memory Management (50+ Hour Campaigns)
+- **Object Pooling**: Reuse objects across epic campaign length
+- **Asset Streaming**: Load/unload content across three acts
+- **Texture Compression**: Mobile-optimized formats for three visual styles
+- **Audio Compression**: Efficient sound files for massive soundtrack
+- **Save Data Optimization**: Efficient storage for 50+ hour progress
+- **Act Transition**: Memory cleanup between major act changes
 
-### CPU Optimization
-- **Efficient Algorithms**: Mobile-optimized procedural generation
-- **Background Processing**: Minimize work during active gameplay
-- **State Machines**: Efficient AI and game logic
-- **Batch Operations**: Group similar operations together
+### CPU Optimization (Epic Performance)
+- **Efficient Algorithms**: Mobile-optimized procedural generation per act
+- **Background Processing**: Minimize work during active epic gameplay
+- **State Machines**: Efficient AI and game logic across three acts
+- **Batch Operations**: Group similar operations for mobile efficiency
+- **Sanity Processing**: Efficient reality distortion calculations
+- **UI Corruption**: Lightweight interface manipulation
 
-### GPU Optimization
-- **LOD System**: Level-of-detail for distant objects
-- **Culling**: Frustum and occlusion culling
-- **Particle Limits**: Reasonable particle counts
-- **Shader Efficiency**: Mobile-optimized shaders
+### GPU Optimization (Three-Act Rendering)
+- **LOD System**: Level-of-detail for distant objects per act
+- **Culling**: Frustum and occlusion culling across three visual styles
+- **Particle Limits**: Reasonable particle counts for extended sessions
+- **Shader Efficiency**: Mobile-optimized shaders per act theme
+- **Corruption Effects**: Efficient UI distortion rendering
+- **Act-Specific Optimization**: Tailored rendering per act requirements
 
-### Battery Optimization
-- **Frame Rate Scaling**: Adaptive performance based on battery
+### Battery Optimization (Epic Sessions)
+- **Frame Rate Scaling**: Adaptive performance for 60+ minute sessions
 - **Background Behavior**: Minimal processing when app inactive
-- **Efficient Rendering**: Avoid unnecessary draw calls
-- **Sleep States**: Proper handling of device sleep
-
-## Development Tools
-
-### Mobile Testing
-- **Android Debug Bridge (ADB)**: Device debugging
-- **Godot Remote Debug**: Real-time debugging on device
-- **Performance Profiler**: Mobile-specific performance monitoring
-- **Device Testing**: Multiple Android devices for compatibility
-
-### Build Pipeline
-- **Export Templates**: Android export templates for Godot
-- **Signing**: Android APK signing for distribution
-- **Optimization**: Build-time optimizations for mobile
-- **Testing**: Automated testing on target devices
-
-## File Structure
-
-### Mobile-Optimized Organization
-```
-dotbg/
-├── project.godot              # Mobile-configured project
-├── scenes/
-│   ├── mobile_ui/            # Touch-optimized UI scenes
-│   ├── player/               # Mobile player controller
-│   └── world/                # Mobile-optimized world scenes
-├── scripts/
-│   ├── autoload/             # Global mobile systems
-│   ├── mobile/               # Mobile-specific scripts
-│   ├── touch/                # Touch control systems
-│   └── optimization/         # Mobile performance scripts
-├── assets/
-│   ├── mobile_ui/            # Mobile UI assets
-│   ├── compressed/           # Mobile-compressed assets
-│   └── audio/                # Mobile-optimized audio
-└── resources/
-    ├── mobile_themes/        # Mobile UI themes
-    └── touch_controls/       # Touch control configurations
-```
-
-## Dependencies
-
-### Engine Dependencies
-- **Godot 4.4.1**: Core engine with mobile export support
-- **Android SDK**: For Android development and export
-- **Java JDK**: Required for Android builds
-
-### External Libraries
-- **None currently**: Keeping dependencies minimal for mobile
-- **Future considerations**: Native Android plugins if needed
-
-### Asset Pipeline
-- **Texture Tools**: For mobile texture compression
-- **Audio Tools**: For mobile audio optimization
-- **Build Tools**: For automated mobile builds
-
-## Platform-Specific Considerations
-
-### Android Lifecycle
-- **App Pause/Resume**: Proper handling of app interruptions
-- **Memory Warnings**: Response to low memory conditions
-- **Background Processing**: Minimal activity when backgrounded
-- **Notification Handling**: Integration with Android notifications
-
-### Touch Interface Design
-- **Finger-Friendly**: Minimum 44dp touch targets
-- **Accessibility**: Support for various hand sizes
-- **Orientation**: Portrait-optimized layout
-- **Visual Feedback**: Clear indication of touch interactions
-
-### Performance Scaling
-- **Device Detection**: Automatic quality adjustment based on device
-- **Graceful Degradation**: Reduced features on lower-end devices
-- **User Settings**: Manual performance adjustment options
+- **Efficient Rendering**: Avoid unnecessary draw calls across epic content
+- **Sleep States**: Proper handling of device sleep during long sessions
 - **Thermal Management**: Reduce performance if device overheating
+- **Session Length Optimization**: Battery-conscious epic gaming
 
-## Security Considerations
+## Development Tools (Epic Scale)
 
-### Mobile Security
-- **Save Data Protection**: Secure local storage
-- **Input Validation**: Prevent malicious input
-- **Asset Protection**: Basic asset security
-- **Privacy**: Minimal data collection
+### Mobile Testing (Epic Campaign)
+- **Android Debug Bridge (ADB)**: Device debugging for epic systems
+- **Godot Remote Debug**: Real-time debugging for complex systems
+- **Performance Profiler**: Mobile-specific monitoring for 50+ hour campaigns
+- **Device Testing**: Multiple Android devices for epic compatibility
+- **Save Corruption Testing**: Validate fake corruption doesn't break real saves
+- **Extended Session Testing**: 60+ minute mobile session validation
 
-### Android Permissions
-- **Storage**: For save files and generated content
-- **Vibration**: For haptic feedback
-- **Network**: For future online features (optional)
-- **Minimal Permissions**: Request only what's necessary
+### Build Pipeline (Epic Scope)
+- **Export Templates**: Android export templates for epic content
+- **Signing**: Android APK signing for epic game distribution
+- **Optimization**: Build-time optimizations for three-act mobile game
+- **Testing**: Automated testing for epic campaign systems
+- **Act-Specific Builds**: Optimized builds per development phase
 
-## Future Platform Support
+## File Structure (Epic Organization)
 
-### Desktop Expansion
-- **Input Adaptation**: Keyboard/mouse support addition
-- **UI Scaling**: Desktop-appropriate interface scaling
-- **Performance Scaling**: Desktop hardware utilization
-- **Feature Parity**: Maintain feature consistency across platforms
-
-### Cross-Platform Considerations
-- **Shared Codebase**: Platform-agnostic core systems
-- **Platform Abstraction**: Input and UI abstraction layers
-- **Asset Compatibility**: Cross-platform asset formats
-- **Save Compatibility**: Cross-platform save file format
-
-## Development Workflow
-
-### Mobile-First Approach
-1. **Design for Touch**: Touch controls as primary input
-2. **Mobile Performance**: Optimize for mobile constraints first
-3. **Test on Device**: Regular testing on actual Android devices
-4. **Iterate Quickly**: Fast iteration cycle for touch control refinement
-
-### Quality Assurance
-- **Device Testing**: Multiple Android devices and versions
-- **Performance Testing**: Frame rate and memory monitoring
-- **Touch Testing**: Accuracy and responsiveness validation
-- **Battery Testing**: Extended play session monitoring
-
-### Deployment Pipeline
-- **Development Builds**: Quick iteration builds for testing
-- **Release Builds**: Optimized builds for distribution
-- **Beta Testing**: External testing on various devices
-- **Store Deployment**: Google Play Store preparation
-
-## Project Structure
-
-### Root Directory
-```
-/home/island/Documentos/Depths of the Bastard God/
-├── dotbg/                    # Godot project root
-├── design.md                 # Game design document
-├── roadmap.md               # Development roadmap
-├── story_design.md          # Narrative design
-├── memory-bank/             # Documentation system
-├── .taskmaster/             # TaskMaster configuration
-└── Godot_v4.4.1-stable_linux.x86_64  # Engine executable
-```
-
-### Godot Project Structure (`dotbg/`)
+### Mobile-Optimized Organization (Three-Act Structure)
 ```
 dotbg/
-├── project.godot           # Project configuration
-├── main.tscn              # Main scene
-├── icon.png               # Project icon
-├── .editorconfig          # Editor settings
-├── .godot/                # Engine cache (ignored)
-├── scripts/               # GDScript files
-│   └── autoload/          # Global scripts
-├── scenes/                # Scene files
-├── assets/                # Art and audio assets
-└── resources/             # Game data resources
+├── project.godot              # Epic mobile-configured project
+├── scenes/
+│   ├── mobile_ui/            # Touch-optimized UI scenes (corruption-capable)
+│   ├── player/               # Mobile player controller (sanity-aware)
+│   ├── world/                # Mobile-optimized world scenes
+│   │   ├── act1_city/        # The Descending City scenes
+│   │   ├── act2_depths/      # The Drowning Depths scenes
+│   │   └── act3_dream/       # The Dream Realm scenes
+│   ├── corruption/           # UI corruption and reality distortion
+│   └── bosses/               # Act-specific boss encounters
+├── scripts/
+│   ├── autoload/             # Global mobile systems (epic-aware)
+│   │   ├── sanity_manager.gd     # Reality distortion controller
+│   │   ├── ui_corruption.gd      # Interface manipulation
+│   │   └── save_corruption.gd    # Fake save operations
+│   ├── mobile/               # Mobile-specific scripts
+│   ├── touch/                # Touch control systems (sanity-aware)
+│   ├── optimization/         # Mobile performance scripts (epic scale)
+│   ├── acts/                 # Act-specific systems
+│   │   ├── act1_systems/     # City generation and mechanics
+│   │   ├── act2_systems/     # Depths generation and water physics
+│   │   └── act3_systems/     # Dream realm and reality distortion
+│   └── corruption/           # Reality distortion implementations
+├── assets/
+│   ├── mobile_ui/            # Mobile UI assets (corruption variants)
+│   ├── compressed/           # Mobile-compressed assets per act
+│   ├── audio/                # Mobile-optimized audio (massive soundtrack)
+│   ├── act1_assets/          # City-themed assets
+│   ├── act2_assets/          # Depths-themed assets
+│   ├── act3_assets/          # Dream-themed assets
+│   └── corruption_assets/    # UI corruption and distortion assets
+└── resources/
+    ├── mobile_themes/        # Mobile UI themes (corruption-aware)
+    ├── touch_controls/       # Touch control configurations
+    ├── act_configs/          # Act-specific configuration files
+    ├── sanity_configs/       # Sanity system configuration
+    ├── corruption_configs/   # UI corruption settings
+    └── save_configs/         # Save system configuration (real + fake)
 ```
 
-## Engine Configuration
+## Dependencies (Epic Scale)
 
-### Project Settings (project.godot)
-- **Application Name**: "Depths of the Bastard God"
-- **Main Scene**: main.tscn
-- **Target FPS**: 60
-- **Physics**: 2D physics enabled
-- **Rendering**: Forward+ renderer
+### Engine Dependencies (Epic Campaign)
+- **Godot 4.4.1**: Core engine with mobile export for epic content
+- **Android SDK**: For Android development and epic game export
+- **Java JDK**: Required for Android builds of epic scope
 
-### Input Mappings
-- Movement: WASD keys
-- Attack: Mouse buttons
-- Dodge: Spacebar
-- Interact: E key
-- Menu: Escape key
+### External Libraries (Epic Scope)
+- **None currently**: Keeping dependencies minimal for epic mobile game
+- **Future considerations**: Native Android plugins for epic features if needed
+- **Potential additions**: Advanced audio processing for massive soundtrack
 
-### Physics Layers
-- Player: Layer 1
-- Enemies: Layer 2
-- Environment: Layer 3
-- Projectiles: Layer 4
-- Triggers: Layer 5
+### Asset Pipeline (Epic Content)
+- **Texture Tools**: For mobile texture compression across three acts
+- **Audio Tools**: For mobile audio optimization (massive soundtrack)
+- **Build Tools**: For automated mobile builds of epic content
+- **Compression Tools**: For epic save file optimization
 
-### Autoload Scripts
-1. **GameManager**: `scripts/autoload/game_manager.gd`
-2. **PlayerStats**: `scripts/autoload/player_stats.gd`
-3. **EventBus**: `scripts/autoload/event_bus.gd`
+## Platform-Specific Considerations (Epic Mobile)
 
-## Development Tools
+### Android Lifecycle (Epic Sessions)
+- **App Pause/Resume**: Proper handling during epic gaming sessions
+- **Memory Warnings**: Response to low memory during 50+ hour campaigns
+- **Background Processing**: Minimal activity when backgrounded
+- **Notification Handling**: Integration during long gaming sessions
+- **Save Protection**: Ensure epic progress isn't lost during interruptions
 
-### TaskMaster Configuration
-- **Version**: 0.16.1
-- **Config**: `.taskmaster/config.json`
-- **Templates**: `.taskmaster/templates/`
-- **Documentation**: `.taskmaster/docs/`
-- **Reports**: `.taskmaster/reports/`
-- **Tasks**: `.taskmaster/tasks/`
+### Touch Interface Design (Epic Complexity)
+- **Finger-Friendly**: Minimum 44dp touch targets for complex systems
+- **Accessibility**: Support for various hand sizes during extended play
+- **Orientation**: **Landscape-optimized layout** for epic mobile gaming
+- **Visual Feedback**: Clear indication of touch interactions (may lie at low sanity)
+- **Corruption-Aware**: Interface elements that can display false information
 
-### Memory Bank System
-- **Location**: `memory-bank/`
-- **Core Files**: 
-  - projectbrief.md
-  - productContext.md
-  - activeContext.md
-  - systemPatterns.md
-  - techContext.md
-  - progress.md
+### Performance Scaling (Epic Campaign)
+- **Device Detection**: Automatic quality adjustment for epic content
+- **Graceful Degradation**: Reduced features on lower-end devices
+- **User Settings**: Manual performance adjustment for epic sessions
+- **Thermal Management**: Reduce performance if device overheating during long play
+- **Act-Specific Scaling**: Different performance profiles per act
 
-## Technical Constraints
+## Security Considerations (Epic Scale)
 
-### Performance Requirements
-- **Target FPS**: 60 FPS minimum
-- **Memory Usage**: Under 2GB RAM
-- **Generation Time**: Under 2 seconds per room
-- **Loading Time**: Under 5 seconds for level transitions
+### Mobile Security (Epic Campaign)
+- **Save Data Protection**: Secure local storage for 50+ hour progress
+- **Input Validation**: Prevent malicious input across complex systems
+- **Asset Protection**: Basic asset security for epic content
+- **Privacy**: Minimal data collection during epic sessions
+- **Save Integrity**: Protect real saves from corruption system
 
-### Hardware Targets
-- **Minimum**: 
-  - CPU: Dual-core 2.5GHz
-  - RAM: 4GB
-  - GPU: Integrated graphics
-  - Storage: 2GB available space
+### Android Permissions (Epic Scope)
+- **Storage**: For epic save files and generated content
+- **Vibration**: For haptic feedback across epic systems
+- **Network**: For future online features (optional)
+- **Minimal Permissions**: Request only what's necessary for epic experience
 
-- **Recommended**:
-  - CPU: Quad-core 3.0GHz
-  - RAM: 8GB
-  - GPU: Dedicated graphics card
-  - Storage: 4GB available space (SSD preferred)
+## Future Platform Support (Epic Expansion)
 
-### Platform Considerations
-- **Primary**: Linux (development platform)
-- **Target Platforms**: Windows, macOS, Linux
-- **Potential**: Steam Deck compatibility
-- **Future**: Mobile platforms (Android/iOS)
+### Desktop Expansion (ONLY WHEN REQUESTED)
+- **Input Adaptation**: Keyboard/mouse support addition to epic systems
+- **UI Scaling**: Desktop-appropriate interface scaling for epic content
+- **Performance Scaling**: Desktop hardware utilization for epic campaigns
+- **Feature Parity**: Maintain epic feature consistency across platforms
+- **Cross-Platform Saves**: Epic campaign progress across devices
 
-## Procedural Generation Technology
+## Technical Challenges (Epic Scope)
 
-### Core Libraries
-- **Godot's FastNoiseLite**: Noise generation
-- **Custom Algorithms**: Specialized generation systems
-- **Shader-based Generation**: GPU-accelerated processing
+### UI Corruption Engineering
+- **Interface Lies**: Making false information feel supernatural
+- **Mobile Touch**: Corruption that doesn't break touch interface
+- **Performance**: Lightweight corruption effects for mobile
+- **Believability**: Lies that feel real until revealed
 
-### Generation Systems
-1. **Texture Generation**
-   - Noise-based algorithms
-   - Color palette systems
-   - Pattern synthesis
-   - Real-time generation
+### Save System Complexity
+- **Dual Architecture**: Real saves + fake corruption simulation
+- **Data Integrity**: Never corrupt actual player progress
+- **Mobile Storage**: Efficient storage for epic campaign data
+- **Android Lifecycle**: Proper save handling during app interruptions
 
-2. **Audio Generation**
-   - Procedural music composition
-   - Dynamic sound effects
-   - Spatial audio processing
-   - Sanity-based distortion
+### Three-Act Performance
+- **Rendering Pipelines**: Optimized visuals per act theme
+- **Memory Management**: Efficient transitions between acts
+- **Asset Streaming**: Loading/unloading act-specific content
+- **Mobile Constraints**: Epic scope within mobile hardware limits
 
-3. **Geometry Generation**
-   - Room layout algorithms
-   - Mesh generation
-   - Collision shape creation
-   - LOD system integration
-
-4. **Content Generation**
-   - Enemy behavior trees
-   - Item stat generation
-   - Narrative element creation
-   - Quest objective synthesis
-
-## Data Management
-
-### File Formats
-- **Scenes**: .tscn (Godot scene format)
-- **Scripts**: .gd (GDScript)
-- **Resources**: .tres (Godot resource format)
-- **Configuration**: .json (JSON data)
-- **Assets**: .png, .ogg, .wav (standard formats)
-
-### Save System
-- **Format**: JSON-based save files
-- **Location**: User data directory
-- **Encryption**: Optional for sensitive data
-- **Compression**: For large save files
-- **Versioning**: Migration system for updates
-
-### Resource Management
-- **Caching**: Generated assets cached for reuse
-- **Streaming**: Dynamic loading/unloading
-- **Compression**: Asset compression for storage
-- **Validation**: Content integrity checking
-
-## Performance Optimization
-
-### Rendering Optimization
-- **Culling**: Frustum and occlusion culling
-- **LOD**: Level-of-detail for distant objects
-- **Batching**: Draw call optimization
-- **Shaders**: Efficient GPU utilization
-
-### Memory Management
-- **Object Pooling**: Reuse expensive objects
-- **Garbage Collection**: Minimize allocations
-- **Asset Streaming**: Dynamic memory usage
-- **Cache Management**: Intelligent caching strategies
-
-### CPU Optimization
-- **Multithreading**: Background generation
-- **Profiling**: Performance monitoring
-- **Algorithm Efficiency**: Optimized generation
-- **Update Frequency**: Adaptive update rates
-
-## Development Workflow
-
-### Version Control
-- **System**: Git (recommended)
-- **Ignore Patterns**: .godot/, .import/, .tmp/
-- **Branching**: Feature-based development
-- **Commits**: Atomic, descriptive commits
-
-### Testing Strategy
-- **Unit Tests**: Individual system testing
-- **Integration Tests**: Cross-system validation
-- **Performance Tests**: Benchmark validation
-- **Procedural Tests**: Generation validation
-
-### Build Process
-- **Export Templates**: Godot export system
-- **Platform Builds**: Automated build pipeline
-- **Asset Processing**: Optimization pipeline
-- **Distribution**: Package management
-
-## Security Considerations
-
-### Save File Security
-- **Validation**: Prevent save file tampering
-- **Encryption**: Sensitive data protection
-- **Backup**: Automatic save backups
-- **Recovery**: Corrupted save handling
-
-### Code Security
-- **Input Validation**: Prevent injection attacks
-- **Resource Limits**: Prevent resource exhaustion
-- **Error Handling**: Graceful failure modes
-- **Logging**: Security event tracking
-
-## Accessibility Features
-
-### Visual Accessibility
-- **Colorblind Support**: Alternative color schemes
-- **High Contrast**: Enhanced visibility options
-- **Text Scaling**: Adjustable font sizes
-- **Visual Indicators**: Audio cue alternatives
-
-### Audio Accessibility
-- **Subtitles**: Text alternatives for audio
-- **Visual Cues**: Audio event visualization
-- **Volume Controls**: Granular audio mixing
-- **Frequency Adjustment**: Hearing aid compatibility
-
-### Input Accessibility
-- **Remappable Controls**: Custom key bindings
-- **Hold/Toggle Options**: Accessibility alternatives
-- **Timing Adjustments**: Reaction time accommodation
-- **One-handed Play**: Alternative control schemes
-
-## Future Technology Considerations
-
-### Potential Upgrades
-- **Godot 4.5+**: Engine updates and new features
-- **Vulkan Renderer**: Advanced graphics capabilities
-- **C# Integration**: Performance-critical systems
-- **Plugin System**: Modding support
-
-### Scalability Planning
-- **Cloud Saves**: Cross-platform progression
-- **Multiplayer**: Potential co-op features
-- **Streaming**: Content delivery systems
-- **Analytics**: Player behavior tracking 
+### Epic Campaign Balancing
+- **Engagement**: Maintaining interest across 50+ hours
+- **Performance**: Stable experience throughout epic length
+- **Progression**: Meaningful advancement across three acts
+- **Mobile Sessions**: Optimized for 60+ minute mobile gaming 
