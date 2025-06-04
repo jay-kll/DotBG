@@ -39,6 +39,7 @@ signal touch_moved(touch_data: TouchData)
 signal touch_ended(touch_data: TouchData)
 signal gesture_detected(gesture_type: String, gesture_data: Dictionary)
 signal input_buffered(action: String, data: Dictionary)
+@warning_ignore("unused_signal")
 signal haptic_settings_changed(enabled: bool, intensity: float)
 
 # Touch data class for efficient memory management
@@ -131,7 +132,7 @@ func _handle_touch_event(event: InputEventScreenTouch) -> void:
 	var position = event.position
 	
 	if event.pressed:
-		_start_touch(touch_id, position, event.pressure)
+		_start_touch(touch_id, position)
 	else:
 		_end_touch(touch_id, position)
 
@@ -139,12 +140,11 @@ func _handle_drag_event(event: InputEventScreenDrag) -> void:
 	var touch_id = event.index
 	var position = event.position
 	
-	_update_touch(touch_id, position, event.velocity, event.pressure)
+	_update_touch(touch_id, position, event.velocity)
 
-func _start_touch(touch_id: int, position: Vector2, pressure: float = 1.0) -> void:
+func _start_touch(touch_id: int, position: Vector2) -> void:
 	# Get touch data from pool or create new
 	var touch_data = _get_pooled_touch_data(touch_id, position)
-	touch_data.pressure = pressure
 	
 	# Store active touch
 	active_touches[touch_id] = touch_data
@@ -161,7 +161,7 @@ func _start_touch(touch_id: int, position: Vector2, pressure: float = 1.0) -> vo
 	# Trigger haptic feedback
 	haptic_controller.trigger_touch_feedback()
 
-func _update_touch(touch_id: int, position: Vector2, velocity: Vector2, pressure: float = 1.0) -> void:
+func _update_touch(touch_id: int, position: Vector2, velocity: Vector2) -> void:
 	if not active_touches.has(touch_id):
 		return
 	
@@ -169,7 +169,6 @@ func _update_touch(touch_id: int, position: Vector2, velocity: Vector2, pressure
 	touch_data.last_position = touch_data.position
 	touch_data.position = position
 	touch_data.velocity = velocity
-	touch_data.pressure = pressure
 	
 	# Emit signal for system coordination
 	touch_moved.emit(touch_data)
@@ -236,6 +235,7 @@ func _log_touch_event(event_type: String, touch_data: TouchData) -> void:
 	
 	# Manage history size for mobile memory
 	if touch_history.size() > max_touch_history:
+		@warning_ignore("integer_division")
 		touch_history = touch_history.slice(max_touch_history / 2)
 
 # Epic campaign event handlers
@@ -344,6 +344,7 @@ func _draw_debug_touches(control: Control) -> void:
 
 func _apply_input_lag(intensity: float) -> void:
 	# Apply artificial input lag for sanity effects
+	@warning_ignore("unused_variable")
 	var lag_amount = intensity * 0.1  # Up to 100ms lag
 	# Implementation would delay input processing
 	pass
