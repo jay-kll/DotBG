@@ -1,0 +1,269 @@
+# Product Requirements Document: Depths of the Bastard God
+
+## Project Overview
+Depths of the Bastard God is a procedurally generated roguelike action game inspired by Edgar Allan Poe's work with Lovecraftian themes. Built in Godot 4.4 for mobile platforms (Android primary in LANDSCAPE orientation), it features real-time combat similar to Dead Cells but with complete procedural generation for art, sound, textures, and creatures.
+
+## Core Requirements
+
+### Phase 1: Core Systems Foundation
+The foundation phase establishes the essential systems that all other features depend on.
+
+#### Player Character System
+- Implement touch-based player movement with virtual joystick optimized for landscape
+- Create dodge rolling mechanics with dedicated touch button
+- Develop character controller with physics-based movement optimized for mobile
+- Implement responsive touch input handling system
+- Create animation system for player actions
+- Establish player state machine (idle, moving, attacking, dodging, dead)
+
+#### Mobile Touch Controls (Landscape Layout)
+- Virtual joystick for movement (bottom left corner)
+- Attack button (bottom right corner)
+- Dodge/roll button (right side, above attack)
+- Interact button (context-sensitive, appears when near interactables)
+- Inventory button (top right corner)
+- Pause/menu button (top left corner)
+- Gesture support for special abilities (swipe patterns across screen)
+
+#### Combat Framework
+- Develop touch-based attack system with tap and hold variations
+- Create weapon handling and switching mechanics via touch interface
+- Implement hit detection and collision systems optimized for mobile performance
+- Build damage calculation and application system
+- Create combo system for attack chaining via touch timing
+- Establish status effect framework (bleeding, corruption, madness)
+
+#### World Generation System
+- Create basic room layout generation algorithms optimized for mobile performance
+- Implement room connection and navigation system
+- Develop procedural room content placement
+- Create collision detection for generated environments
+- Establish room streaming and loading system for mobile memory constraints
+- Implement basic dungeon progression mechanics
+
+#### Enemy Framework
+- Develop basic enemy AI with state machines optimized for mobile CPU
+- Create enemy spawning and placement system
+- Implement enemy-player combat interaction
+- Build basic enemy types (Corrupted Citizens, Plague Doctors, Twisted Guards)
+- Create enemy pathfinding and navigation
+- Establish enemy behavior trees for different AI patterns
+
+### Phase 2: Content Foundation
+Building the core game content and mobile-optimized user interface systems.
+
+#### Act I Implementation
+- Create 5 distinct dungeon themes for Act I
+- Implement basic enemy variety across dungeon types
+- Develop simple item and weapon system with touch-friendly interface
+- Create boss encounter framework
+- Establish progression between dungeons
+- Implement basic narrative integration
+
+#### Mobile User Interface Systems (Landscape Optimized)
+- Create landscape-optimized HUD displaying health, sanity, and Blood Echoes
+- Develop touch-friendly inventory management interface for landscape screens
+- Build main menu and settings systems optimized for landscape mobile screens
+- Implement pause menu and game options
+- Create dialogue system for NPCs with touch interaction
+- Establish notification and feedback systems for mobile
+
+#### Audio Foundation
+- Implement basic sound effect system optimized for mobile audio
+- Create dynamic music system with adaptive composition
+- Develop spatial audio for mobile devices
+- Build audio manager for efficient sound handling on mobile
+- Create sanity-based audio distortion effects
+- Establish audio streaming and caching system for mobile storage
+
+#### Save System
+- Develop JSON-based save file system optimized for mobile storage
+- Implement player progress persistence
+- Create world state saving and loading
+- Build save file validation and error handling
+- Establish save file versioning for updates
+- Implement auto-save functionality for mobile interruptions
+
+### Phase 3: Advanced Systems
+Implementing the unique and complex systems that define the game.
+
+#### Procedural Asset Generation
+- Create texture generation system using noise algorithms optimized for mobile GPU
+- Develop procedural sound synthesis for effects
+- Implement dynamic music composition system
+- Build creature generation with visual variety
+- Create procedural animation systems
+- Establish asset caching and optimization for mobile memory
+
+#### Sanity System Implementation
+- Develop sanity tracking and modification system
+- Create visual distortion effects based on sanity level optimized for mobile
+- Implement audio hallucinations and false sounds
+- Build false enemy generation system
+- Create reality glitch effects and screen distortions
+- Establish sanity-based gameplay modifications
+
+#### Advanced Combat Systems
+- Implement weapon mastery and skill progression
+- Create special abilities triggered by touch gestures
+- Develop advanced status effects and interactions
+- Build weapon transformation and evolution system
+- Create environmental combat interactions
+- Establish combo system with touch timing mechanics
+
+#### Mutation System
+- Develop character mutation framework
+- Create permanent and temporary mutation effects
+- Implement visual changes from mutations
+- Build mutation selection and application system with touch interface
+- Create mutation interaction and synergy system
+- Establish mutation progression and unlocking
+
+### Phase 4: Content Expansion
+Expanding the game world and adding advanced features.
+
+#### Acts II & III Implementation
+- Create Act II dungeon themes (Drowning Depths)
+- Develop Act III environments (Dream Realm)
+- Implement new enemy types for each act
+- Create unique boss encounters for each act
+- Establish act-specific mechanics and challenges
+- Build narrative progression across all acts
+
+#### Companion System
+- Develop NPC rescue and recruitment mechanics
+- Create companion AI and behavior systems
+- Implement companion abilities and specializations
+- Build companion progression and development
+- Create companion dialogue and interaction system with touch interface
+- Establish companion corruption and sanity effects
+
+#### Economy and Trading
+- Implement Blood Echoes currency system
+- Create shop system appearing every 2 dungeons with mobile-friendly interface
+- Develop Black Market trading with sanity costs
+- Build item upgrading and fusion systems
+- Create bounty system for rare enemies
+- Establish dynamic pricing and economy balance
+
+### Phase 5: Polish and Optimization
+Refining the game experience and ensuring mobile performance.
+
+#### Mobile Performance Optimization
+- Implement object pooling for frequently used objects
+- Create level-of-detail system for distant objects
+- Develop asset streaming and memory management for mobile constraints
+- Build performance profiling and monitoring tools
+- Optimize procedural generation algorithms for mobile CPU/GPU
+- Establish frame rate stability across all mobile devices
+
+#### Visual Polish
+- Create particle effect systems optimized for mobile GPU
+- Implement dynamic lighting and shadow systems
+- Develop post-processing effects for atmosphere
+- Build visual feedback systems for touch interactions
+- Create screen effects for sanity and status changes
+- Establish visual coherence across procedural content
+
+#### Audio Polish
+- Implement 3D spatial audio optimized for mobile devices
+- Create dynamic mixing based on game state
+- Develop procedural ambient sound generation
+- Build audio feedback for all touch interactions
+- Create sanity-based audio processing effects
+- Establish audio optimization and streaming for mobile
+
+### Phase 6: Testing and Balance
+Ensuring game quality and mobile player experience.
+
+#### Gameplay Balance
+- Balance combat difficulty across all acts for mobile play sessions
+- Tune progression pacing and player power growth
+- Balance economy and resource management
+- Adjust procedural generation parameters for mobile performance
+- Fine-tune sanity system impact on gameplay
+- Establish difficulty scaling for different mobile devices
+
+#### Quality Assurance
+- Implement comprehensive bug tracking and fixing
+- Create automated testing for procedural systems
+- Develop performance testing across target mobile hardware
+- Build accessibility features for diverse mobile users
+- Create Android platform compatibility testing
+- Establish user feedback integration system
+
+## Technical Requirements
+
+### Mobile Performance Targets (Landscape)
+- Maintain 60 FPS on mid-range Android devices
+- Keep memory usage under 1.5GB RAM
+- Ensure room generation completes within 1 second
+- Maintain loading times under 3 seconds for transitions
+- Battery optimization for extended play sessions
+- Touch input latency under 50ms
+
+### Platform Support
+- Primary development for Android (API level 21+)
+- Landscape orientation optimized
+- Touch input as primary interaction method
+- Mobile-specific UI scaling and layout
+- Consider tablet optimization for larger landscape screens
+
+### Mobile-Specific Features (Landscape)
+- Touch gesture recognition optimized for landscape layout
+- Haptic feedback integration
+- Battery usage optimization
+- Background/foreground state handling
+- Mobile-specific UI scaling for landscape screens
+
+## Success Criteria
+
+### Mobile Player Experience Goals (Landscape)
+- Players understand landscape touch controls within 2 minutes
+- Sanity system creates noticeable effects within 10 minutes
+- Procedural generation surprises players within 15 minutes
+- Clear progression path established within 30 minutes
+- Comfortable two-handed landscape play experience
+
+### Technical Success Metrics
+- Stable performance across target Android devices in landscape
+- Successful procedural generation in 95% of attempts
+- Save system reliability with 99.9% success rate
+- Memory usage optimization within mobile limits
+- Touch responsiveness under 50ms latency in landscape mode
+
+### Content Goals
+- 15 unique dungeon experiences across 3 acts
+- Infinite variety through procedural generation
+- Meaningful player choice in character development
+- Emergent narrative through environmental storytelling
+
+## Risk Mitigation
+
+### Mobile-Specific Risks (Landscape)
+- Performance limitations on lower-end devices addressed through scalable quality settings
+- Touch control precision in landscape managed through generous hit areas and haptic feedback
+- Battery drain minimized through efficient rendering and background processing
+- Landscape UI layout optimized for comfortable two-handed play
+
+### Technical Risks
+- Procedural generation complexity managed through iterative development
+- Mobile performance requirements addressed through early optimization
+- Save system reliability ensured through comprehensive testing
+
+### Scope Risks
+- Feature creep controlled through phased development approach
+- Solo development limitations addressed through excellent documentation
+- Timeline management through realistic milestone setting
+
+## Dependencies
+
+### External Dependencies
+- Godot 4.4 mobile export capabilities
+- Android platform compatibility requirements
+- Mobile hardware performance assumptions for landscape gaming
+
+### Internal Dependencies
+- TaskMaster for project management and tracking
+- Memory Bank system for documentation continuity
+- Established mobile landscape development workflow and tools 

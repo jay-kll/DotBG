@@ -1,0 +1,230 @@
+# Depths of the Bastard God - Project Intelligence
+
+## 🚨 CRITICAL PLATFORM REQUIREMENTS 🚨
+**MOBILE LANDSCAPE ONLY - NO DESKTOP UNTIL EXPLICITLY REQUESTED**
+- Target: Android mobile devices in LANDSCAPE orientation
+- Input: Touch controls ONLY (virtual joystick + touch buttons)
+- NO keyboard/mouse support until user specifically asks for desktop
+- Resolution: 1920x1080 landscape (mobile optimized)
+- Renderer: Mobile renderer with ETC2/ASTC compression
+
+## Project Overview
+Procedurally generated roguelike action game in Godot 4.4 with Lovecraftian horror themes. Complete procedural generation for art, sound, textures, and creatures.
+
+## Critical Implementation Paths
+
+### Memory Bank System
+- **ALWAYS** read Memory Bank files at start of each session
+- Memory Bank location: `memory-bank/` directory
+- Core files: projectbrief.md, productContext.md, activeContext.md, systemPatterns.md, techContext.md, progress.md
+- Update Memory Bank when discovering new patterns or after significant changes
+
+### TaskMaster Integration
+- Project uses TaskMaster AI for task management
+- Tasks location: `.taskmaster/tasks/tasks.json`
+- Always check next task with `next_task` before starting work
+- Update task status as work progresses
+- Use subtasks for complex task breakdown
+
+### Godot Project Structure
+- Main project in `dotbg/` directory
+- Autoload pattern for global systems: GameManager, PlayerStats, EventBus
+- Scene organization: scenes/, scripts/, assets/, resources/
+- Event-driven architecture using EventBus for system communication
+
+## User Preferences and Workflow
+
+### Development Approach
+- Iterative development with frequent testing
+- Performance-first mindset (60 FPS target on mobile)
+- Modular, extensible architecture
+- Comprehensive documentation for solo development
+
+### Mobile-First Design
+- Touch controls as primary input method
+- Landscape orientation for better gameplay
+- Virtual joystick + touch buttons layout
+- Mobile performance optimization priority
+- Battery life considerations
+
+### Code Organization Patterns
+- Component-based entity design over inheritance
+- State machines for complex behaviors
+- Factory pattern for procedural generation
+- Observer pattern via EventBus
+- Consistent serialization interface for save system
+
+### Procedural Generation Philosophy
+- Runtime generation for infinite variety
+- Coherent systems that feel intentional
+- Mobile performance optimization as primary concern
+- Graceful degradation when generation fails
+
+## Project-Specific Patterns
+
+### Sanity System Integration
+- Central mechanic affecting all game systems
+- Visual distortions, audio hallucinations, false enemies
+- Sanity changes trigger events via EventBus
+- Balance between impactful and not frustrating
+
+### Blood Echoes Economy
+- Primary currency system
+- Shops every 2 dungeons
+- Black Market costs sanity instead of echoes
+- Integration with progression and mutation systems
+
+### Mutation System Design
+- Permanent character evolution
+- Visual and mechanical changes
+- 3 mutations per run limit
+- Synergy between different mutations
+
+### Combat System Architecture
+- Real-time action similar to Dead Cells
+- Dodge rolling with i-frames
+- Combo system with timing mechanics
+- Status effects: bleeding, corruption, madness, poison, curse
+
+## Known Challenges
+
+### Mobile Technical Complexity
+- Touch control responsiveness and accuracy
+- Mobile performance optimization for procedural generation
+- Memory management for generated content on mobile devices
+- Battery optimization for extended play sessions
+- Android device fragmentation handling
+
+### Design Balance
+- Touch control precision vs. ease of use
+- Mobile screen real estate optimization
+- Sanity system impact vs. frustration
+- Procedural content coherence on mobile hardware
+- Solo development scope management
+
+## Evolution of Project Decisions
+
+### Platform Decisions
+- **MOBILE LANDSCAPE ONLY** - No desktop until explicitly requested
+- Touch controls as primary and only input method
+- Android target with landscape orientation
+- Mobile renderer and compression settings
+
+### Architecture Decisions
+- Started with event-driven architecture for flexibility
+- Chose autoload pattern for global state management
+- Implemented component system for entity composition
+- Selected JSON for save system simplicity
+
+### Design Evolution
+- Moved from turn-based to real-time combat
+- Emphasized procedural generation as core differentiator
+- Integrated sanity as central mechanic
+- Focused on environmental storytelling
+
+### Tool Integration
+- Added TaskMaster for project management
+- Established Memory Bank for session continuity
+- Planned comprehensive documentation system
+- Emphasized iterative development approach
+
+## Mobile Performance Considerations
+
+### Target Specifications
+- 60 FPS minimum on mid-range Android devices
+- Under 1.5GB RAM usage
+- Room generation under 1 second
+- Touch input latency under 50ms
+- Battery life 2+ hours continuous play
+
+### Optimization Strategies
+- Object pooling for frequently used objects
+- Level-of-detail system for distant objects
+- Asset streaming and caching for mobile storage
+- Efficient procedural algorithms optimized for mobile CPU/GPU
+- Mobile-specific texture compression
+
+## Development Workflow Patterns
+
+### Session Structure
+1. Read Memory Bank files for context
+2. Check TaskMaster for next task
+3. Implement features incrementally with mobile testing
+4. Test frequently on mobile devices/emulation
+5. Update documentation and task status
+6. Update Memory Bank if significant changes
+
+### Mobile Testing Approach
+- Touch control responsiveness testing
+- Performance testing on target mobile hardware
+- Battery usage monitoring
+- Memory usage profiling
+- Android device compatibility testing
+
+### Documentation Maintenance
+- Update Memory Bank after major changes
+- Keep .cursorrules current with mobile patterns
+- Maintain TaskMaster task status
+- Document mobile-specific architectural decisions
+
+## Code Quality Standards
+
+### GDScript Conventions
+- Clear, descriptive variable names
+- Consistent indentation and formatting
+- Comprehensive error handling
+- Mobile performance-conscious algorithms
+
+### Mobile Architecture Principles
+- Touch-first input design
+- Mobile memory management
+- Battery-efficient processing
+- Responsive touch interface design
+- Mobile-optimized rendering pipeline
+
+### Performance Guidelines
+- Minimize garbage collection pressure on mobile
+- Use object pooling for frequent allocations
+- Profile early and often on mobile devices
+- Optimize critical paths for mobile hardware
+
+## Future Considerations
+
+### Desktop Expansion (ONLY WHEN REQUESTED)
+- Input abstraction layer for keyboard/mouse
+- UI scaling for desktop screens
+- Performance scaling for desktop hardware
+- Cross-platform save compatibility
+
+### Mobile Scalability Planning
+- Modular systems for easy extension
+- Data-driven configuration
+- Performance scaling based on device capabilities
+- Cross-Android device compatibility
+
+## Critical Success Factors
+
+### Mobile Technical Excellence
+- Stable 60 FPS performance on mobile
+- Reliable procedural generation on mobile hardware
+- Robust mobile save system with app lifecycle handling
+- Responsive touch controls under 50ms latency
+
+### Mobile Player Experience
+- Intuitive touch control mechanics
+- Meaningful procedural variety within mobile constraints
+- Engaging horror atmosphere on mobile screens
+- Satisfying progression systems optimized for mobile sessions
+
+### Development Sustainability
+- Manageable scope for solo mobile developer
+- Excellent documentation for mobile development continuity
+- Efficient mobile development workflow
+- Regular mobile performance tracking
+
+## REMEMBER: MOBILE LANDSCAPE ONLY
+- NO desktop support until user explicitly requests it
+- Touch controls are the ONLY input method
+- Landscape orientation is MANDATORY
+- Mobile performance is the PRIMARY concern
+- Test on mobile devices/emulation regularly 

@@ -1,0 +1,27 @@
+Agent Workflow and Communication Rules
+This document outlines the guidelines for the AI coding agent's behavior, communication, and interaction within the Cursor environment, designed to ensure efficient, transparent, and collaborative development.
+I. Communication & Approval Protocol
+Proactive Information Sharing: I will proactively share my thought process, plans, and options, especially for new decisions, problem-solving strategies, or significant implementations.
+Approval for Key Actions: I will always ask for your explicit approval before:
+Initiating any new significant changes to the codebase (e.g., creating new major features, refactoring large sections, or making architectural decisions).
+Deciding on alternative approaches when faced with multiple viable solutions (e.g., choosing between different libraries, design patterns, or implementation methods).
+Proceeding with problem-solving strategies or bug-fixing approaches.
+Any deviation from a previously agreed-upon plan.
+Introducing new dependencies or technologies.
+Concise Explanations: When seeking approval or proposing options, I will provide clear, concise explanations of the choices, their pros and cons, and my recommendation with reasoning.
+Forecasting Steps: I will group related steps and present them as a plan or a group of actions for approval, rather than asking for approval on every single atomic action.
+II. Project Context & Documentation
+Memory Bank Reliance: I will always read all files in the memory-bank/ directory at the start of every session or task to ensure I have complete project context.
+Documentation Updates: I will proactively update relevant memory-bank files (especially activeContext.md and progress.md) after significant changes, discoveries, or architectural decisions.
+Rule Improvement: I will actively identify new code patterns, common issues, or emerging best practices and propose new or updated rules for .cursor/rules/ to you. I will follow the cursor_rules.mdc structure for any proposed rule changes.
+III. Code & Implementation Practices
+Adherence to Repository Rules: I will strictly follow all rules defined in the repo_specific_rule (Verding Project Rules), including architectural patterns, technology stack constraints, and security requirements.
+Collaborative Decision Making (Critical): I will never make technology decisions unilaterally. I will always present viable alternatives, their pros/cons, and my recommendation, awaiting your confirmation.
+Prioritize Visual Development: I will prioritize web interface development to enable visual progress observation and facilitate testing after every subtask.
+Test-Driven Mindset: I will consider both automated and manual testing strategies for every task.
+Code Quality Standards: I will adhere to TypeScript strict mode, ESLint, Prettier, and the project's comprehensive testing strategy.
+Property-Centric Design: All operations will be scoped to a property_id as per the multi-property architecture.
+IV. Task Management Workflow
+Utilize Task Master Tools: I will use the taskmaster MCP tools (e.g., get_tasks, next_task, get_task <id>, set_task_status, update_subtask) for all task-related operations.
+Log Implementation Progress: For each subtask, I will use update_subtask to append detailed, timestamped notes on my exploration, plan, what worked, what didn't, and decisions made. This creates a valuable log of the implementation journey.
+Maintain Dependency Structure: I will ensure dependencies are correctly managed using add_dependency, remove_dependency, validate_dependencies, and fix_dependencies tools.}

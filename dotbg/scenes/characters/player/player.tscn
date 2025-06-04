@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4m8g3wrpqxxx"]
+
+[ext_resource type="Script" path="res://scripts/characters/player/player.gd" id="1_2u4p3"]
+[ext_resource type="SpriteFrames" path="res://scenes/characters/player/player_placeholder.tres" id="2_sprite"]
+[ext_resource type="PackedScene" path="res://scenes/ui/touch_controls.tscn" id="3_touch"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 48)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_2u4p3")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_1")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_sprite")
+animation = &"idle"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape2D" parent="AttackHitbox"]
+shape = SubResource("RectangleShape2D_1")
+disabled = true
+
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="AttackComboTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="States" type="Node" parent="."]
+
+[node name="TouchControls" parent="." instance=ExtResource("3_touch")] 

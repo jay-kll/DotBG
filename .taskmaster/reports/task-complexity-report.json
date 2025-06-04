@@ -1,0 +1,205 @@
+{
+  "meta": {
+    "generatedAt": "2025-06-04T00:46:59.663Z",
+    "tasksAnalyzed": 24,
+    "totalTasks": 25,
+    "analysisCount": 24,
+    "thresholdScore": 5,
+    "projectName": "Taskmaster",
+    "usedResearch": true
+  },
+  "complexityAnalysis": [
+    {
+      "taskId": 2,
+      "taskTitle": "Implement Touch Input System",
+      "complexityScore": 9,
+      "recommendedSubtasks": 12,
+      "expansionPrompt": "Break down the touch input system into subtasks for each major feature (e.g., InputManager class, multi-touch, gesture detection, event propagation, gesture types, input buffering, haptic feedback, sensitivity settings, debug tools, and optimization). For each, specify implementation, testing, and optimization steps.",
+      "reasoning": "This task is foundational, highly technical, and must support robust, low-latency, multi-gesture input on mobile. It covers a wide range of features, each with its own complexity, and requires careful optimization and testing across devices."
+    },
+    {
+      "taskId": 3,
+      "taskTitle": "Develop Virtual Controls UI",
+      "complexityScore": 8,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Expand into subtasks for each UI element (joystick, attack, dodge, interact, inventory, pause), container setup, customization options, feedback, and usability testing. Include subtasks for device adaptation and accessibility.",
+      "reasoning": "The task involves multiple interactive UI elements, customization, and adaptation for various devices, requiring both technical and UX considerations."
+    },
+    {
+      "taskId": 4,
+      "taskTitle": "Create Player Character Controller",
+      "complexityScore": 8,
+      "recommendedSubtasks": 10,
+      "expansionPrompt": "List subtasks for scene setup, movement logic, physics parameters, input integration, collision, animation, camera, boundaries, sound, and optimization. Include testing for edge cases and performance.",
+      "reasoning": "Integrates physics, animation, input, and performance optimization, all of which are critical and interdependent for core gameplay."
+    },
+    {
+      "taskId": 5,
+      "taskTitle": "Implement Player State Machine",
+      "complexityScore": 7,
+      "recommendedSubtasks": 9,
+      "expansionPrompt": "Break down into subtasks for state machine architecture, base and specific states, transition logic, animation triggers, input connections, debugging, persistence, and optimization.",
+      "reasoning": "Requires a solid architecture for extensibility and performance, with multiple states and transitions, but is a well-understood pattern."
+    },
+    {
+      "taskId": 6,
+      "taskTitle": "Develop Dodge Rolling Mechanics",
+      "complexityScore": 6,
+      "recommendedSubtasks": 10,
+      "expansionPrompt": "Expand into subtasks for class creation, movement, invincibility, animation, input, cooldown, direction, feedback, sound, and upgrade hooks.",
+      "reasoning": "Focused mechanic with several interconnected features, but less architectural complexity than core systems."
+    },
+    {
+      "taskId": 7,
+      "taskTitle": "Create Basic Combat System",
+      "complexityScore": 8,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "List subtasks for attack logic, hit detection, damage, animations, input, combos, cooldowns, weapon data, feedback, critical hits, and directional attacks.",
+      "reasoning": "Core gameplay system with multiple mechanics, requiring careful integration and balancing."
+    },
+    {
+      "taskId": 8,
+      "taskTitle": "Implement Status Effect Framework",
+      "complexityScore": 7,
+      "recommendedSubtasks": 10,
+      "expansionPrompt": "Break down into subtasks for base class, effect types, stacking, visuals, application/removal, resistance, interactions, persistence, sound, and UI.",
+      "reasoning": "Framework must be flexible and extensible, with multiple effect types and interactions, but is a common pattern in games."
+    },
+    {
+      "taskId": 9,
+      "taskTitle": "Develop Basic Room Generation Algorithm",
+      "complexityScore": 8,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Expand into subtasks for generator class, shape algorithms, size variation, templates, validation, entrances/exits, metadata, caching, visualization, optimization, and timing.",
+      "reasoning": "Procedural generation is complex, requiring algorithms, validation, and performance optimization."
+    },
+    {
+      "taskId": 10,
+      "taskTitle": "Implement Dungeon Layout System",
+      "complexityScore": 9,
+      "recommendedSubtasks": 12,
+      "expansionPrompt": "List subtasks for generator class, room connections, layout patterns, progression, critical path, secret/boss room logic, validation, minimap, optimization, theme application, and testing.",
+      "reasoning": "Requires advanced algorithms for layout, progression, and validation, with many interdependent systems."
+    },
+    {
+      "taskId": 11,
+      "taskTitle": "Create Room Content Placement System",
+      "complexityScore": 7,
+      "recommendedSubtasks": 10,
+      "expansionPrompt": "Break down into subtasks for placer class, enemy/obstacle/trap/treasure placement, special objects, validation, balancing, theme rules, and variation system.",
+      "reasoning": "Content placement must balance gameplay and variety, but is less algorithmically complex than layout generation."
+    },
+    {
+      "taskId": 12,
+      "taskTitle": "Implement Room Streaming System",
+      "complexityScore": 9,
+      "recommendedSubtasks": 12,
+      "expansionPrompt": "Expand into subtasks for manager class, loading/unloading, state persistence, preloading, transitions, pooling, threading, priority, memory optimization, and timing.",
+      "reasoning": "Efficient streaming is critical for mobile, involving concurrency, memory management, and seamless transitions."
+    },
+    {
+      "taskId": 13,
+      "taskTitle": "Develop Basic Enemy AI Framework",
+      "complexityScore": 9,
+      "recommendedSubtasks": 12,
+      "expansionPrompt": "List subtasks for AI base class, state machine, perception, pathfinding, targeting, attack patterns, difficulty scaling, optimizations, group coordination, debugging, and performance.",
+      "reasoning": "AI frameworks are complex, requiring extensibility, performance, and multiple behavior systems."
+    },
+    {
+      "taskId": 14,
+      "taskTitle": "Implement Basic Enemy Types",
+      "complexityScore": 7,
+      "recommendedSubtasks": 10,
+      "expansionPrompt": "Break down into subtasks for base class, each enemy type, unique animations, attack patterns, abilities, effects, spawn/balance data, drops, variation, and scaling.",
+      "reasoning": "Multiple enemy types with unique behaviors and assets, but built on a common framework."
+    },
+    {
+      "taskId": 15,
+      "taskTitle": "Create Pathfinding System",
+      "complexityScore": 8,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Expand into subtasks for manager class, A* implementation, grid generation, smoothing, obstacle avoidance, caching, prediction, following, debugging, optimization, and fallback.",
+      "reasoning": "Pathfinding is algorithmically intensive and must be highly optimized for mobile and dynamic environments."
+    },
+    {
+      "taskId": 16,
+      "taskTitle": "Implement Mobile-Optimized HUD",
+      "complexityScore": 7,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "List subtasks for HUD scene, health/sanity/echoes displays, status indicators, quick slots, scaling, opacity, animation, customization, and optimization.",
+      "reasoning": "HUD requires careful UI design and optimization for mobile, but is less algorithmically complex than core systems."
+    },
+    {
+      "taskId": 17,
+      "taskTitle": "Develop Inventory Management System",
+      "complexityScore": 8,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Break down into subtasks for inventory class, item data, UI, touch interactions, categories/filtering, comparison, use/equip, size limits, tooltips, sorting, and persistence.",
+      "reasoning": "Inventory systems are feature-rich, requiring robust data management, UI, and touch interaction support."
+    },
+    {
+      "taskId": 18,
+      "taskTitle": "Implement Basic Weapon System",
+      "complexityScore": 7,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Expand into subtasks for weapon base class, types, properties, attack patterns, switching, upgrades, abilities, effects, durability, inventory integration, and scaling.",
+      "reasoning": "Weapon systems are modular but require integration with combat, inventory, and progression systems."
+    },
+    {
+      "taskId": 19,
+      "taskTitle": "Create Save System",
+      "complexityScore": 8,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "List subtasks for manager class, serialization, file handling, validation, auto-save, versioning, encryption, backup, slot management, metadata, and cloud integration.",
+      "reasoning": "Save systems must be robust, secure, and performant, with multiple features for data integrity and user experience."
+    },
+    {
+      "taskId": 20,
+      "taskTitle": "Implement Basic Sanity System",
+      "complexityScore": 7,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Break down into subtasks for manager class, value tracking, triggers, recovery, visual/audio effects, hallucinations, thresholds, perception changes, UI, and persistence.",
+      "reasoning": "Sanity systems require integration with gameplay and feedback systems, but are conceptually straightforward."
+    },
+    {
+      "taskId": 21,
+      "taskTitle": "Develop Basic Audio System",
+      "complexityScore": 7,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Expand into subtasks for manager class, SFX/music playback, audio buses, spatial audio, pooling, dynamic mixing, settings, streaming, caching, and optimization.",
+      "reasoning": "Audio systems are feature-rich and must be optimized for mobile, but follow established patterns."
+    },
+    {
+      "taskId": 22,
+      "taskTitle": "Implement Main Menu and Settings",
+      "complexityScore": 7,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "List subtasks for menu scene, navigation, start/continue, settings categories, graphics/audio/control/accessibility options, credits, save management, transitions, and usability testing.",
+      "reasoning": "Menus and settings require comprehensive UI work and integration with other systems, but are not algorithmically complex."
+    },
+    {
+      "taskId": 23,
+      "taskTitle": "Create Basic Procedural Texture Generation",
+      "complexityScore": 8,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Break down into subtasks for generator class, noise algorithms, parameter system, caching, atlas generation, filtering, theme rules, blending, optimization, LOD, and streaming.",
+      "reasoning": "Procedural texture generation is computationally intensive and must be optimized for mobile GPUs, with multiple algorithmic and data management components."
+    },
+    {
+      "taskId": 24,
+      "taskTitle": "Implement Mobile Performance Optimization Framework",
+      "complexityScore": 9,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "Expand into subtasks for manager class, object pooling, LOD, profiling tools, adaptive settings, background management, memory monitoring, frame rate stabilization, battery optimization, logging, and crash reporting.",
+      "reasoning": "Performance optimization is critical and complex, requiring deep integration, monitoring, and adaptive systems for mobile constraints."
+    },
+    {
+      "taskId": 25,
+      "taskTitle": "Create Act I Basic Content",
+      "complexityScore": 8,
+      "recommendedSubtasks": 11,
+      "expansionPrompt": "List subtasks for each dungeon theme, visual elements, enemies, narrative, progression, boss, rewards, scaling, hazards, unique elements, and act completion.",
+      "reasoning": "Content creation spans multiple systems and assets, requiring coordination and balancing for a cohesive player experience."
+    }
+  ]
+}
