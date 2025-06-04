@@ -1,0 +1,85 @@
+# Task ID: 8
+# Title: Implement Status Effect Framework
+# Status: pending
+# Dependencies: 7
+# Priority: medium
+# Description: Create a flexible status effect system to handle bleeding, corruption, madness, and other temporary effects on entities.
+# Details:
+1. Create StatusEffect base class
+2. Implement specific effect types:
+   - BleedingEffect (damage over time)
+   - CorruptionEffect (defense reduction)
+   - MadnessEffect (random actions)
+3. Add duration and stack mechanics for effects
+4. Create visual indicators for active effects
+5. Implement effect application and removal logic
+6. Add resistance and immunity system
+7. Create effect interaction rules (e.g., one cancels another)
+8. Implement persistent effects for save/load
+9. Add sound effects for status application
+10. Create UI elements to show active status effects
+
+# Test Strategy:
+Test each status effect individually. Verify stacking and duration mechanics. Test interaction between different effects. Verify visual indicators appear correctly.
+
+# Subtasks:
+## 1. Design and Implement Base Effect Class [pending]
+### Dependencies: None
+### Description: Create a modular, extensible base class for all effects, supporting mobile-first architecture and performance optimization.
+### Details:
+Define core properties (duration, source, target, etc.), lifecycle methods (apply, remove, update), and ensure compatibility with touch controls and modular systems.
+
+## 2. Develop Effect Type System [pending]
+### Dependencies: 8.1
+### Description: Implement a flexible system for defining and registering multiple effect types (buffs, debuffs, DOT, HOT, etc.).
+### Details:
+Allow easy addition of new effect types via configuration or code, ensuring extensibility and performance for mobile devices.
+
+## 3. Implement Effect Stacking Logic [pending]
+### Dependencies: 8.2
+### Description: Create rules and mechanisms for effect stacking, including stacking limits, refresh, and override behaviors.
+### Details:
+Support common stacking patterns (additive, exclusive, replace, refresh) and ensure efficient checks for mobile performance.
+
+## 4. Integrate Visual Feedback for Effects [pending]
+### Dependencies: 8.2
+### Description: Design and implement visual indicators (icons, particle effects, overlays) for effect application and expiration, optimized for mobile screens.
+### Details:
+Ensure visuals are modular, lightweight, and responsive to touch interactions, with clear feedback for stacking and removal.
+
+## 5. Handle Effect Application and Removal [pending]
+### Dependencies: 8.1, 8.3
+### Description: Develop robust logic for applying and removing effects, including event hooks and callbacks.
+### Details:
+Ensure atomicity, prevent race conditions, and support undo/redo for effect changes, with mobile performance in mind.
+
+## 6. Implement Resistance and Immunity Systems [pending]
+### Dependencies: 8.2, 8.5
+### Description: Create systems for entities to resist, reduce, or be immune to certain effect types, supporting extensible resistance rules.
+### Details:
+Allow for dynamic resistance values, stacking resistances, and clear feedback when effects are resisted or blocked.
+
+## 7. Define Effect Interactions and Dependencies [pending]
+### Dependencies: 8.2, 8.3, 8.6
+### Description: Establish rules for how different effects interact (e.g., cleanse, amplify, suppress), supporting modular and extensible interactions.
+### Details:
+Implement a system for effect dependencies, triggers, and conditional logic, ensuring performance and clarity.
+
+## 8. Ensure Effect Persistence and Serialization [pending]
+### Dependencies: 8.5, 8.7
+### Description: Implement persistence for active effects across sessions, including save/load and network sync for multiplayer.
+### Details:
+Optimize serialization for mobile storage and bandwidth, and ensure data integrity on effect restoration.
+
+## 9. Integrate Sound Feedback for Effects [pending]
+### Dependencies: 8.4, 8.5
+### Description: Add modular sound cues for effect application, stacking, expiration, and resistance, optimized for mobile audio constraints.
+### Details:
+Ensure sounds are non-intrusive, can be toggled, and are synchronized with visual feedback and touch events.
+
+## 10. Design and Implement Effect UI Components [pending]
+### Dependencies: 8.4, 8.6, 8.8
+### Description: Create touch-friendly UI elements for displaying active effects, stacks, timers, and resistances.
+### Details:
+Ensure UI is modular, performant, and provides clear, actionable feedback for mobile users, supporting accessibility and customization.
+

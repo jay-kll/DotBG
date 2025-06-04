@@ -1,0 +1,20 @@
+# Task ID: 42
+# Title: Implement Tag System Architecture
+# Status: pending
+# Dependencies: 41, 14
+# Priority: high
+# Description: Revolutionary tag-based system for enemy and item generation. Tags like [fast], [deformed], [fire] combine to create unique nightmare combinations with validation and safety checks.
+# Details:
+1. Create TagSystem autoload for managing tag combinations and validation
+2. Implement tag categories (Base, Behavior, Corruption, Element, Sanity, Quality, Effect, Mutation)
+3. Add TagValidator for combination rules and forbidden/required combinations
+4. Create tag-based entity generation from combinations
+5. Implement tag combination caching for mobile performance
+6. Add tag system debugging and visualization tools
+7. Create tag balance validation and testing systems
+8. Implement tag combination metrics and analytics
+9. Add tag system documentation and examples
+10. Optimize tag processing for mobile CPU constraints
+
+# Test Strategy:
+Test tag combinations create sensible and engaging entities. Verify forbidden combinations are properly blocked. Validate tag system performance with complex combinations.

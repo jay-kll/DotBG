@@ -1,0 +1,82 @@
+# Task ID: 6
+# Title: Develop Dodge Rolling Mechanics
+# Status: pending
+# Dependencies: 4, 5
+# Priority: medium
+# Description: Implement the dodge rolling mechanic with invincibility frames, animation, and touch button integration.
+# Details:
+1. Create DodgeRoll class to handle dodge mechanics
+2. Implement dodge movement with proper physics
+3. Add invincibility frames during dodge
+4. Create dodge animation and effects
+5. Connect dodge button to dodge action
+6. Add dodge cooldown system
+7. Implement dodge direction based on movement input
+8. Create visual feedback for dodge cooldown
+9. Add sound effects for dodge action
+10. Implement dodge upgrades/modifications system for future expansion
+
+# Test Strategy:
+Test dodge functionality against enemies. Verify invincibility frames work correctly. Test dodge cooldown system. Measure performance impact of dodge effects.
+
+# Subtasks:
+## 1. Class Structure Design [pending]
+### Dependencies: None
+### Description: Define modular, reusable class structures for core mechanics (player, enemy, abilities) with clear interfaces to minimize dependencies.
+### Details:
+Focus on separation of concerns and extensibility. Ensure classes are optimized for mobile performance and can be easily extended for upgrades or new features.
+
+## 2. Movement System Implementation [pending]
+### Dependencies: 6.1
+### Description: Develop a responsive movement system supporting touch controls and smooth transitions, optimized for mobile devices.
+### Details:
+Implement touch-based input handling for movement, ensuring low latency and high frame rates. Support for both analog and digital movement schemes.
+
+## 3. Invincibility Mechanic Integration [pending]
+### Dependencies: 6.1
+### Description: Add invincibility logic with clear state transitions and visual feedback, ensuring minimal coupling with other systems.
+### Details:
+Implement invincibility as a state or component, with timers and hooks for triggering and ending invincibility. Ensure compatibility with animation and feedback systems.
+
+## 4. Animation System Setup [pending]
+### Dependencies: 6.1, 6.2, 6.3
+### Description: Integrate an efficient animation system that supports state-driven transitions and is optimized for mobile performance.
+### Details:
+Use sprite sheets or skeletal animation as appropriate. Ensure animations reflect movement, invincibility, and direction changes. Modularize for easy updates.
+
+## 5. Touch Input Handling [pending]
+### Dependencies: 6.2
+### Description: Implement robust touch input handlers for all core mechanics, ensuring responsiveness and intuitive controls.
+### Details:
+Support multi-touch gestures, swipes, and taps. Abstract input layer for easy adaptation to different devices or future input methods.
+
+## 6. Cooldown System Development [pending]
+### Dependencies: 6.1, 6.5
+### Description: Create a modular cooldown system for abilities and actions, with clear feedback and performance considerations.
+### Details:
+Ensure cooldowns are visually represented and do not block main thread. Allow for easy adjustment and upgrade hooks.
+
+## 7. Direction and Orientation Logic [pending]
+### Dependencies: 6.2, 6.4
+### Description: Implement direction tracking and orientation logic, ensuring seamless integration with movement and animation systems.
+### Details:
+Support 8-way or 360-degree direction as needed. Ensure direction changes are reflected in both visuals and gameplay logic.
+
+## 8. Feedback and Visual Effects [pending]
+### Dependencies: 6.3, 6.4, 6.6, 6.7
+### Description: Design and implement visual feedback for actions, state changes, and errors, optimized for mobile performance.
+### Details:
+Include particle effects, screen shakes, and UI cues. Modularize effects for easy reuse and extension.
+
+## 9. Sound System Integration [pending]
+### Dependencies: None
+### Description: Integrate a lightweight, modular sound system for effects and feedback, with mobile performance in mind.
+### Details:
+Support for sound pooling, volume control, and event-driven playback. Ensure minimal latency and resource usage.
+
+## 10. Upgrade and Extension Hooks [pending]
+### Dependencies: 6.1, 6.6, 6.8, 6.9
+### Description: Implement hooks and extension points for upgrades, power-ups, and future feature additions.
+### Details:
+Design interfaces and event systems to allow new upgrades or mechanics to be added with minimal refactoring. Document extension points clearly.
+

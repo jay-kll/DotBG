@@ -1,0 +1,20 @@
+# Task ID: 35
+# Title: Implement Act III: The Dream Realm
+# Status: pending
+# Dependencies: 29, 26, 27, 28, 34
+# Priority: medium
+# Description: Final act of the epic campaign (~15 hours). Broken logic with looping maps, time skips, and lying items. Features reality distortion, hallucinated enemies, and The Bastard God final boss shaped by player's sanity and choices.
+# Details:
+1. Create impossible geometry generation for dream logic
+2. Implement map looping and non-Euclidean navigation
+3. Add time skip mechanics and temporal distortion
+4. Create item lying system (descriptions and effects change)
+5. Implement hallucinated enemy system (fake encounters)
+6. Add glitch physics and warped dialogue systems
+7. Design and implement The Bastard God final boss (sanity-dependent)
+8. Create reality distortion visual and audio effects
+9. Implement dream-specific environmental storytelling
+10. Balance Act III progression for ~15 hour climactic experience
+
+# Test Strategy:
+Test dream logic feels surreal but navigable. Verify The Bastard God boss reflects player's journey and choices. Validate Act III provides satisfying ~15 hour conclusion.

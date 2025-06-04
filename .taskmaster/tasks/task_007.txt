@@ -1,0 +1,89 @@
+# Task ID: 7
+# Title: Create Basic Combat System
+# Status: pending
+# Dependencies: 4, 5
+# Priority: high
+# Description: Implement the core combat system with attack mechanics, hit detection, and damage calculation.
+# Details:
+1. Create Attack class to handle attack logic
+2. Implement hitbox and hurtbox system
+3. Create damage calculation system
+4. Add attack animations and effects
+5. Implement attack button functionality with tap and hold variations
+6. Create basic combo system with timing windows
+7. Add attack cooldowns and recovery frames
+8. Implement weapon data structure for different attack types
+9. Create visual and audio feedback for successful hits
+10. Add critical hit system
+11. Implement attack direction based on movement/facing
+
+# Test Strategy:
+Test attack functionality against test dummies. Verify hit detection works correctly. Test combo system with different timing patterns. Measure performance impact of combat calculations.
+
+# Subtasks:
+## 1. Design Attack Logic Framework [pending]
+### Dependencies: None
+### Description: Create a modular framework for handling different attack types and patterns
+### Details:
+Implement a state machine for attack states (idle, windup, active, recovery). Ensure the system is optimized for mobile performance with minimal memory overhead. Design with touch controls in mind, allowing for intuitive attack triggering.
+
+## 2. Implement Hit Detection System [pending]
+### Dependencies: 7.1
+### Description: Develop an efficient collision detection system for attacks
+### Details:
+Create optimized hitboxes/hurtboxes using simplified collision shapes. Implement spatial partitioning to reduce collision checks. Add frame-perfect hit detection with performance considerations for mobile devices. Include methods to handle different weapon ranges and attack areas.
+
+## 3. Create Damage Calculation System [pending]
+### Dependencies: 7.2
+### Description: Build a flexible damage system with modifiers and resistance calculations
+### Details:
+Implement base damage values, scaling factors, and defense calculations. Create a damage type system (physical, magical, etc.). Add support for damage-over-time effects. Ensure calculations are lightweight for mobile performance.
+
+## 4. Develop Animation Controller [pending]
+### Dependencies: 7.1
+### Description: Create a responsive animation system for attack sequences
+### Details:
+Implement animation state transitions for attack phases. Add support for animation canceling. Optimize animation assets for mobile devices. Create animation events to trigger effects, sounds, and hit detection at precise frames.
+
+## 5. Design Touch Input System [pending]
+### Dependencies: None
+### Description: Create an intuitive touch control scheme for combat
+### Details:
+Implement gesture recognition for different attack types. Add support for tap, swipe, and hold inputs. Create visual feedback for touch inputs. Ensure controls are responsive with minimal latency on various mobile devices.
+
+## 6. Implement Combo System [pending]
+### Dependencies: 7.1, 7.4, 7.5
+### Description: Develop a flexible combo system with timing windows
+### Details:
+Create a combo chain system with timing windows. Implement combo state tracking and validation. Add visual indicators for combo opportunities. Design a data-driven approach to define combo sequences that can be easily balanced.
+
+## 7. Create Cooldown Management [pending]
+### Dependencies: 7.1, 7.5
+### Description: Implement a system to handle ability cooldowns and resource costs
+### Details:
+Develop a timer system for tracking cooldowns. Create visual indicators for cooldown status. Implement resource cost validation before attacks. Optimize the system to minimize performance impact on mobile devices.
+
+## 8. Design Weapon Data Structure [pending]
+### Dependencies: 7.1, 7.3
+### Description: Create a flexible data system for weapon properties and behaviors
+### Details:
+Implement a scriptable object system for weapon definitions. Include properties for damage, range, speed, and special effects. Create a weapon switching mechanism. Design the system to be easily extensible for future weapon types.
+
+## 9. Implement Combat Feedback System [pending]
+### Dependencies: 7.2, 7.3, 7.4
+### Description: Create visual and audio feedback for combat actions
+### Details:
+Add hit effects, particles, and screen shake. Implement sound effects for attacks, hits, and misses. Create damage number popups. Optimize effects for mobile performance with quality scaling options.
+
+## 10. Develop Critical Hit System [pending]
+### Dependencies: 7.3, 7.9
+### Description: Implement critical hit mechanics with special effects
+### Details:
+Create critical hit chance and damage multiplier calculations. Add enhanced visual and audio feedback for critical hits. Implement critical hit notifications. Design the system to be balanced and not overpowered.
+
+## 11. Implement Directional Attack System [pending]
+### Dependencies: 7.1, 7.2, 7.5
+### Description: Create a system for directional attacks and blocking
+### Details:
+Implement directional input detection for attacks. Create different attack patterns based on direction. Add directional blocking and parrying mechanics. Ensure the system works intuitively with touch controls on mobile devices.
+

@@ -1,0 +1,20 @@
+# Task ID: 28
+# Title: Implement Save Corruption System
+# Status: pending
+# Dependencies: 26, 19
+# Priority: high
+# Description: Dual save system with real data persistence and fake corruption simulation. Real saves are never corrupted, but the UI lies about save states, rollbacks, and file integrity based on sanity levels.
+# Details:
+1. Create SaveCorruption autoload class for fake save operations
+2. Implement RealSaveManager for actual data persistence
+3. Create FakeSaveManager for corruption simulation
+4. Add ProgressLies for false completion states
+5. Implement RollbackSimulation for fake progress loss
+6. Create SaveFileRenaming for cosmetic file name changes
+7. Ensure real saves are NEVER actually corrupted
+8. Optimize for mobile storage and Android app lifecycle
+9. Add save corruption debugging tools
+10. Document dual save architecture for team understanding
+
+# Test Strategy:
+Verify real saves are never corrupted while fake corruption appears convincing. Test save system during Android app backgrounding/foregrounding. Validate 50+ hour save file performance.

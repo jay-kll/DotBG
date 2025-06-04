@@ -1,0 +1,20 @@
+# Task ID: 31
+# Title: Implement Blood Echoes Economy System
+# Status: pending
+# Dependencies: 26, 17, 30
+# Priority: medium
+# Description: Primary currency system for the epic campaign. Blood Echoes are looted from enemies and used for gear, lore, and skills. Integrates with Black Market (sanity-based) and shop systems.
+# Details:
+1. Create BloodEchoesManager for currency tracking and transactions
+2. Implement echo drop system from defeated enemies
+3. Create shop system appearing every 2 dungeons
+4. Implement Black Market system (low sanity only)
+5. Add echo-based progression and skill purchases
+6. Create echo multipliers and bonus systems
+7. Implement echo loss mechanics (death, corruption)
+8. Add echo visualization and UI integration
+9. Balance echo economy for 50+ hour progression
+10. Integrate with mutation and sanity systems
+
+# Test Strategy:
+Test echo economy balance across epic campaign length. Verify Black Market only appears at low sanity. Validate echo persistence and transaction integrity.

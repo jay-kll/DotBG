@@ -1,0 +1,20 @@
+# Task ID: 43
+# Title: Implement Modular Room Template System
+# Status: pending
+# Dependencies: 41, 29, 10
+# Priority: high
+# Description: Template-based room generation with categories like 'altar room', 'flooded corridor', 'impossible geometry'. Each template has act-specific variations optimized for mobile memory.
+# Details:
+1. Create TemplateManager autoload for modular room template system
+2. Implement template categories (Functional, Atmospheric, Mechanical, Narrative, Corruption)
+3. Add act-specific template variations for three-act structure
+4. Create template instantiation with safety validation
+5. Implement template caching and memory optimization
+6. Add template debugging and visualization tools
+7. Create template quality metrics and validation
+8. Implement template streaming for large template libraries
+9. Add template documentation and creation guidelines
+10. Optimize template processing for mobile memory constraints
+
+# Test Strategy:
+Test templates generate varied but coherent rooms. Verify act-specific variations feel distinct. Validate template system memory usage on mobile devices.

@@ -1,0 +1,20 @@
+# Task ID: 32
+# Title: Implement Multiple Endings System
+# Status: pending
+# Dependencies: 26, 29, 30, 31
+# Priority: medium
+# Description: Four distinct endings based on player choices, sanity levels, and campaign progression: Transcendence, Corruption, Sacrifice, and hidden endings. Each ending reflects the player's 50+ hour journey.
+# Details:
+1. Create EndingManager class for tracking ending conditions
+2. Implement Transcendence ending (high sanity, high companion survival)
+3. Create Corruption ending (low sanity, mutation embrace)
+4. Implement Sacrifice ending (any sanity, full lore, great cost)
+5. Add hidden ending conditions and triggers
+6. Create ending-specific cutscenes and narrative content
+7. Implement ending choice tracking throughout campaign
+8. Add ending replay system for completionist players
+9. Create ending statistics and achievement integration
+10. Balance ending requirements for epic campaign scope
+
+# Test Strategy:
+Test all ending conditions trigger correctly after 50+ hour campaigns. Verify ending choices reflect player's journey. Validate ending content quality and narrative satisfaction.

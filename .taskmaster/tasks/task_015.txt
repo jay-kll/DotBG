@@ -1,0 +1,89 @@
+# Task ID: 15
+# Title: Create Pathfinding System
+# Status: pending
+# Dependencies: 9, 13
+# Priority: medium
+# Description: Implement an efficient pathfinding system for enemy navigation through procedurally generated environments.
+# Details:
+1. Create PathfindingManager singleton
+2. Implement A* pathfinding algorithm
+3. Create navigation grid generation from room layout
+4. Add path smoothing and optimization
+5. Implement dynamic obstacle avoidance
+6. Create path caching for performance
+7. Add path prediction for moving targets
+8. Implement path following behavior
+9. Create debug visualization for paths
+10. Optimize pathfinding for mobile CPU
+11. Add fallback navigation for complex scenarios
+
+# Test Strategy:
+Test pathfinding in various room layouts. Measure pathfinding calculation time. Verify paths avoid obstacles correctly. Test with multiple enemies pathfinding simultaneously.
+
+# Subtasks:
+## 1. Implement PathManager Class [pending]
+### Dependencies: None
+### Description: Create a central manager class to coordinate all pathfinding operations and serve as the main interface for other systems
+### Details:
+Design a singleton PathManager class that handles path requests, maintains references to the grid, manages caching, and coordinates between different pathfinding components. Include methods for requesting paths, canceling requests, and setting global pathfinding parameters. Ensure thread safety for concurrent path requests.
+
+## 2. Implement A* Algorithm Core [pending]
+### Dependencies: 15.1
+### Description: Develop the core A* search algorithm with optimized data structures for mobile performance
+### Details:
+Implement the A* algorithm using efficient priority queues and hash maps to minimize memory usage. Include configurable heuristic functions (Manhattan, Euclidean, Chebyshev) and optimize for the worst-case complexity of O(C*/ε). Implement early termination conditions and ensure the algorithm is complete and optimal as per A* guarantees.
+
+## 3. Create Dynamic Grid Generation System [pending]
+### Dependencies: 15.1
+### Description: Develop a system to generate and update navigation grids based on the environment
+### Details:
+Implement a grid generation system that can create navigation meshes from environment data. Support different cell shapes (square, hexagonal), variable resolution for performance tuning, and dynamic updates when obstacles change. Include methods for converting between world coordinates and grid coordinates with proper handling of edge cases.
+
+## 4. Implement Path Smoothing Algorithm [pending]
+### Dependencies: 15.2
+### Description: Create a post-processing system to smooth jagged paths produced by the A* algorithm
+### Details:
+Develop path smoothing algorithms (Bezier curves, string-pulling) to eliminate unnecessary waypoints and create more natural movement paths. Ensure smoothed paths remain collision-free and implement configurable smoothing parameters. Optimize for mobile performance with adaptive smoothing based on available processing power.
+
+## 5. Develop Dynamic Obstacle Avoidance System [pending]
+### Dependencies: 15.2, 15.3
+### Description: Create a system to detect and avoid moving obstacles in real-time
+### Details:
+Implement influence mapping techniques combined with sensor data to handle dynamic obstacles. Create velocity obstacle sampling for predictive avoidance and develop a local avoidance system that can work independently from the global pathfinding. Include configurable avoidance parameters for different agent types and priorities for human vs. artificial obstacles.
+
+## 6. Implement Path Caching System [pending]
+### Dependencies: 15.2
+### Description: Create an efficient caching system to store and reuse previously calculated paths
+### Details:
+Develop a path caching system with LRU (Least Recently Used) eviction policy to store frequently requested paths. Implement partial path reuse for similar requests and design cache invalidation strategies when the environment changes. Optimize memory usage with configurable cache sizes based on device capabilities.
+
+## 7. Create Movement Prediction System [pending]
+### Dependencies: 15.5
+### Description: Implement a system to predict future positions of dynamic obstacles for proactive pathfinding
+### Details:
+Develop algorithms to predict the future positions of moving obstacles based on their current velocity and historical movement patterns. Implement different prediction models (linear, pattern-based) and integrate predictions into the pathfinding cost calculations. Include confidence metrics for predictions and fallback strategies for unpredictable movements.
+
+## 8. Implement Path Following Controller [pending]
+### Dependencies: 15.4
+### Description: Create a controller system that allows agents to accurately follow generated paths
+### Details:
+Develop a path following controller with configurable parameters for speed, acceleration, and turning radius. Implement lookahead mechanisms to anticipate turns and smooth cornering behavior. Create touch-based control interfaces for manual path adjustments and ensure responsive movement on mobile devices with variable frame rates.
+
+## 9. Create Debugging and Visualization Tools [pending]
+### Dependencies: 15.1, 15.2, 15.3
+### Description: Implement comprehensive debugging tools to visualize and troubleshoot pathfinding operations
+### Details:
+Develop visualization tools for displaying navigation grids, open/closed lists, path optimization data, and influence maps. Create logging systems for pathfinding metrics and implement console commands for runtime debugging. Design mobile-friendly debug views that can be toggled without affecting performance.
+
+## 10. Implement Performance Optimization Systems [pending]
+### Dependencies: 15.2, 15.3, 15.6
+### Description: Create systems to dynamically adjust pathfinding parameters based on performance requirements
+### Details:
+Develop adaptive systems that can adjust grid resolution, search depth, and heuristic precision based on device capabilities and current performance. Implement hierarchical pathfinding for large environments and create batching systems for multiple path requests. Design memory-bounded versions of A* (like SMA* or IDA*) for constrained mobile environments.
+
+## 11. Create Fallback Pathfinding Systems [pending]
+### Dependencies: 15.2
+### Description: Implement simpler, faster pathfinding algorithms to use when A* is too resource-intensive
+### Details:
+Develop lightweight alternatives to A* such as greedy best-first search or simplified Dijkstra's algorithm for use when performance is critical. Create a fallback decision system that can automatically switch algorithms based on path complexity and available resources. Implement graceful degradation of pathfinding quality under heavy load conditions.
+

@@ -1,0 +1,20 @@
+# Task ID: 30
+# Title: Implement Mutation System
+# Status: pending
+# Dependencies: 26, 17
+# Priority: medium
+# Description: Permanent character evolution system allowing up to 3 mutations per run. Mutations provide both benefits and curses, affecting gameplay, visuals, and story routes through the epic campaign.
+# Details:
+1. Create MutationManager class for mutation tracking and application
+2. Implement mutation data structure with benefits and drawbacks
+3. Create visual mutation effects and character model changes
+4. Add mutation acquisition system (Black Market, events, bosses)
+5. Implement mutation synergy system for combined effects
+6. Create mutation-specific dialogue and story branches
+7. Add mutation persistence across the 50+ hour campaign
+8. Implement mutation removal/replacement mechanics
+9. Create mutation UI for tracking active mutations
+10. Balance mutations for epic campaign progression
+
+# Test Strategy:
+Test mutation effects persist across save/load cycles. Verify mutation synergies work correctly. Validate mutation balance across 50+ hour campaigns.

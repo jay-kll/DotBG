@@ -1,0 +1,20 @@
+# Task ID: 33
+# Title: Implement Act I: The Descending City
+# Status: pending
+# Dependencies: 29, 26, 10, 11
+# Priority: medium
+# Description: First act of the epic campaign (~15 hours). Semi-open city zones with twisted exploration, nonlinear routes. Features The Architect boss, haunted homes, cults, and asylums. Establishes core mechanics.
+# Details:
+1. Create city zone generation algorithms for semi-open exploration
+2. Implement nonlinear route system with multiple paths
+3. Design and implement The Architect boss (uses buildings as weapons)
+4. Create haunted homes side quest system
+5. Implement cult encounter mechanics and storylines
+6. Add asylum exploration with sanity-based challenges
+7. Create city-specific enemy types and behaviors
+8. Implement urban environmental hazards and interactive elements
+9. Add city atmosphere with procedural audio and visuals
+10. Balance Act I progression for ~15 hour experience
+
+# Test Strategy:
+Test city exploration feels open yet guided. Verify The Architect boss encounter is memorable and challenging. Validate Act I provides ~15 hours of engaging content.

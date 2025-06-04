@@ -1,0 +1,20 @@
+# Task ID: 27
+# Title: Implement UI Corruption System
+# Status: pending
+# Dependencies: 26, 16
+# Priority: high
+# Description: System that makes the interface lie to the player based on sanity levels. Corrupts health bars, inventory descriptions, map layouts, and menu options to create supernatural horror effects.
+# Details:
+1. Create UICorruption autoload class for interface manipulation
+2. Implement HealthBarCorruption for false health display
+3. Create InventoryCorruption for item description lies
+4. Implement MapCorruption for false room layouts
+5. Add MenuCorruption for fake options and broken navigation
+6. Create TextCorruption for randomized descriptions
+7. Implement SaveUICorruption for fake save confirmations
+8. Add corruption level system (None, Subtle, Obvious, Complete)
+9. Ensure corruption doesn't break core touch functionality
+10. Optimize corruption effects for mobile performance
+
+# Test Strategy:
+Verify UI corruption activates at correct sanity thresholds. Test that corruption effects feel supernatural but don't break gameplay. Validate mobile performance with active corruption.

@@ -1,0 +1,20 @@
+# Task ID: 34
+# Title: Implement Act II: The Drowning Depths
+# Status: pending
+# Dependencies: 29, 26, 31, 33
+# Priority: medium
+# Description: Second act of the epic campaign (~20 hours). Dungeon-crawl with water hazards and sentient environments. Features Amalgam Mother boss (entire dungeon is part of her body). Black Market opens, betrayal events begin.
+# Details:
+1. Create water physics system for drowning hazards
+2. Implement sentient environment mechanics (living dungeons)
+3. Design and implement Amalgam Mother boss (dungeon-sized entity)
+4. Create water-based environmental puzzles and challenges
+5. Implement Black Market system activation (low sanity requirement)
+6. Add betrayal event system with companion NPCs
+7. Create depths-specific enemy types (body-horror fusions, liquid memories)
+8. Implement organic dungeon generation algorithms
+9. Add underwater/flooded area exploration mechanics
+10. Balance Act II progression for ~20 hour experience
+
+# Test Strategy:
+Test water physics work correctly on mobile devices. Verify Amalgam Mother boss feels like fighting a living dungeon. Validate Act II provides ~20 hours of distinct content.

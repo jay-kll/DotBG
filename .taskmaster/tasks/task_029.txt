@@ -1,0 +1,20 @@
+# Task ID: 29
+# Title: Implement Three-Act Structure System
+# Status: pending
+# Dependencies: 26, 10, 11
+# Priority: high
+# Description: Core system managing the three distinct acts of the epic campaign: Act I (Descending City), Act II (Drowning Depths), Act III (Dream Realm). Each act has unique mechanics, rendering, and generation rules.
+# Details:
+1. Create ActManager autoload class for act progression
+2. Implement Act1_TechnicalSpecs for city generation and urban rendering
+3. Create Act2_TechnicalSpecs for water physics and organic rendering
+4. Implement Act3_TechnicalSpecs for impossible geometry and reality distortion
+5. Add act-specific rendering pipelines and shaders
+6. Create act transition system with memory cleanup
+7. Implement act-specific physics rules and generation algorithms
+8. Add act-specific performance profiles for mobile optimization
+9. Create act progression tracking and save integration
+10. Document three-act technical architecture
+
+# Test Strategy:
+Test smooth transitions between acts without memory leaks. Verify each act's unique mechanics work correctly. Validate mobile performance across all three acts during extended play.

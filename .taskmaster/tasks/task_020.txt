@@ -1,0 +1,89 @@
+# Task ID: 20
+# Title: Implement Basic Sanity System
+# Status: pending
+# Dependencies: 5, 8, 16
+# Priority: medium
+# Description: Create the foundation for the sanity system that affects gameplay and perception as sanity decreases.
+# Details:
+1. Create SanityManager singleton
+2. Implement sanity value tracking and modification
+3. Add sanity decrease triggers (enemies, events)
+4. Create sanity recovery mechanics
+5. Implement basic visual effects based on sanity level
+6. Add audio distortions tied to sanity
+7. Create initial hallucination system
+8. Implement sanity thresholds for effect intensity
+9. Add sanity-based enemy perception changes
+10. Create UI feedback for sanity changes
+11. Implement sanity persistence for save/load
+
+# Test Strategy:
+Test sanity system with various triggers. Verify visual and audio effects activate at appropriate thresholds. Test sanity recovery mechanics. Measure performance impact of sanity effects.
+
+# Subtasks:
+## 1. Implement SanityManager class [pending]
+### Dependencies: None
+### Description: Create a central SanityManager class to handle sanity-related operations and state
+### Details:
+Define methods for updating sanity, getting current sanity level, and registering listeners for sanity changes. Implement a singleton pattern for global access.
+
+## 2. Develop sanity value tracking system [pending]
+### Dependencies: 20.1
+### Description: Create a system to track and update the player's sanity value over time
+### Details:
+Implement a float value for sanity, methods to increase/decrease sanity, and ensure values are clamped between 0 and 100. Add support for gradual sanity regeneration/decay.
+
+## 3. Implement sanity change triggers [pending]
+### Dependencies: 20.1, 20.2
+### Description: Develop a system to trigger sanity changes based on in-game events
+### Details:
+Create an event system that allows game objects to emit sanity-affecting events. Implement handlers in SanityManager to process these events and update sanity accordingly.
+
+## 4. Create sanity recovery mechanics [pending]
+### Dependencies: 20.1, 20.2
+### Description: Implement mechanics for players to recover sanity
+### Details:
+Design and implement items, actions, or environmental factors that can restore sanity. Integrate these with the SanityManager and existing game systems.
+
+## 5. Develop visual effects for sanity changes [pending]
+### Dependencies: 20.1, 20.2
+### Description: Create a system for applying visual effects based on sanity levels
+### Details:
+Implement shader effects for post-processing that intensify as sanity decreases. Consider color grading, vignetting, and distortion effects. Ensure mobile GPU compatibility.
+
+## 6. Implement audio effects for sanity system [pending]
+### Dependencies: 20.1, 20.2
+### Description: Develop audio cues and effects tied to sanity levels
+### Details:
+Create a system for dynamic audio mixing based on sanity. Implement subtle background noises, heartbeat effects, and distorted sounds as sanity decreases.
+
+## 7. Design and implement hallucination system [pending]
+### Dependencies: 20.1, 20.2, 20.5
+### Description: Create a system for spawning and managing hallucinations based on sanity levels
+### Details:
+Develop a pool of hallucination prefabs, implement spawn logic tied to sanity thresholds, and ensure hallucinations are optimized for mobile performance.
+
+## 8. Implement sanity thresholds and associated effects [pending]
+### Dependencies: 20.1, 20.2, 20.5, 20.6, 20.7
+### Description: Create a system of thresholds that trigger different gameplay effects at various sanity levels
+### Details:
+Define sanity thresholds (e.g., 75%, 50%, 25%) and implement corresponding effects such as increased hallucination frequency, intensified visual/audio effects, and gameplay changes.
+
+## 9. Develop perception change mechanics [pending]
+### Dependencies: 20.1, 20.2, 20.8
+### Description: Implement changes to player perception based on sanity levels
+### Details:
+Create a system to alter game object appearances, NPC behaviors, or environmental elements based on sanity. Ensure changes are subtle and performance-efficient.
+
+## 10. Design and implement sanity UI elements [pending]
+### Dependencies: 20.1, 20.2
+### Description: Create user interface elements to display current sanity status and effects
+### Details:
+Develop a sanity meter UI component, status icons for active effects, and subtle screen border indicators. Ensure UI is touch-friendly and scales well on different mobile devices.
+
+## 11. Implement sanity persistence system [pending]
+### Dependencies: 20.1, 20.2, 20.8
+### Description: Develop a system to save and load sanity-related data
+### Details:
+Create serializable data structures for sanity state, implement save/load methods in SanityManager, and integrate with the game's overall save system. Ensure efficient storage for mobile platforms.
+

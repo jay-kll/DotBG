@@ -1,0 +1,20 @@
+# Task ID: 26
+# Title: Implement Sanity Manager System
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Core autoload system that controls reality distortion, UI corruption triggers, and save lies. This system tracks sanity levels (High 75-100%, Medium 50-74%, Low 25-49%, Zero 0-24%) and triggers appropriate corruption effects.
+# Details:
+1. Create SanityManager autoload class with sanity level tracking
+2. Implement sanity change events via EventBus integration
+3. Define sanity thresholds and their corresponding effects
+4. Create sanity recovery and loss mechanisms
+5. Integrate with UICorruption and SaveCorruption systems
+6. Implement sanity persistence across save/load cycles
+7. Add debug tools for testing sanity effects
+8. Optimize for mobile performance during extended sessions
+9. Create sanity visualization for development/testing
+10. Document sanity system architecture and integration points
+
+# Test Strategy:
+Test sanity level changes trigger correct corruption effects. Verify sanity persistence across app lifecycle. Validate performance impact on mobile devices during 60+ minute sessions.

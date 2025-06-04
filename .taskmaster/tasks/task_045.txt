@@ -1,0 +1,20 @@
+# Task ID: 45
+# Title: Implement Semi-Procedural Lore System
+# Status: pending
+# Dependencies: 41, 44, 39
+# Priority: medium
+# Description: Curated narrative system generating lore from hand-written pools with contextual selection. Maintains thematic consistency while providing variety across 50+ hour campaigns.
+# Details:
+1. Create LoreManager for semi-procedural narrative generation
+2. Implement curated lore pools with hand-written content
+3. Add contextual lore selection algorithms
+4. Create thematic consistency validation
+5. Implement lore adaptation based on player choices and sanity
+6. Add lore discovery variety for multiple playthroughs
+7. Create lore quality validation and coherence checking
+8. Implement lore debugging and content management tools
+9. Add lore metrics and engagement tracking
+10. Optimize lore processing for mobile performance
+
+# Test Strategy:
+Test lore selections feel thematically appropriate and high quality. Verify lore adapts meaningfully to player state. Validate lore variety across multiple playthroughs.

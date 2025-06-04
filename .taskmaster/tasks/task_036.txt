@@ -1,0 +1,20 @@
+# Task ID: 36
+# Title: Implement Epic Campaign Save System
+# Status: pending
+# Dependencies: 19, 26, 29, 30, 31, 32
+# Priority: high
+# Description: Enhanced save system designed for 50-70 hour campaigns with multiple acts, sanity corruption, mutations, and complex progression tracking. Optimized for mobile storage and Android app lifecycle.
+# Details:
+1. Extend SaveManager for epic campaign data structures
+2. Implement act progression and transition save data
+3. Add mutation persistence across 50+ hour campaigns
+4. Create sanity history tracking and corruption state saves
+5. Implement ending choice tracking throughout campaign
+6. Add companion relationship and betrayal state persistence
+7. Create save file compression for large campaign data
+8. Implement save file migration for game updates
+9. Add cloud save integration for epic campaign backup
+10. Optimize save performance for mobile devices during long sessions
+
+# Test Strategy:
+Test save system handles 50+ hour campaign data efficiently. Verify save file integrity across Android app lifecycle events. Validate save compression and cloud sync performance.

@@ -1,0 +1,20 @@
+# Task ID: 38
+# Title: Implement Companion and Betrayal System
+# Status: pending
+# Dependencies: 26, 29, 32, 13
+# Priority: medium
+# Description: NPC companion system with relationship tracking, betrayal mechanics, and impact on multiple endings. Companions can survive or die based on player choices throughout the epic campaign.
+# Details:
+1. Create CompanionManager for NPC relationship tracking
+2. Implement companion AI and behavior systems
+3. Add companion dialogue and interaction mechanics
+4. Create betrayal event system with sanity triggers
+5. Implement companion survival tracking for endings
+6. Add companion-specific storylines and character arcs
+7. Create companion combat assistance and abilities
+8. Implement companion death and consequence systems
+9. Add companion relationship UI and status tracking
+10. Balance companion mechanics for epic campaign narrative
+
+# Test Strategy:
+Test companion relationships develop meaningfully over 50+ hours. Verify betrayal events feel impactful and story-driven. Validate companion survival affects ending outcomes.

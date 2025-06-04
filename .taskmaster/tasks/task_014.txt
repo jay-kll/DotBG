@@ -1,0 +1,85 @@
+# Task ID: 14
+# Title: Implement Basic Enemy Types
+# Status: pending
+# Dependencies: 13
+# Priority: medium
+# Description: Create the initial enemy types mentioned in the PRD: Corrupted Citizens, Plague Doctors, and Twisted Guards.
+# Details:
+1. Create Enemy base class with common functionality
+2. Implement specific enemy types:
+   - CorruptedCitizen (fast, weak attacks)
+   - PlagueDoctor (ranged attacks, status effects)
+   - TwistedGuard (heavy melee, high defense)
+3. Add unique animations for each enemy type
+4. Create specific attack patterns per enemy
+5. Implement special abilities for each type
+6. Add visual and audio effects for enemies
+7. Create enemy spawn data and balancing
+8. Implement enemy drops and rewards
+9. Add enemy variation system within types
+10. Create enemy difficulty scaling
+
+# Test Strategy:
+Test each enemy type individually. Verify unique behaviors function correctly. Test enemy balance against player at different progression levels. Measure performance impact of each enemy type.
+
+# Subtasks:
+## 1. Design and Implement Enemy Base Class [pending]
+### Dependencies: None
+### Description: Create a modular, extensible base class for all enemy types, supporting mobile-first development and touch controls.
+### Details:
+The base class should handle core properties (health, movement, state machine, hitbox, basic AI hooks) and be optimized for performance on mobile devices. Ensure architecture supports easy extension for unique behaviors and assets.
+
+## 2. Develop Enemy Type Modules [pending]
+### Dependencies: 14.1
+### Description: Implement individual enemy type classes inheriting from the base class, each with unique behaviors and stats.
+### Details:
+Each enemy type should override or extend base behaviors, animations, and stats. Ensure modularity for easy addition/removal of enemy types and test for mobile performance.
+
+## 3. Create Unique Animation Sets [pending]
+### Dependencies: 14.2
+### Description: Design and integrate unique animation sets for each enemy type, optimized for mobile rendering.
+### Details:
+Animations should include idle, movement, attack, hit, and death states. Use sprite atlases or optimized formats for mobile. Ensure smooth transitions and minimal performance impact.
+
+## 4. Implement Distinct Attack Patterns [pending]
+### Dependencies: 14.2
+### Description: Define and code unique attack patterns for each enemy type, supporting touch-based interactions.
+### Details:
+Attack patterns should include melee, ranged, area-of-effect, and special attacks as appropriate. Ensure patterns are testable and responsive to player actions on touch devices.
+
+## 5. Integrate Enemy Abilities and Special Behaviors [pending]
+### Dependencies: 14.2
+### Description: Add unique abilities (e.g., teleport, rage, call allies) to enemy types, leveraging the modular architecture.
+### Details:
+Abilities should be implemented as modular components or scripts, allowing reuse and easy balancing. Ensure abilities are intuitive for touch controls and do not degrade performance.
+
+## 6. Add Visual and Audio Effects [pending]
+### Dependencies: 14.3, 14.5
+### Description: Implement visual and audio effects for attacks, abilities, and enemy states, optimized for mobile devices.
+### Details:
+Effects should be lightweight and scalable, using particle systems or optimized shaders. Ensure effects enhance feedback without impacting frame rate.
+
+## 7. Configure Spawn Logic and Balance Data [pending]
+### Dependencies: 14.2
+### Description: Design spawn systems and balance enemy stats for mobile gameplay, ensuring fair challenge and performance.
+### Details:
+Implement spawn zones, group logic (near/far), and dynamic balancing based on player progress. Use data-driven approaches for easy tuning and testing.
+
+## 8. Define Enemy Drops and Rewards [pending]
+### Dependencies: 14.2
+### Description: Set up loot tables and drop logic for each enemy type, supporting modular reward systems.
+### Details:
+Drops should be configurable per enemy, supporting rarity, quantity, and special items. Ensure drop logic is efficient and integrates with the overall reward system.
+
+## 9. Implement Enemy Variation and Randomization [pending]
+### Dependencies: 14.2, 14.3, 14.4, 14.5
+### Description: Add support for visual, stat, and behavioral variations within each enemy type for replayability.
+### Details:
+Variations may include color swaps, stat modifiers, alternate attack patterns, or rare elite versions. Ensure variations are data-driven and do not impact performance.
+
+## 10. Develop Enemy Scaling and Progression Systems [pending]
+### Dependencies: 14.7, 14.9
+### Description: Implement systems for scaling enemy difficulty, stats, and behaviors based on player progression and context.
+### Details:
+Scaling should be modular, supporting level-based, time-based, or event-driven adjustments. Ensure scaling is balanced for mobile play sessions and test for edge cases.
+
