@@ -26,4 +26,4 @@ node_modules/
 
 # Task files
 tasks.json
-tasks/ 
+tasks/ # Godot editor files\n.godot/\n*.tmp\n\n# Godot executable\nGodot_*\n*.appimage
