@@ -81,10 +81,7 @@ Free-exploration Gothic horror game in Godot 4.4 with Castlevania aesthetics and
 - Synergy between different mutations
 
 ### Combat System Architecture
-- Real-time action similar to Dead Cells
-- Dodge rolling with i-frames
-- Combo system with timing mechanics
-- Status effects: bleeding, corruption, madness, poison, curse
+- Slow, heavy, Soulslike combat emphasizing stamina management, deliberate attacks, and strategic positioning
 
 ### Free-Exploration World Structure
 - **NON-LINEAR PROGRESSION**: This is NOT a linear Soulsvania!

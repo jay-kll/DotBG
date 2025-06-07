@@ -40,21 +40,24 @@ The Sanity system is a central mechanic that directly influences the player's pe
 
 ---
 
-## 4. Real-Time Combat System
+## 4. Methodical Soulslike Combat
 
-The combat is designed to be fast, responsive, and challenging, with a control scheme tailored for touchscreens.
+The combat is designed to be slow, deliberate, and punishing, drawing inspiration from the Soulslike genre. It emphasizes careful timing, strategic positioning, and stamina management over fast reflexes. The control scheme is being meticulously designed to deliver this weighty feel on touchscreens.
 
--   **Core Mechanics:**
-    -   **Dodge Rolling:** A primary defensive maneuver with a brief invincibility-frame (i-frame) window.
-    -   **Melee Combos:** Simple, timing-based combo system for standard attacks.
-    -   **Special Weapons & Abilities:** Equippable items that grant unique and powerful attacks.
--   **Status Effects:** Players and enemies can be affected by a variety of status effects, including:
-    -   `Bleeding`: Damage over time.
+   **Core Mechanics:**
+    -   **Stamina-Based Actions:** All major actions—attacking, dodging, blocking—consume stamina, requiring the player to manage their exertion carefully.
+    -   **Heavy & Committed Attacks:** Attack animations are deliberate and have significant recovery frames, making each swing a calculated risk. There are no long, cancelable combos.
+    -   **Dodge Rolling:** The primary defensive maneuver with i-frames, but its use is limited by the stamina bar.
+    -   **Parrying/Guarding:** A high-risk, high-reward defensive option will be explored.
+
+   **Status Effects:** Players and enemies can be affected by a variety of impactful status effects, including:
+    -   `Bleed`: Causes a burst of high damage once the threshold is met.
     -   `Corruption`: Reduces healing effectiveness.
     -   `Madness`: Drains sanity.
     -   `Poison`: Damage over time, ignores armor.
     -   `Curse`: Increases damage taken.
--   **Mobile-First Design:** The system is balanced around the precision of touch controls, avoiding mechanics that would be frustrating without a physical controller.
+
+   **Mobile-First Design:** The system is balanced around the deliberate nature of touch input, avoiding the need for rapid, complex button combinations. The focus is on timing and strategy, which translates well to a mobile interface.
 
 ---
 

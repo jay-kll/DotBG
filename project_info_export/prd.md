@@ -60,10 +60,11 @@
 ### 4.4. Combat System
 -   Real-time action combat.
 -   **Player Abilities:**
-    -   Melee combo attacks.
-    -   Dodge roll with invincibility frames (i-frames).
-    -   Equippable special weapons and abilities.
--   **Status Effects:** The system must support effects like Bleeding, Corruption, Madness, Poison, and Curse for both players and enemies.
+    -   **Stamina-Based Actions:** Attacking, dodging, and other core actions consume a stamina resource.
+    -   **Committed Attacks:** Attack animations are weighty and cannot be easily canceled, demanding careful timing.
+    -   **Dodge Roll:** A stamina-dependent defensive maneuver with i-frames.
+    -   Equippable special weapons and abilities with unique, heavy attack patterns.
+-   **Status Effects:** The system must support impactful effects like Bleed (burst damage), Corruption, Madness, Poison, and Curse for both players and enemies.
 
 ### 4.5. Player Progression
 -   **Blood Echoes Economy:** The primary currency dropped by enemies, used for shops and upgrades.
