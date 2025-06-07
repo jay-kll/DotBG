@@ -43,12 +43,11 @@
 -   **Persistent State:** The game must save the state of the entire world, including defeated bosses, unlocked shortcuts, and major environmental changes.
 
 ### 4.2. Procedural Generation
--   All game content must be procedurally generated at runtime. This includes:
-    -   **Level Layouts:** Dungeons, corridors, and special rooms.
-    -   **Visuals:** Textures and art assets for environments.
-    -   **Audio:** Soundscapes and ambient effects.
-    -   **Creatures:** Enemy models, stats, and behaviors.
--   Generation must be rule-based to ensure a coherent and intentional feel.
+-   A hybrid approach will be used. The main world will be handcrafted, while key gameplay areas will be procedurally generated to enhance replayability. This includes:
+    -   **Dungeon Layouts:** The internal structure of dungeons and other special zones.
+    -   **Enemy Encounters:** Placement and composition of a subset of enemy types within procedural areas.
+    -   **Loot Distribution:** Randomized placement of items and resources within dungeons.
+-   All procedural generation must be rule-based to ensure a coherent and intentional feel.
 
 ### 4.3. Sanity System
 -   A core mechanic where the player's Sanity level directly affects gameplay.

@@ -20,7 +20,7 @@ This repository contains the full source code and project files for the game, bu
 ## Core Features
 
 -   **Non-Linear Exploration:** Rejecting a linear path, the game uses a quest-driven structure that encourages backtracking and discovery within a persistent, interconnected world.
--   **Total Procedural Generation:** The game world, including its art, sound, textures, and creatures, is generated at runtime for infinite variety, all while being optimized for mobile performance.
+-   **Strategic Procedural Generation:** To ensure endless replayability and unique challenges, key areas like dungeons and some of their inhabitants are procedurally generated at runtime. This is blended with handcrafted design to maintain a cohesive world.
 -   **Atmospheric Horror:** A central "Sanity" system directly impacts gameplay through visual and auditory hallucinations. The narrative is a blend of **Gothic, Cosmic, and Religious Horror**, exploring themes of decay, forbidden knowledge, and the perversion of faith.
 -   **Real-Time Combat:** Fast-paced, challenging combat tailored for touchscreens, featuring dodge-rolling, combos, and a variety of status effects.
 -   **Deep Progression:** A permanent **Mutation System** allows for powerful character evolution, alongside a **Blood Echoes** economy with a high-risk/high-reward "Black Market" that costs Sanity instead of currency.

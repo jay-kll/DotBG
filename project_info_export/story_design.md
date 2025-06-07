@@ -14,7 +14,7 @@ The narrative is built on a foundation of interwoven horror themes, each explori
 
 ## Storytelling Methods
 
--   **Environmental Storytelling:** The primary method of narrative delivery. The decaying, procedurally generated architecture, filled with blasphemous iconography and reality-bending anomalies, tells the story of the city's fall. Players will piece together events through found journals, memory echoes, and the changing environment itself.
+-   **Environmental Storytelling:** The primary method of narrative delivery. The decaying, handcrafted architecture of the city, combined with the procedurally generated dungeons within it, tells the story of the city's fall. Players will piece together events through found journals, memory echoes, and the ever-changing environments of the depths.
 -   **NPC Interactions:** The few remaining inhabitants of the world are unreliable narrators, their perceptions warped by the pervasive madness. Their quests and dialogues will offer conflicting accounts of events, forcing the player to question what is real.
 -   **Symbolism:** The world is rich with symbolism, particularly that which contrasts traditional religious imagery with the cosmic and blasphemous reality of the Bastard God.
 

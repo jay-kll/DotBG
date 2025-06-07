@@ -14,13 +14,16 @@ This is the foundational design pillar of the game, distinguishing it from linea
 
 ---
 
-## 2. Total Procedural Generation
+## 2. Strategic Procedural Generation
 
-The game leverages procedural generation to create a unique and replayable experience, all while being heavily optimized for mobile.
+The game leverages a hybrid design, blending a handcrafted, persistent world with procedurally generated elements to ensure replayability and unique challenges. This approach allows for a cohesive, non-linear quest structure within an ever-changing gameplay environment.
 
--   **Runtime Generation:** All game content—including level layouts, art assets, textures, soundscapes, and creature designs—is generated at runtime.
--   **Coherent Systems:** Generation is not random. It follows a set of intelligent rules to ensure the world feels intentional and cohesive. Dungeons have a logical flow, and creatures fit their environments.
--   **Mobile Performance Focus:** Algorithms are designed to be lightweight and efficient, minimizing CPU/GPU load and memory usage to ensure a smooth 60 FPS experience on target Android devices. Room generation is targeted to complete in under one second.
+-   **Generated Content:** Procedural generation is focused on specific gameplay segments:
+    -   **Dungeon Layouts:** While the main world map is fixed, the internal layouts of dungeons, crypts, and other special zones are procedurally generated for each run.
+    -   **Enemy Placements & Subsets:** A selection of enemies will be procedurally placed within dungeons. Some enemy variations may also be generated with unique stats or abilities.
+    -   **Loot & Resources:** The location and type of loot found within procedural areas are randomized.
+-   **Handcrafted World:** The overarching world, key landmarks, quest locations, and the connections between areas are handcrafted. This ensures that the critical path for non-linear exploration and storytelling remains consistent and intentional.
+-   **Mobile Performance Focus:** All procedural algorithms are designed to be lightweight and efficient, minimizing CPU/GPU load and memory usage to ensure a smooth 60 FPS experience on target Android devices.
 
 ---
 
