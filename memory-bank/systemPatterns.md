@@ -36,24 +36,14 @@ Every implementation must be tested and validated before being marked as done. R
 - `dotbg/scripts/tests/input_debounce_test.gd` - Input debounce testing
 - `dotbg/scripts/tests/haptic_feedback_test.gd` - Haptic feedback testing
 
-### Hybrid Generation System (Dual Implementation)
-#### Systems Directory (Primary)
-- `dotbg/scripts/systems/handcrafted_manager.gd` - Handcrafted content foundation
-- `dotbg/scripts/systems/procedural_manager.gd` - Procedural enhancement layer
-- `dotbg/scripts/systems/safety_checker.gd` - Quality assurance system
-- `dotbg/scripts/systems/tag_system.gd` - Entity tag combination engine
-- `dotbg/scripts/systems/template_system.gd` - Modular room templates
-
-#### Hybrid Directory (Secondary)
-- `dotbg/scripts/hybrid/handcrafted_manager.gd` - Alternative implementation
-- `dotbg/scripts/hybrid/procedural_manager.gd` - Alternative implementation
-- `dotbg/scripts/hybrid/safety_checker.gd` - Alternative implementation
-- `dotbg/scripts/hybrid/tag_system.gd` - Alternative implementation
-- `dotbg/scripts/hybrid/template_system.gd` - Alternative implementation
-
-### Procedural Generation
-- `dotbg/scripts/procedural/AssetGenerator.gd` - Asset generation system
-- `dotbg/scripts/procedural/CreatureGenerator.gd` - Creature generation system
+### Hybrid Generation System
+- `dotbg/scripts/systems/handcrafted_manager.gd` - Manages the handcrafted, persistent world structure and key events.
+- `dotbg/scripts/systems/procedural_manager.gd` - Manages the procedural generation of dungeon layouts and enemy encounters within the handcrafted world.
+- `dotbg/scripts/systems/safety_checker.gd` - Quality assurance and validation for generated content.
+- `dotbg/scripts/systems/tag_system.gd` - Engine for combining entity tags to create variations.
+- `dotbg/scripts/systems/template_system.gd` - Manages modular room templates for procedural generation.
+- `dotbg/scripts/procedural/AssetGenerator.gd` - Generates visual and audio asset variations.
+- `dotbg/scripts/procedural/CreatureGenerator.gd` - Generates variations of procedural enemies.
 
 ### Core Game Systems
 - `dotbg/scripts/characters/player/player.gd` - Player character controller
@@ -80,21 +70,17 @@ Every implementation must be tested and validated before being marked as done. R
 ## Architecture Overview
 
 ### Core Pattern: Hybrid Event-Driven Architecture with Reality Distortion
-The game uses a centralized event system (`EventBus`) to decouple systems and enable flexible communication between components, **with hybrid procedural generation and sanity-based reality manipulation**.
+The game uses a centralized event system (`EventBus`) to decouple systems. A `HybridGenerator` coordinates between the `HandcraftedManager` (for the persistent world) and the `ProceduralManager` (for dungeons/enemies) to create a seamless, blended world.
 
 ```
 EventBus (Autoload)
-├── GameManager (Autoload) - Global state, act management, hybrid coordination
+├── GameManager (Autoload) - Global state, act management
 ├── PlayerStats (Autoload) - Player data, mutations
 ├── SanityManager (Autoload) - Reality distortion controller
-├── UICorruption (Autoload) - Interface manipulation system
-├── SaveCorruption (Autoload) - False save management
 ├── HybridGenerator (Autoload) - Coordinates handcrafted + procedural systems
-├── TagSystem (Autoload) - Manages tag combinations and validation
-├── TemplateManager (Autoload) - Modular room template system
-├── SafetyChecker (Autoload) - Failsafe validation system
+│   ├── HandcraftedManager - Manages persistent world, quests, key events
+│   └── ProceduralManager - Generates dungeons, enemies, loot
 ├── Player Scene - Character controller
-├── World Generator - Hybrid world creation
 ├── UI System - Sanity-responsive interface
 └── Save System - Corruption-aware persistence
 ```

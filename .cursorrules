@@ -9,7 +9,7 @@
 - Renderer: Mobile renderer with ETC2/ASTC compression
 
 ## Project Overview
-Free-exploration Gothic horror game in Godot 4.4 with Castlevania aesthetics and non-linear quest structure. **CRITICAL**: This is NOT a linear Soulsvania - quests lead players back to earlier areas throughout the game. Complete procedural generation for art, sound, textures, and creatures within a persistent, interconnected world.
+Free-exploration Gothic horror game in Godot 4.4 with Castlevania aesthetics and non-linear quest structure. **CRITICAL**: This is NOT a linear Soulsvania - quests lead players back to earlier areas throughout the game. The world is a persistent, handcrafted environment, with key areas like dungeons and some enemies being procedurally generated for replayability.
 
 ## Critical Implementation Paths
 
@@ -55,10 +55,10 @@ Free-exploration Gothic horror game in Godot 4.4 with Castlevania aesthetics and
 - Consistent serialization interface for save system
 
 ### Procedural Generation Philosophy
-- Runtime generation for infinite variety
-- Coherent systems that feel intentional
-- Mobile performance optimization as primary concern
-- Graceful degradation when generation fails
+- **Strategic Generation:** A hybrid model that blends a handcrafted world with procedural content.
+- **Generated Content:** Dungeons, some enemy encounters, and loot are generated at runtime to create variety and replayability.
+- **Handcrafted World:** The main world map, major landmarks, and quest locations are fixed to ensure a cohesive narrative and intentional exploration design.
+- **Performance:** All procedural algorithms are optimized for mobile performance.
 
 ## Project-Specific Patterns
 
