@@ -1,5 +1,11 @@
 extends Node
 
+# Player Events
+signal player_spawned(position: Vector3)
+signal player_died
+signal interaction_attempted(position: Vector3)
+signal inventory_toggle_requested
+
 # Combat Events
 signal enemy_killed(enemy_id: String, position: Vector2)
 signal player_hit(damage: float)

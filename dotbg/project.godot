@@ -79,20 +79,21 @@ pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
-2d_physics/layer_1="World"
-2d_physics/layer_2="Player"
-2d_physics/layer_3="Enemy"
-2d_physics/layer_4="PlayerHurtbox"
-2d_physics/layer_5="EnemyHurtbox"
-2d_physics/layer_6="Items"
-2d_physics/layer_7="Interactables"
+3d_physics/layer_1="World"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Enemy"
+3d_physics/layer_4="PlayerHurtbox"
+3d_physics/layer_5="EnemyHurtbox"
+3d_physics/layer_6="Items"
+3d_physics/layer_7="Interactables"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
-anti_aliasing/quality/msaa_2d=2
+anti_aliasing/quality/msaa_3d=2
+environment/defaults/default_clear_color=Color(0.1, 0.1, 0.15, 1.0)
 
 [xr]
 

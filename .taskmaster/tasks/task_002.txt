@@ -1,6 +1,6 @@
 # Task ID: 2
 # Title: Implement Touch Input System
-# Status: in-progress
+# Status: done
 # Dependencies: 1
 # Priority: high
 # Description: Create a robust touch input handling system that will serve as the foundation for all player interactions, optimized for mobile devices.
@@ -62,31 +62,31 @@ Design for extensibility to add new gesture types easily.
 ### Details:
 Test with real-world usage patterns and optimize for mobile performance.
 
-## 8. Implement Event Propagation System [pending]
+## 8. Implement Event Propagation System [done]
 ### Dependencies: 2.2, 2.6
 ### Description: Develop a robust event propagation mechanism to deliver touch and gesture events to UI and game objects, supporting event bubbling and capture.
 ### Details:
 Ensure modularity and allow for custom event listeners.
 
-## 9. Implement Input Buffering and Debouncing [pending]
+## 9. Implement Input Buffering and Debouncing [done]
 ### Dependencies: 2.6
 ### Description: Add input buffering and debouncing logic to handle rapid or noisy touch input, ensuring smooth and reliable gesture recognition.
 ### Details:
 Optimize for minimal latency and resource usage.
 
-## 10. Integrate Haptic Feedback Support [pending]
+## 10. Integrate Haptic Feedback Support [done]
 ### Dependencies: 2.6
 ### Description: Implement haptic feedback triggers for relevant gestures and touch events, with platform-specific optimizations.
 ### Details:
 Allow configuration of feedback intensity and patterns.
 
-## 11. Develop Sensitivity and Calibration Settings [pending]
+## 11. Develop Sensitivity and Calibration Settings [done]
 ### Dependencies: 2.6
 ### Description: Create user-configurable settings for touch sensitivity, gesture thresholds, and calibration routines.
 ### Details:
 Expose settings via UI and persist user preferences.
 
-## 12. Build Debugging and Performance Tools [pending]
+## 12. Build Debugging and Performance Tools [done]
 ### Dependencies: 2.2, 2.6, 2.8
 ### Description: Develop in-app debug overlays and logging tools to visualize touch points, gesture recognition, and event flow. Profile and optimize for low CPU/memory usage.
 ### Details:

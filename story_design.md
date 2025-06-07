@@ -15,7 +15,13 @@
    - Architecture as character
    - The weight of the past
 
-3. **Body Horror**
+3. **Religious Horror**
+   - Perversion and corruption of faith
+   - Horrors of zealotry and fallen deities
+   - Twisted rituals and blasphemous iconography
+   - The vacuum left when belief is shattered
+
+4. **Body Horror**
    - Physical transformation
    - Fusion of flesh and reality
    - The horror of change

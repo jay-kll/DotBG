@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://player3d"]
+
+[ext_resource type="Script" path="res://scripts/characters/player/player_3d.gd" id="1_3d_player"]
+[ext_resource type="PackedScene" path="res://scenes/ui/touch_controls.tscn" id="2_touch_controls"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_player3d"]
+radius = 0.5
+height = 2.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player3d"]
+radius = 0.5
+height = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_attack"]
+
+[node name="Player3D" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_3d_player")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_player3d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_player3d")
+
+[node name="AttackHitbox" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+shape = SubResource("BoxShape3D_attack")
+
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 8, 8)
+projection = 1
+size = 20.0
+near = 0.1
+far = 100.0
+
+[node name="TouchControls" parent="." instance=ExtResource("2_touch_controls")] 

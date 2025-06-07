@@ -1,2 +1,3 @@
 res://main.tscn
-res://scripts/autoload/input_manager.gd
+res://scenes/main/main.tscn
+res://scenes/levels/test_level.tscn

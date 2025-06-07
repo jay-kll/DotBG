@@ -8,6 +8,9 @@ extends Control
 @onready var test_button: Button = $VBoxContainer/TestButton
 @onready var quit_button: Button = $VBoxContainer/QuitButton
 
+# Reference to loaded TouchSettingsUI
+var touch_settings_ui: Control = null
+
 func _ready() -> void:
 	print("MainMenu: Epic campaign menu initialized")
 	
@@ -72,8 +75,33 @@ func _on_start_pressed() -> void:
 	# TODO: Load first game scene
 
 func _on_options_pressed() -> void:
-	print("MainMenu: Options pressed - TODO: Implement options menu")
-	# TODO: Load options scene
+	print("MainMenu: Loading touch input settings...")
+	_load_touch_settings()
+
+func _load_touch_settings() -> void:
+	# Load the TouchSettingsUI scene
+	var touch_settings_scene = preload("res://scenes/ui/TouchSettingsUI.tscn")
+	touch_settings_ui = touch_settings_scene.instantiate()
+	
+	# Connect the back signal to return to main menu
+	touch_settings_ui.back_pressed.connect(_on_settings_back_pressed)
+	
+	# Add to scene tree and hide main menu
+	add_child(touch_settings_ui)
+	$VBoxContainer.visible = false
+	
+	print("MainMenu: Touch settings loaded successfully")
+
+func _on_settings_back_pressed() -> void:
+	print("MainMenu: Returning from touch settings...")
+	
+	# Remove touch settings UI and show main menu
+	if touch_settings_ui:
+		touch_settings_ui.queue_free()
+		touch_settings_ui = null
+	
+	$VBoxContainer.visible = true
+	print("MainMenu: Returned to main menu")
 
 func _on_test_pressed() -> void:
 	print("MainMenu: Loading multi-touch test suite...")

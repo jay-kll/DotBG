@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://test3dcomplete"]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/player/player_3d.tscn" id="1_player3d"]
+
+[sub_resource type="Environment" id="Environment_complete"]
+background_mode = 1
+background_color = Color(0.1, 0.1, 0.15, 1)
+ambient_light_color = Color(0.4, 0.4, 0.5, 1)
+ambient_light_energy = 0.3
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall"]
+
+[sub_resource type="StandardMaterial3D" id="Material_gothic"]
+albedo_color = Color(0.3, 0.2, 0.2, 1)
+metallic = 0.2
+roughness = 0.8
+
+[node name="Test3DComplete" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Environment"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_ground")
+surface_material_override/0 = SubResource("Material_gothic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_ground")
+
+[node name="WallNorth" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 1.5, -10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/WallNorth"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("Material_gothic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/WallNorth"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_wall")
+
+[node name="WallSouth" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 1.5, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/WallSouth"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("Material_gothic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/WallSouth"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_wall")
+
+[node name="WallEast" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 10, 1.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/WallEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("Material_gothic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/WallEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_wall")
+
+[node name="WallWest" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -10, 1.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/WallWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("Material_gothic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/WallWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_wall")
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 10, 0)
+light_energy = 0.8
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_complete")
+
+[node name="Player3D" parent="." instance=ExtResource("1_player3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TestInfo" type="Label" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = -20.0
+text = "🏰 EPIC 3D GOTHIC MIGRATION TEST 🏰
+✅ Hades-style orthogonal perspective 
+✅ 3D physics and movement
+✅ Touch controls integrated
+✅ Gothic atmosphere ready for Blender assets
+
+Use virtual joystick (bottom left) to move
+Use action buttons (bottom right) for combat
+This is our foundation for the cathedral masterpiece!"
+vertical_alignment = 1 

@@ -1,0 +1,275 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc2ys38k34yth"]
+
+[ext_resource type="Script" path="res://scripts/tests/haptic_feedback_test.gd" id="1_8x9k5"]
+
+[sub_resource type="Theme" id="Theme_1_2x3y4"]
+
+[node name="HapticFeedbackTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource("Theme_1_2x3y4")
+script = ExtResource("1_8x9k5")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="Title" type="Label" parent="MainContainer"]
+layout_mode = 2
+text = "HAPTIC FEEDBACK TEST - Epic Mobile Campaign"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainContainer"]
+layout_mode = 2
+
+[node name="StatusPanel" type="Panel" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="StatusContainer" type="VBoxContainer" parent="MainContainer/StatusPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="StatusTitle" type="Label" parent="MainContainer/StatusPanel/StatusContainer"]
+layout_mode = 2
+text = "System Status"
+
+[node name="HapticEnabled" type="Label" parent="MainContainer/StatusPanel/StatusContainer"]
+layout_mode = 2
+text = "Haptic Enabled: --"
+
+[node name="PlatformSupport" type="Label" parent="MainContainer/StatusPanel/StatusContainer"]
+layout_mode = 2
+text = "Platform Support: --"
+
+[node name="CurrentIntensity" type="Label" parent="MainContainer/StatusPanel/StatusContainer"]
+layout_mode = 2
+text = "Current Intensity: --"
+
+[node name="BatterySaver" type="Label" parent="MainContainer/StatusPanel/StatusContainer"]
+layout_mode = 2
+text = "Battery Saver: --"
+
+[node name="SanityCorruption" type="Label" parent="MainContainer/StatusPanel/StatusContainer"]
+layout_mode = 2
+text = "Sanity Corruption: --"
+
+[node name="HSeparator2" type="HSeparator" parent="MainContainer"]
+layout_mode = 2
+
+[node name="ControlsPanel" type="Panel" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ControlsContainer" type="HBoxContainer" parent="MainContainer/ControlsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="LeftPanel" type="VBoxContainer" parent="MainContainer/ControlsPanel/ControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BasicControls" type="Label" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel"]
+layout_mode = 2
+text = "Basic Controls"
+
+[node name="EnableToggle" type="CheckBox" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel"]
+layout_mode = 2
+text = "Enable Haptic Feedback"
+
+[node name="IntensityContainer" type="HBoxContainer" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel"]
+layout_mode = 2
+
+[node name="IntensityLabel" type="Label" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel/IntensityContainer"]
+layout_mode = 2
+text = "Intensity:"
+
+[node name="IntensitySlider" type="HSlider" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel/IntensityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="IntensityValue" type="Label" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel/IntensityContainer"]
+layout_mode = 2
+text = "1.0"
+
+[node name="SanityContainer" type="HBoxContainer" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel"]
+layout_mode = 2
+
+[node name="SanityLabel" type="Label" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel/SanityContainer"]
+layout_mode = 2
+text = "Sanity Corruption:"
+
+[node name="SanitySlider" type="HSlider" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel/SanityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+
+[node name="SanityValue" type="Label" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel/SanityContainer"]
+layout_mode = 2
+text = "0.0"
+
+[node name="BatterySaverToggle" type="CheckBox" parent="MainContainer/ControlsPanel/ControlsContainer/LeftPanel"]
+layout_mode = 2
+text = "Battery Saver Mode"
+
+[node name="VSeparator" type="VSeparator" parent="MainContainer/ControlsPanel/ControlsContainer"]
+layout_mode = 2
+
+[node name="MiddlePanel" type="VBoxContainer" parent="MainContainer/ControlsPanel/ControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GestureTests" type="Label" parent="MainContainer/ControlsPanel/ControlsContainer/MiddlePanel"]
+layout_mode = 2
+text = "Gesture Pattern Tests"
+
+[node name="TapTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/MiddlePanel"]
+layout_mode = 2
+text = "Test Tap"
+
+[node name="DoubleTapTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/MiddlePanel"]
+layout_mode = 2
+text = "Test Double Tap"
+
+[node name="HoldTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/MiddlePanel"]
+layout_mode = 2
+text = "Test Hold"
+
+[node name="SwipeTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/MiddlePanel"]
+layout_mode = 2
+text = "Test Swipe"
+
+[node name="PinchTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/MiddlePanel"]
+layout_mode = 2
+text = "Test Pinch"
+
+[node name="VSeparator2" type="VSeparator" parent="MainContainer/ControlsPanel/ControlsContainer"]
+layout_mode = 2
+
+[node name="RightPanel" type="VBoxContainer" parent="MainContainer/ControlsPanel/ControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CombatTests" type="Label" parent="MainContainer/ControlsPanel/ControlsContainer/RightPanel"]
+layout_mode = 2
+text = "Combat Pattern Tests"
+
+[node name="AttackTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/RightPanel"]
+layout_mode = 2
+text = "Test Attack"
+
+[node name="DodgeTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/RightPanel"]
+layout_mode = 2
+text = "Test Dodge"
+
+[node name="BlockTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/RightPanel"]
+layout_mode = 2
+text = "Test Block"
+
+[node name="HitTakenTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/RightPanel"]
+layout_mode = 2
+text = "Test Hit Taken"
+
+[node name="CriticalHitTest" type="Button" parent="MainContainer/ControlsPanel/ControlsContainer/RightPanel"]
+layout_mode = 2
+text = "Test Critical Hit"
+
+[node name="HSeparator3" type="HSeparator" parent="MainContainer"]
+layout_mode = 2
+
+[node name="SanityTestPanel" type="Panel" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="SanityContainer" type="HBoxContainer" parent="MainContainer/SanityTestPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="SanityTitle" type="Label" parent="MainContainer/SanityTestPanel/SanityContainer"]
+layout_mode = 2
+text = "Sanity Corruption Tests:"
+
+[node name="PhantomTest" type="Button" parent="MainContainer/SanityTestPanel/SanityContainer"]
+layout_mode = 2
+text = "Phantom Vibration"
+
+[node name="FalseTouchTest" type="Button" parent="MainContainer/SanityTestPanel/SanityContainer"]
+layout_mode = 2
+text = "False Touch"
+
+[node name="CorruptedTest" type="Button" parent="MainContainer/SanityTestPanel/SanityContainer"]
+layout_mode = 2
+text = "Corrupted Feedback"
+
+[node name="HSeparator4" type="HSeparator" parent="MainContainer"]
+layout_mode = 2
+
+[node name="StatsPanel" type="Panel" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatsContainer" type="VBoxContainer" parent="MainContainer/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="StatsTitle" type="Label" parent="MainContainer/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "Performance Statistics"
+
+[node name="StatsDisplay" type="RichTextLabel" parent="MainContainer/StatsPanel/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Statistics will appear here..."
+
+[node name="RefreshStats" type="Button" parent="MainContainer/StatsPanel/StatsContainer"]
+layout_mode = 2
+text = "Refresh Statistics"
+
+[node name="UpdateTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true 

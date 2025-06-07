@@ -1,0 +1,418 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb8mphng1kvry"]
+
+[ext_resource type="Script" path="res://scripts/ui/touch_settings_ui.gd" id="1_z2k3v"]
+
+[node name="TouchSettingsUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_z2k3v")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 0.95)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+
+[node name="TitleContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainContainer/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Touch Input Settings"
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SensitivityContainer" type="VBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SensitivityTitle" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer"]
+layout_mode = 2
+text = "Sensitivity Settings"
+theme_override_font_sizes/font_size = 28
+
+[node name="TouchSensitivity" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/TouchSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Touch Sensitivity:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/TouchSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 3.0
+step = 0.1
+value = 1.0
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/TouchSensitivity"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "1.0"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="TapSensitivity" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/TapSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tap Sensitivity:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/TapSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 3.0
+step = 0.1
+value = 1.0
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/TapSensitivity"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "1.0"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="SwipeSensitivity" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/SwipeSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Swipe Sensitivity:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/SwipeSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 3.0
+step = 0.1
+value = 1.0
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/SwipeSensitivity"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "1.0"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="DragSensitivity" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/DragSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Drag Sensitivity:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/DragSensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 3.0
+step = 0.1
+value = 1.0
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/SensitivityContainer/DragSensitivity"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "1.0"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="Spacer1" type="Control" parent="MainContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 30)
+
+[node name="ThresholdContainer" type="VBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ThresholdTitle" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer"]
+layout_mode = 2
+text = "Threshold Settings"
+theme_override_font_sizes/font_size = 28
+
+[node name="SwipeDistance" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/SwipeDistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Swipe Distance:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/SwipeDistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 20.0
+max_value = 200.0
+step = 5.0
+value = 100.0
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/SwipeDistance"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "100px"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="TapDistance" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/TapDistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tap Distance:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/TapDistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 5.0
+max_value = 50.0
+step = 1.0
+value = 25.0
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/TapDistance"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "25px"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="DeadZone" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/DeadZone"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dead Zone:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/DeadZone"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 20.0
+step = 1.0
+value = 5.0
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/ThresholdContainer/DeadZone"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "5px"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="Spacer2" type="Control" parent="MainContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 30)
+
+[node name="TimingContainer" type="VBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TimingTitle" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer"]
+layout_mode = 2
+text = "Timing Settings"
+theme_override_font_sizes/font_size = 28
+
+[node name="TapTime" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/TapTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tap Time Limit:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/TapTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 1.0
+step = 0.05
+value = 0.3
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/TapTime"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "0.30s"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="HoldDuration" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/HoldDuration"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hold Duration:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/HoldDuration"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.2
+max_value = 2.0
+step = 0.1
+value = 0.5
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/HoldDuration"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "0.5s"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="DoubleTap" type="HBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/DoubleTap"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Double Tap Window:"
+theme_override_font_sizes/font_size = 20
+
+[node name="Slider" type="HSlider" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/DoubleTap"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 1.0
+step = 0.05
+value = 0.4
+
+[node name="ValueLabel" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/TimingContainer/DoubleTap"]
+layout_mode = 2
+custom_minimum_size = Vector2(80, 0)
+text = "0.40s"
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="Spacer3" type="Control" parent="MainContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 30)
+
+[node name="CalibrationContainer" type="VBoxContainer" parent="MainContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CalibrationTitle" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/CalibrationContainer"]
+layout_mode = 2
+text = "Touch Calibration"
+theme_override_font_sizes/font_size = 28
+
+[node name="Status" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/CalibrationContainer"]
+layout_mode = 2
+text = "Calibration Recommended"
+theme_override_font_sizes/font_size = 18
+autowrap_mode = 2
+
+[node name="Progress" type="ProgressBar" parent="MainContainer/ScrollContainer/VBoxContainer/CalibrationContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 30)
+
+[node name="StartCalibration" type="Button" parent="MainContainer/ScrollContainer/VBoxContainer/CalibrationContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+text = "Start Calibration"
+theme_override_font_sizes/font_size = 20
+
+[node name="Instruction" type="Label" parent="MainContainer/ScrollContainer/VBoxContainer/CalibrationContainer"]
+layout_mode = 2
+text = "Tap the target precisely"
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+visible = false
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 80)
+
+[node name="ResetButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reset to Defaults"
+theme_override_font_sizes/font_size = 18
+
+[node name="TestButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Test Settings"
+theme_override_font_sizes/font_size = 18
+
+[node name="SaveButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save Settings"
+theme_override_font_sizes/font_size = 18
+
+[node name="BackButton" type="Button" parent="MainContainer/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+theme_override_font_sizes/font_size = 18
+
+[node name="TestOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="TestBackground" type="ColorRect" parent="TestOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="TestInstruction" type="Label" parent="TestOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = -60.0
+text = "Try different gestures to see real-time feedback"
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TouchVisualizer" type="Control" parent="TestOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0 

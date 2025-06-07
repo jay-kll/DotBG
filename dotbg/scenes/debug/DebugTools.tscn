@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqxvn8ywqp8ys"]
+
+[ext_resource type="Script" path="res://scripts/debug/input_debug_overlay.gd" id="1_2k8vx"]
+[ext_resource type="Script" path="res://scripts/debug/input_debug_console.gd" id="2_3l9wy"]
+
+[node name="DebugTools" type="Node"]
+
+[node name="InputDebugOverlay" type="CanvasLayer" parent="."]
+script = ExtResource("1_2k8vx")
+
+[node name="InputDebugConsole" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("2_3l9wy") 

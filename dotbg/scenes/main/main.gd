@@ -7,6 +7,9 @@ extends Node
 @onready var settings_button = $UI/MainMenu/CenterContainer/VBoxContainer/Settings
 @onready var quit_button = $UI/MainMenu/CenterContainer/VBoxContainer/Quit
 
+# Reference to loaded TouchSettingsUI
+var touch_settings_ui: Control = null
+
 func _ready() -> void:
 	# Connect button signals
 	new_game_button.pressed.connect(_on_new_game_pressed)
@@ -26,8 +29,33 @@ func _on_load_game_pressed() -> void:
 	pass
 
 func _on_settings_pressed() -> void:
-	# TODO: Show settings screen
-	pass
+	print("Main: Loading touch input settings...")
+	_load_touch_settings()
+
+func _load_touch_settings() -> void:
+	# Load the TouchSettingsUI scene
+	var touch_settings_scene = preload("res://scenes/ui/TouchSettingsUI.tscn")
+	touch_settings_ui = touch_settings_scene.instantiate()
+	
+	# Connect the back signal to return to main menu
+	touch_settings_ui.back_pressed.connect(_on_settings_back_pressed)
+	
+	# Add to UI layer and hide main menu
+	$UI.add_child(touch_settings_ui)
+	main_menu.visible = false
+	
+	print("Main: Touch settings loaded successfully")
+
+func _on_settings_back_pressed() -> void:
+	print("Main: Returning from touch settings...")
+	
+	# Remove touch settings UI and show main menu
+	if touch_settings_ui:
+		touch_settings_ui.queue_free()
+		touch_settings_ui = null
+	
+	main_menu.visible = true
+	print("Main: Returned to main menu")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

@@ -1,5 +1,82 @@
 # System Patterns: Depths of the Bastard God
 
+## 🚨 CRITICAL MAINTENANCE RULE 🚨
+**ALWAYS UPDATE THIS FILE WHEN CREATING, MOVING, OR DELETING ANY PROJECT FILES**
+This file serves as the central architecture documentation and MUST be kept current with all file locations, system patterns, and architectural decisions. Update the **File Locations** section immediately after any file system changes.
+
+## 🧪 CRITICAL TESTING RULE 🧪
+**ALWAYS TEST FIRST BEFORE MARKING TASKS COMPLETE**
+Every implementation must be tested and validated before being marked as done. Run test suites, validate functionality, and ensure mobile performance meets requirements. No task is complete without successful testing.
+
+## 📁 Complete Project File Locations
+
+### Core Autoload Scripts
+- `dotbg/scripts/autoload/game_manager.gd` - Global game state and act management
+- `dotbg/scripts/autoload/player_stats.gd` - Player data and progression
+- `dotbg/scripts/autoload/event_bus.gd` - Central event system
+- `dotbg/scripts/autoload/save_system.gd` - Save/load functionality
+- `dotbg/scripts/autoload/input_manager.gd` - Epic touch input system
+- `dotbg/scripts/autoload/sanity_manager.gd` - Reality distortion controller
+- `dotbg/scripts/autoload/hybrid_generator.gd` - Procedural generation coordinator
+
+### UI Systems
+- `dotbg/scripts/ui/touch_settings_ui.gd` - Touch configuration interface
+- `dotbg/scripts/ui/touch_controls.gd` - Touch control components
+- `dotbg/scripts/ui/virtual_joystick.gd` - Virtual joystick implementation
+- `dotbg/scripts/ui/main_menu.gd` - Main menu interface
+
+### Debug Tools
+- `dotbg/scripts/debug/input_debug_overlay.gd` - Visual debug overlay
+- `dotbg/scripts/debug/input_debug_console.gd` - Command-line debug console
+- `dotbg/scenes/debug/DebugTools.tscn` - Combined debug scene
+
+### Test Suite
+- `dotbg/scripts/tests/debug_tools_test.gd` - Comprehensive debug test suite
+- `dotbg/scripts/tests/touch_test.gd` - Touch input testing
+- `dotbg/scripts/tests/input_debounce_test.gd` - Input debounce testing
+- `dotbg/scripts/tests/haptic_feedback_test.gd` - Haptic feedback testing
+
+### Hybrid Generation System (Dual Implementation)
+#### Systems Directory (Primary)
+- `dotbg/scripts/systems/handcrafted_manager.gd` - Handcrafted content foundation
+- `dotbg/scripts/systems/procedural_manager.gd` - Procedural enhancement layer
+- `dotbg/scripts/systems/safety_checker.gd` - Quality assurance system
+- `dotbg/scripts/systems/tag_system.gd` - Entity tag combination engine
+- `dotbg/scripts/systems/template_system.gd` - Modular room templates
+
+#### Hybrid Directory (Secondary)
+- `dotbg/scripts/hybrid/handcrafted_manager.gd` - Alternative implementation
+- `dotbg/scripts/hybrid/procedural_manager.gd` - Alternative implementation
+- `dotbg/scripts/hybrid/safety_checker.gd` - Alternative implementation
+- `dotbg/scripts/hybrid/tag_system.gd` - Alternative implementation
+- `dotbg/scripts/hybrid/template_system.gd` - Alternative implementation
+
+### Procedural Generation
+- `dotbg/scripts/procedural/AssetGenerator.gd` - Asset generation system
+- `dotbg/scripts/procedural/CreatureGenerator.gd` - Creature generation system
+
+### Core Game Systems
+- `dotbg/scripts/characters/player/player.gd` - Player character controller
+
+### Project Configuration
+- `dotbg/project.godot` - Godot project configuration
+- `dotbg/export_presets.cfg` - Export settings for mobile deployment
+
+### Memory Bank Documentation
+- `memory-bank/projectbrief.md` - Core project requirements
+- `memory-bank/productContext.md` - Product vision and goals
+- `memory-bank/activeContext.md` - Current development focus
+- `memory-bank/systemPatterns.md` - Architecture documentation (THIS FILE)
+- `memory-bank/techContext.md` - Technical specifications
+- `memory-bank/progress.md` - Development progress tracking
+
+
+### TaskMaster Integration
+- `.taskmaster/tasks/tasks.json` - Task management data
+- `.taskmaster/config.json` - TaskMaster configuration
+
+**🚨 REMEMBER: Update this section immediately when creating, moving, or deleting ANY project files! 🚨**
+
 ## Architecture Overview
 
 ### Core Pattern: Hybrid Event-Driven Architecture with Reality Distortion
@@ -479,6 +556,214 @@ func serialize_procedural_content(content: Dictionary) -> Dictionary:
 func deserialize_procedural_content(data: Dictionary) -> Dictionary:
     var content = reconstruct_from_data(data)
     return SafetyChecker.validate_deserialized_content(content)
+```
+
+## Event Propagation System
+
+### Event Propagation Architecture
+```gdscript
+# Event propagation system with mobile optimization
+class_name EventPropagationSystem extends Node
+
+enum EventLayer {
+    UI,      # Highest priority - interface elements
+    GAME,    # Medium priority - game objects
+    WORLD    # Lowest priority - environment
+}
+
+# Layer-based event targeting
+var ui_nodes: Array[Node] = []
+var game_nodes: Array[Node] = []
+var world_nodes: Array[Node] = []
+
+# Event statistics for epic systems
+var events_propagated: int = 0
+var events_handled: int = 0
+var average_handling_time: float = 0.0
+
+func register_ui_node(node: Node) -> void:
+    if not ui_nodes.has(node):
+        ui_nodes.append(node)
+
+func register_game_node(node: Node) -> void:
+    if not game_nodes.has(node):
+        game_nodes.append(node)
+
+func register_world_node(node: Node) -> void:
+    if not world_nodes.has(node):
+        world_nodes.append(node)
+
+func unregister_node(node: Node) -> void:
+    ui_nodes.erase(node)
+    game_nodes.erase(node)
+    world_nodes.erase(node)
+
+# Propagate touch events through layers with epic performance
+func propagate_touch_event(event_type: String, event_data: Dictionary) -> bool:
+    var start_time = Time.get_time_dict_from_system()
+    events_propagated += 1
+    
+    # Try UI layer first (highest priority)
+    for node in ui_nodes:
+        if node.has_method("handle_touch_event"):
+            if node.handle_touch_event(event_type, event_data):
+                events_handled += 1
+                _update_performance_stats(start_time)
+                return true
+    
+    # Try game layer (medium priority)
+    for node in game_nodes:
+        if node.has_method("handle_touch_event"):
+            if node.handle_touch_event(event_type, event_data):
+                events_handled += 1
+                _update_performance_stats(start_time)
+                return true
+    
+    # Try world layer (lowest priority)
+    for node in world_nodes:
+        if node.has_method("handle_touch_event"):
+            if node.handle_touch_event(event_type, event_data):
+                events_handled += 1
+                _update_performance_stats(start_time)
+                return true
+    
+    _update_performance_stats(start_time)
+    return false
+
+func _update_performance_stats(start_time: Dictionary) -> void:
+    var end_time = Time.get_time_dict_from_system()
+    var handling_time = (end_time.second - start_time.second) * 1000.0
+    average_handling_time = (average_handling_time + handling_time) / 2.0
+
+func get_propagation_stats() -> Dictionary:
+    return {
+        "events_propagated": events_propagated,
+        "events_handled": events_handled,
+        "average_handling_time_ms": average_handling_time,
+        "registered_nodes": {
+            "ui": ui_nodes.size(),
+            "game": game_nodes.size(),
+            "world": world_nodes.size()
+        }
+    }
+```
+
+### Touch Input Integration Pattern
+
+#### **InputManager Integration with Event Propagation**
+```gdscript
+# InputManager.gd - Epic touch input with event propagation
+extends Node
+
+var event_propagation: EventPropagationSystem
+
+func _ready() -> void:
+    event_propagation = EventPropagationSystem.new()
+    add_child(event_propagation)
+
+func _on_gesture_recognized(gesture_type: String, gesture_data: Dictionary) -> void:
+    # Emit legacy signal for backwards compatibility
+    gesture_detected.emit(gesture_type, gesture_data)
+    
+    # Use event propagation system for modern event handling
+    var handled = event_propagation.propagate_touch_event(gesture_type, gesture_data)
+    
+    # Buffer combat actions if not handled by specific targets
+    if not handled and gesture_type in ["tap", "swipe", "hold"]:
+        input_buffer.buffer_action(gesture_type, gesture_data)
+    
+    # Trigger haptic feedback for epic mobile experience
+    if haptic_controller:
+        haptic_controller.trigger_gesture_feedback(gesture_type, gesture_data)
+
+# Public API for event registration
+func register_ui_event_target(node: Node) -> void:
+    if event_propagation:
+        event_propagation.register_ui_node(node)
+
+func register_game_event_target(node: Node) -> void:
+    if event_propagation:
+        event_propagation.register_game_node(node)
+
+func register_world_event_target(node: Node) -> void:
+    if event_propagation:
+        event_propagation.register_world_node(node)
+
+func unregister_event_target(node: Node) -> void:
+    if event_propagation:
+        event_propagation.unregister_node(node)
+
+func get_event_propagation_stats() -> Dictionary:
+    if event_propagation:
+        return event_propagation.get_propagation_stats()
+    return {}
+```
+
+### TouchSettingsUI Integration Pattern
+
+#### **Fixed TouchSettingsUI for Scene Structure Compatibility**
+```gdscript
+# TouchSettingsUI.gd - Fixed for actual scene structure
+extends Control
+
+# UI Node references - using safe get_node calls to prevent crashes
+var main_container: VBoxContainer
+var touch_sensitivity_slider: HSlider
+var touch_sensitivity_label: Label
+var gesture_threshold_slider: HSlider
+var gesture_threshold_label: Label
+
+# Haptic controls
+var haptic_enabled_toggle: CheckBox
+var haptic_intensity_slider: HSlider
+var haptic_intensity_label: Label
+
+# Buttons
+var reset_button: Button
+var save_button: Button
+var back_button: Button
+
+signal settings_changed
+signal back_pressed
+
+func _ready() -> void:
+    if not InputManager:
+        push_error("InputManager not found - TouchSettingsUI cannot function")
+        return
+    
+    _setup_ui_references()
+    _connect_signals()
+    _load_current_settings()
+
+func _setup_ui_references() -> void:
+    # Safe node references that handle missing nodes gracefully
+    main_container = get_node_or_null("MainContainer")
+    
+    # Sensitivity controls
+    touch_sensitivity_slider = get_node_or_null("MainContainer/TouchSensitivity/HSlider")
+    touch_sensitivity_label = get_node_or_null("MainContainer/TouchSensitivity/Label")
+    
+    # Only setup controls if nodes exist
+    if touch_sensitivity_slider:
+        touch_sensitivity_slider.min_value = 0.1
+        touch_sensitivity_slider.max_value = 3.0
+        touch_sensitivity_slider.step = 0.1
+        touch_sensitivity_slider.value = InputManager.touch_sensitivity
+    
+    # Additional safe setup for other controls...
+
+func _connect_signals() -> void:
+    # Connect signals only if sliders exist
+    if touch_sensitivity_slider:
+        touch_sensitivity_slider.value_changed.connect(_on_touch_sensitivity_changed)
+    
+    # Connect other signals safely...
+
+func _on_touch_sensitivity_changed(value: float) -> void:
+    InputManager.touch_sensitivity = value
+    if touch_sensitivity_label:
+        touch_sensitivity_label.text = "%.1f" % value
+    settings_changed.emit()
 ```
 
 This hybrid architecture ensures that the game maintains handcrafted quality while providing infinite procedural variety, all optimized for mobile performance with comprehensive safety systems. 

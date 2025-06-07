@@ -9,7 +9,7 @@
 - Renderer: Mobile renderer with ETC2/ASTC compression
 
 ## Project Overview
-Procedurally generated roguelike action game in Godot 4.4 with Lovecraftian horror themes. Complete procedural generation for art, sound, textures, and creatures.
+Free-exploration Gothic horror game in Godot 4.4 with Castlevania aesthetics and non-linear quest structure. **CRITICAL**: This is NOT a linear Soulsvania - quests lead players back to earlier areas throughout the game. Complete procedural generation for art, sound, textures, and creatures within a persistent, interconnected world.
 
 ## Critical Implementation Paths
 
@@ -86,6 +86,29 @@ Procedurally generated roguelike action game in Godot 4.4 with Lovecraftian horr
 - Combo system with timing mechanics
 - Status effects: bleeding, corruption, madness, poison, curse
 
+### Free-Exploration World Structure
+- **NON-LINEAR PROGRESSION**: This is NOT a linear Soulsvania!
+- **Quest-Driven Backtracking**: Quests actively lead players back to earlier areas/acts
+- **Persistent World**: All discovered areas remain accessible throughout the game
+- **World Interconnection**: Areas connect and support non-linear exploration paths
+- **Complex Save Requirements**: Must track state across all persistent areas
+
+## Recent Major Achievements
+
+### 3D Migration Success (COMPLETED)
+- **Complete Project Conversion**: Successfully migrated from 2D to 3D in <24 hours
+- **Hades-Style Perspective**: Perfect orthogonal 3D camera at ~45° angle implemented
+- **Gothic Environment Foundation**: 3D cathedral spaces with atmospheric lighting
+- **Touch Controls Integration**: Virtual controls work seamlessly with 3D movement
+- **Performance Validated**: All systems loading and running on mobile target
+- **Perfect Timing**: 3D conversion was exactly right for free-exploration world needs
+
+### Design Paradigm Shift (CRITICAL)
+- **Free-Exploration Discovery**: Revealed game is non-linear exploration, not linear progression
+- **Architecture Implications**: Current task structure assumes wrong game design
+- **Quest System Priority**: Non-linear quest tracking becomes critical system
+- **World Persistence Needs**: All areas must remain accessible and interconnected
+
 ## Known Challenges
 
 ### Mobile Technical Complexity
@@ -160,6 +183,7 @@ Procedurally generated roguelike action game in Godot 4.4 with Lovecraftian horr
 - Battery usage monitoring
 - Memory usage profiling
 - Android device compatibility testing
+- **Godot Testing**: Use `/home/island/Documentos/Godot_v4.4.1-stable_linux.x86_64` for validation
 
 ### Documentation Maintenance
 - Update Memory Bank after major changes

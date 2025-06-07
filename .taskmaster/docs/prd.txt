@@ -1,269 +1,284 @@
 # Product Requirements Document: Depths of the Bastard God
+## Version 2.0 - Mobile Gothic Free-Exploration Horror
 
-## Project Overview
-Depths of the Bastard God is a procedurally generated roguelike action game inspired by Edgar Allan Poe's work with Lovecraftian themes. Built in Godot 4.4 for mobile platforms (Android primary in LANDSCAPE orientation), it features real-time combat similar to Dead Cells but with complete procedural generation for art, sound, textures, and creatures.
+### 🚨 CRITICAL PROJECT STATUS 🚨
+**FOUNDATION COMPLETE**: Touch Input System (Task 2) - **100% COMPLETE** with all 12 subtasks finished!
+**3D MIGRATION SUCCESSFUL**: Complete conversion to 3D Gothic architecture with Hades-style perspective
+**DESIGN PARADIGM CONFIRMED**: This is a **NON-LINEAR FREE-EXPLORATION** Gothic horror adventure, NOT a linear Soulsvania!
 
-## Core Requirements
+---
 
-### Phase 1: Core Systems Foundation
-The foundation phase establishes the essential systems that all other features depend on.
+## Executive Summary
 
-#### Player Character System
-- Implement touch-based player movement with virtual joystick optimized for landscape
-- Create dodge rolling mechanics with dedicated touch button
-- Develop character controller with physics-based movement optimized for mobile
-- Implement responsive touch input handling system
-- Create animation system for player actions
-- Establish player state machine (idle, moving, attacking, dodging, dead)
+**Depths of the Bastard God** is a revolutionary 50-70 hour mobile Gothic horror adventure built in Godot 4.4.1. The game features authentic 3D Gothic cathedral architecture showcased through Hades-style perspective, creating the first mobile game to deliver console-quality Gothic exploration with meaningful free-exploration mechanics.
 
-#### Mobile Touch Controls (Landscape Layout)
-- Virtual joystick for movement (bottom left corner)
-- Attack button (bottom right corner)
-- Dodge/roll button (right side, above attack)
-- Interact button (context-sensitive, appears when near interactables)
-- Inventory button (top right corner)
-- Pause/menu button (top left corner)
-- Gesture support for special abilities (swipe patterns across screen)
+### Core Innovation
+- **3D Gothic Architecture**: Authentic cathedral spaces, castle rooms, and catacombs with proper depth and lighting
+- **Hades-Style Perspective**: Perfect orthogonal 3D camera angle optimizing Gothic architectural showcase on mobile
+- **Free-Exploration World**: Non-linear quest structure where players return to ANY previous area throughout the campaign
+- **Sanity-Based Corruption**: Beautiful Gothic spaces transform into nightmare geometry based on mental state
+- **Revolutionary Mobile Horror**: Console-quality 3D Gothic experience designed for landscape mobile gaming
 
-#### Combat Framework
-- Develop touch-based attack system with tap and hold variations
-- Create weapon handling and switching mechanics via touch interface
-- Implement hit detection and collision systems optimized for mobile performance
-- Build damage calculation and application system
-- Create combo system for attack chaining via touch timing
-- Establish status effect framework (bleeding, corruption, madness)
+---
 
-#### World Generation System
-- Create basic room layout generation algorithms optimized for mobile performance
-- Implement room connection and navigation system
-- Develop procedural room content placement
-- Create collision detection for generated environments
-- Establish room streaming and loading system for mobile memory constraints
-- Implement basic dungeon progression mechanics
+## Game Design Overview
 
-#### Enemy Framework
-- Develop basic enemy AI with state machines optimized for mobile CPU
-- Create enemy spawning and placement system
-- Implement enemy-player combat interaction
-- Build basic enemy types (Corrupted Citizens, Plague Doctors, Twisted Guards)
-- Create enemy pathfinding and navigation
-- Establish enemy behavior trees for different AI patterns
+### Core Game Loop (3D Gothic Free-Exploration)
+1. **Discover Gothic Spaces**: Player explores beautifully modeled 3D cathedral areas via Hades perspective
+2. **Appreciate Architecture**: 3D Gothic details showcased by optimal ~45° camera angle
+3. **Receive Quest Objectives**: Non-linear quests encourage exploration of interconnected Gothic areas
+4. **Free Exploration**: Player chooses path through persistent Gothic world spanning three acts
+5. **Experience Sanity Corruption**: Beautiful Gothic architecture gradually corrupts based on mental state
+6. **Return to Previous Areas**: Quests actively lead back to earlier Gothic spaces with new objectives
+7. **Discover Interconnections**: Gothic world reveals new connections and hidden architectural secrets
+8. **Progress Through Acts**: Each act maintains Gothic foundation while adding unique thematic elements
 
-### Phase 2: Content Foundation
-Building the core game content and mobile-optimized user interface systems.
+### Platform & Technical Specifications
+- **Primary Platform**: Android mobile devices in **LANDSCAPE ORIENTATION ONLY**
+- **Target Resolution**: 1920x1080 landscape optimized for Gothic architecture showcase
+- **Input Method**: Touch controls ONLY (virtual joystick + touch buttons)
+- **Engine**: Godot 4.4.1 with mobile renderer and 3D Gothic optimization
+- **Performance Target**: 60 FPS stable on mid-range Android devices
+- **Session Length**: Designed for 2+ hour continuous mobile Gothic exploration sessions
+- **Campaign Length**: 50-70 hours of interconnected Gothic free-exploration content
 
-#### Act I Implementation
-- Create 5 distinct dungeon themes for Act I
-- Implement basic enemy variety across dungeon types
-- Develop simple item and weapon system with touch-friendly interface
-- Create boss encounter framework
-- Establish progression between dungeons
-- Implement basic narrative integration
+---
 
-#### Mobile User Interface Systems (Landscape Optimized)
-- Create landscape-optimized HUD displaying health, sanity, and Blood Echoes
-- Develop touch-friendly inventory management interface for landscape screens
-- Build main menu and settings systems optimized for landscape mobile screens
-- Implement pause menu and game options
-- Create dialogue system for NPCs with touch interaction
-- Establish notification and feedback systems for mobile
+## World Structure & Design
 
-#### Audio Foundation
-- Implement basic sound effect system optimized for mobile audio
-- Create dynamic music system with adaptive composition
-- Develop spatial audio for mobile devices
-- Build audio manager for efficient sound handling on mobile
-- Create sanity-based audio distortion effects
-- Establish audio streaming and caching system for mobile storage
+### Free-Exploration Architecture (CRITICAL DESIGN ELEMENT)
+**This is NOT a linear Soulsvania!** The game features true Metroidvania-style world interconnection:
 
-#### Save System
-- Develop JSON-based save file system optimized for mobile storage
-- Implement player progress persistence
-- Create world state saving and loading
-- Build save file validation and error handling
-- Establish save file versioning for updates
-- Implement auto-save functionality for mobile interruptions
+- **Persistent World**: All discovered Gothic areas remain accessible throughout the entire 50+ hour campaign
+- **Quest-Driven Backtracking**: Objectives specifically designed to lead players back to earlier areas/acts
+- **Meaningful Return**: Previously visited Gothic spaces gain new significance through quest progression
+- **Area Interconnection**: Complex network of Gothic cathedral spaces with multiple connection points
+- **Non-Linear Progression**: Player agency in exploration paths while maintaining narrative coherence
 
-### Phase 3: Advanced Systems
-Implementing the unique and complex systems that define the game.
+### Three-Act Gothic Structure
 
-#### Procedural Asset Generation
-- Create texture generation system using noise algorithms optimized for mobile GPU
-- Develop procedural sound synthesis for effects
-- Implement dynamic music composition system
-- Build creature generation with visual variety
-- Create procedural animation systems
-- Establish asset caching and optimization for mobile memory
+#### **Act I: Gothic City/Castle - Authentic Cathedral Foundations** (~15 hours)
+- **Architecture**: Carefully modeled Gothic cathedral spaces, castle rooms, church interiors
+- **Visual Theme**: Deep blacks + rich burgundy reds (classic Castlevania palette)
+- **Lighting**: Dramatic shadows, candlelight, stained glass effects optimized for mobile 3D
+- **Gameplay**: Semi-open city zones with twisted exploration and nonlinear routes
+- **Boss**: The Architect (building-manipulation mechanics)
+- **Content**: Haunted homes, cults, asylums, establishing core Gothic horror atmosphere
 
-#### Sanity System Implementation
-- Develop sanity tracking and modification system
-- Create visual distortion effects based on sanity level optimized for mobile
-- Implement audio hallucinations and false sounds
-- Build false enemy generation system
-- Create reality glitch effects and screen distortions
-- Establish sanity-based gameplay modifications
+#### **Act II: Sacred Catacombs - Underground Gothic Horror** (~20 hours)
+- **Architecture**: Bone-lined walls, skull motifs, ancient burial chambers with proper 3D depth
+- **Visual Theme**: Gothic foundation + bone whites + dusty browns for underground feel
+- **Lighting**: Dripping water effects, echo acoustics, shadows dancing on bone walls
+- **Gameplay**: Dungeon-crawl with water hazards and sentient environments
+- **Boss**: Amalgam Mother (entire dungeon is part of her body)
+- **Content**: Black Market opens, betrayal events begin, companion relationship tracking
 
-#### Advanced Combat Systems
-- Implement weapon mastery and skill progression
-- Create special abilities triggered by touch gestures
-- Develop advanced status effects and interactions
-- Build weapon transformation and evolution system
-- Create environmental combat interactions
-- Establish combo system with touch timing mechanics
+#### **Act III: Another Plane - Reality-Breaking Gothic** (~15 hours)
+- **Architecture**: Gothic cathedral spaces with reality-defying impossible geometry
+- **Visual Theme**: Reality-breaking impossible colors built on Gothic architectural foundation
+- **Lighting**: Physics and lighting that don't obey normal rules
+- **Gameplay**: Broken logic with looping maps, time skips, and lying interface elements
+- **Boss**: The Bastard God (final encounter shaped by player's sanity state and choices)
+- **Content**: Reality distortion, hallucinated enemies, multiple ending paths
 
-#### Mutation System
-- Develop character mutation framework
-- Create permanent and temporary mutation effects
-- Implement visual changes from mutations
-- Build mutation selection and application system with touch interface
-- Create mutation interaction and synergy system
-- Establish mutation progression and unlocking
+---
 
-### Phase 4: Content Expansion
-Expanding the game world and adding advanced features.
+## Core Systems Architecture
 
-#### Acts II & III Implementation
-- Create Act II dungeon themes (Drowning Depths)
-- Develop Act III environments (Dream Realm)
-- Implement new enemy types for each act
-- Create unique boss encounters for each act
-- Establish act-specific mechanics and challenges
-- Build narrative progression across all acts
+### 1. Touch Input System ✅ **100% COMPLETE**
+**Status**: All 12 subtasks finished - MAJOR MILESTONE ACHIEVED!
+- **Enhanced Multi-Touch Framework**: Advanced lifecycle tracking (begin, move, end, cancel)
+- **Sophisticated Gesture Detection**: Modular system for tap, swipe, pinch, long press
+- **Production-Ready Input Buffering**: Mobile-optimized buffering with action-specific debouncing
+- **Comprehensive Haptic Feedback**: 20 patterns with sanity integration and mobile optimization
+- **Complete Sensitivity Settings**: Real-time calibration UI (TouchSettingsUI)
+- **Advanced Event Propagation**: Layered event system (UI, Game, World layers)
+- **Debug Tools Complete**: Comprehensive overlay and console with 16 debug commands
 
-#### Companion System
-- Develop NPC rescue and recruitment mechanics
-- Create companion AI and behavior systems
-- Implement companion abilities and specializations
-- Build companion progression and development
-- Create companion dialogue and interaction system with touch interface
-- Establish companion corruption and sanity effects
+### 2. Virtual Controls UI (Task 3 - NEXT PRIORITY)
+**Status**: Ready to begin - Touch Input System dependency satisfied
+- **Virtual Joystick**: 8-directional movement through Gothic cathedral spaces
+- **Action Buttons**: Interact with Gothic architectural elements, combat, menus
+- **Camera-Aware Design**: Controls optimized for Hades-style perspective on Gothic architecture
+- **Gothic UI Theme**: Virtual controls styled to match Gothic cathedral aesthetic
+- **3D Interaction Support**: Touch controls for examining Gothic architectural details
 
-#### Economy and Trading
-- Implement Blood Echoes currency system
-- Create shop system appearing every 2 dungeons with mobile-friendly interface
-- Develop Black Market trading with sanity costs
-- Build item upgrading and fusion systems
-- Create bounty system for rare enemies
-- Establish dynamic pricing and economy balance
+### 3. Revolutionary Sanity System
+**Core Mechanic**: Visual corruption of beautiful Gothic architecture based on mental state
+- **Sanity Levels**: High (75-100%), Medium (50-74%), Low (25-49%), Zero (0-24%)
+- **Gothic Beauty Transformation**: Cathedral spaces gradually become nightmare geometry
+- **UI Corruption**: Interface lies about health, inventory, save states at low sanity
+- **Save System Corruption**: Fake save corruption simulation (real saves never corrupted)
+- **Reality Distortion**: Hallucinated enemies, false environments, lying items
 
-### Phase 5: Polish and Optimization
-Refining the game experience and ensuring mobile performance.
+### 4. Hybrid Procedural Generation
+**Philosophy**: Handcrafted foundations with procedural details for infinite variety
+- **Base Architecture**: Hand-designed Gothic cathedral layouts and room templates
+- **Procedural Details**: Generated textures, enemy variants, item modifiers, atmospheric elements
+- **Tag System**: Revolutionary tag-based generation ([fast], [deformed], [fire] combinations)
+- **Quality Assurance**: Comprehensive validation ensuring handcrafted feel
+- **Mobile Optimization**: Generation time limits, memory management, performance scaling
 
-#### Mobile Performance Optimization
-- Implement object pooling for frequently used objects
-- Create level-of-detail system for distant objects
-- Develop asset streaming and memory management for mobile constraints
-- Build performance profiling and monitoring tools
-- Optimize procedural generation algorithms for mobile CPU/GPU
-- Establish frame rate stability across all mobile devices
+### 5. Blood Echoes Economy
+**Primary Currency**: Looted from enemies, used for gear, lore, and skills
+- **Standard Shops**: Every 2 dungeons for gear and consumables
+- **Black Market**: Opens in Act II, costs sanity instead of echoes
+- **Integration**: Works with mutation system and progression mechanics
 
-#### Visual Polish
-- Create particle effect systems optimized for mobile GPU
-- Implement dynamic lighting and shadow systems
-- Develop post-processing effects for atmosphere
-- Build visual feedback systems for touch interactions
-- Create screen effects for sanity and status changes
-- Establish visual coherence across procedural content
+### 6. Mutation System
+**Permanent Evolution**: Up to 3 mutations per run with visual and mechanical changes
+- **Mutation Types**: Physical alterations affecting appearance and abilities
+- **Story Impact**: Mutations influence narrative paths and character interactions
+- **Synergy System**: Different mutations can complement or conflict with each other
 
-#### Audio Polish
-- Implement 3D spatial audio optimized for mobile devices
-- Create dynamic mixing based on game state
-- Develop procedural ambient sound generation
-- Build audio feedback for all touch interactions
-- Create sanity-based audio processing effects
-- Establish audio optimization and streaming for mobile
+---
 
-### Phase 6: Testing and Balance
-Ensuring game quality and mobile player experience.
+## Technical Implementation Requirements
 
-#### Gameplay Balance
-- Balance combat difficulty across all acts for mobile play sessions
-- Tune progression pacing and player power growth
-- Balance economy and resource management
-- Adjust procedural generation parameters for mobile performance
-- Fine-tune sanity system impact on gameplay
-- Establish difficulty scaling for different mobile devices
+### Mobile-First 3D Architecture
+- **Renderer**: Mobile renderer with ETC2/ASTC compression for Gothic textures
+- **Camera System**: Fixed Hades-style orthogonal perspective optimized for touch controls
+- **Performance**: Object pooling, LOD system, memory management for 50+ hour campaigns
+- **Lighting**: Dramatic Gothic cathedral lighting optimized for mobile GPU
+- **Audio**: Spatial audio for cathedral acoustics, sanity-based audio distortion
 
-#### Quality Assurance
-- Implement comprehensive bug tracking and fixing
-- Create automated testing for procedural systems
-- Develop performance testing across target mobile hardware
-- Build accessibility features for diverse mobile users
-- Create Android platform compatibility testing
-- Establish user feedback integration system
+### Development Environment
+- **Engine**: Godot 4.4.1 (`/home/island/Documentos/Godot_v4.4.1-stable_linux.x86_64`)
+- **Project Path**: `/home/island/Documentos/Depths of the Bastard God/dotbg`
+- **Platform**: Linux development, Android mobile target
+- **Architecture**: Autoload pattern for global systems (GameManager, PlayerStats, EventBus, etc.)
 
-## Technical Requirements
+### Autoload Systems Architecture ✅ **ALL WORKING**
+- **GameManager**: Global game state, currency tracking, act progression management
+- **PlayerStats**: Character stats, equipment, mutations, class data
+- **EventBus**: Communication hub for all systems, reality distortion coordination
+- **SaveSystem**: JSON-based persistence with mobile optimization, corruption simulation
+- **InputManager**: ✅ **COMPLETE** - Enhanced with event propagation and haptic feedback
+- **SanityManager**: Reality distortion control, UI corruption triggers, save lies
+- **HybridGenerator**: Procedural content generation with handcrafted foundation integration
 
-### Mobile Performance Targets (Landscape)
-- Maintain 60 FPS on mid-range Android devices
-- Keep memory usage under 1.5GB RAM
-- Ensure room generation completes within 1 second
-- Maintain loading times under 3 seconds for transitions
-- Battery optimization for extended play sessions
-- Touch input latency under 50ms
+---
 
-### Platform Support
-- Primary development for Android (API level 21+)
-- Landscape orientation optimized
-- Touch input as primary interaction method
-- Mobile-specific UI scaling and layout
-- Consider tablet optimization for larger landscape screens
+## Next Development Phases
 
-### Mobile-Specific Features (Landscape)
-- Touch gesture recognition optimized for landscape layout
-- Haptic feedback integration
-- Battery usage optimization
-- Background/foreground state handling
-- Mobile-specific UI scaling for landscape screens
+### Phase 1: Core 3D Gothic Systems (IN PROGRESS)
+**Current Status**: Touch Input System complete, Virtual Controls UI next priority
+- ✅ **Task 2**: Touch Input System - **100% COMPLETE**
+- 🎯 **Task 3**: Virtual Controls UI - Ready to begin (11 subtasks)
+- **Task 4**: Player Character Controller for 3D Gothic movement
+- **Task 5**: Player State Machine for Gothic exploration states
 
-## Success Criteria
+### Phase 2: Gothic Combat & Interaction Systems
+- **Task 6**: Dodge Rolling Mechanics with i-frames
+- **Task 7**: Basic Combat System for Gothic horror encounters
+- **Task 8**: Status Effect Framework (bleeding, corruption, madness, poison, curse)
+- **Task 16**: Mobile-Optimized HUD for Gothic aesthetic
 
-### Mobile Player Experience Goals (Landscape)
-- Players understand landscape touch controls within 2 minutes
-- Sanity system creates noticeable effects within 10 minutes
-- Procedural generation surprises players within 15 minutes
-- Clear progression path established within 30 minutes
-- Comfortable two-handed landscape play experience
+### Phase 3: 3D Gothic World Generation
+- **Task 9**: Basic Room Generation Algorithm for Gothic cathedral spaces
+- **Task 10**: Dungeon Layout System for interconnected Gothic areas
+- **Task 11**: Room Content Placement for Gothic architectural elements
+- **Task 12**: Room Streaming System optimized for mobile memory
 
-### Technical Success Metrics
-- Stable performance across target Android devices in landscape
-- Successful procedural generation in 95% of attempts
-- Save system reliability with 99.9% success rate
-- Memory usage optimization within mobile limits
-- Touch responsiveness under 50ms latency in landscape mode
+### Phase 4: Gothic Horror AI & Content
+- **Task 13**: Basic Enemy AI Framework for Gothic horror encounters
+- **Task 14**: Basic Enemy Types (Corrupted Citizens, Plague Doctors, Twisted Guards)
+- **Task 15**: Pathfinding System for 3D Gothic architectural navigation
+- **Task 25**: Act I Basic Content with Gothic city themes
 
-### Content Goals
-- 15 unique dungeon experiences across 3 acts
-- Infinite variety through procedural generation
-- Meaningful player choice in character development
-- Emergent narrative through environmental storytelling
+### Phase 5: Advanced Gothic Horror Systems
+- **Task 26-28**: Sanity Manager, UI Corruption, and Save Corruption systems
+- **Task 29**: Three-Act Structure System for epic Gothic campaign
+- **Task 30-32**: Mutation System, Blood Echoes Economy, Multiple Endings
 
-## Risk Mitigation
+### Phase 6: Epic Gothic Content Implementation
+- **Task 33-35**: Full implementation of all three Gothic acts
+- **Task 36-40**: Epic campaign systems (save, performance, companions, narrative, audio)
+- **Task 41-48**: Advanced hybrid procedural generation systems
 
-### Mobile-Specific Risks (Landscape)
-- Performance limitations on lower-end devices addressed through scalable quality settings
-- Touch control precision in landscape managed through generous hit areas and haptic feedback
-- Battery drain minimized through efficient rendering and background processing
-- Landscape UI layout optimized for comfortable two-handed play
+---
 
-### Technical Risks
-- Procedural generation complexity managed through iterative development
-- Mobile performance requirements addressed through early optimization
-- Save system reliability ensured through comprehensive testing
+## Success Metrics & Quality Targets
 
-### Scope Risks
-- Feature creep controlled through phased development approach
-- Solo development limitations addressed through excellent documentation
-- Timeline management through realistic milestone setting
+### Gothic Architecture Quality
+- Recognition of authentic Gothic cathedral elements by architecture enthusiasts
+- Positive reception of Hades-style perspective showcasing architectural beauty
+- Player appreciation for Gothic detail level despite mobile optimization
+- Community sharing of favorite Gothic architectural discoveries
 
-## Dependencies
+### Free-Exploration Excellence
+- Player completion rates across all interconnected Gothic areas
+- Time spent exploring vs. linear progression (exploration should dominate)
+- Quest objective completion requiring meaningful backtracking
+- Discovery rate of hidden Gothic architectural secrets
+- Player navigation confidence through large persistent world
 
-### External Dependencies
-- Godot 4.4 mobile export capabilities
-- Android platform compatibility requirements
-- Mobile hardware performance assumptions for landscape gaming
+### Mobile Performance Standards
+- **Frame Rate**: Consistent 60 FPS in all Gothic cathedral environments
+- **Memory**: Under 1.5GB RAM usage for epic save files
+- **Loading**: Under 2 seconds between interconnected Gothic areas
+- **Battery**: 2+ hours continuous Gothic exploration sessions
+- **Touch Response**: Under 50ms input latency in 3D Gothic spaces
 
-### Internal Dependencies
-- TaskMaster for project management and tracking
-- Memory Bank system for documentation continuity
-- Established mobile landscape development workflow and tools 
+### Sanity System Impact
+- Player emotional response to corruption of beautiful Gothic spaces
+- Recognition of architectural transformation based on sanity state
+- Appreciation for psychological horror through environmental corruption
+- Understanding of sanity management as core gameplay mechanic
+
+---
+
+## Development Workflow & Methodology
+
+### Current Foundation Status ✅
+- **3D Migration Complete**: Successful conversion from 2D to 3D Gothic architecture
+- **Touch Input System Complete**: All 12 subtasks finished with comprehensive functionality
+- **Autoload Systems Working**: All 7 core systems loading without errors
+- **Development Environment Validated**: Godot 4.4.1 working with 3D Gothic project
+
+### Development Approach
+- **Iterative Implementation**: Build systems incrementally with frequent mobile testing
+- **Gothic Quality First**: Prioritize authentic Gothic architectural beauty
+- **Mobile Performance Focus**: Optimize every system for 60 FPS mobile gameplay
+- **Free-Exploration Design**: Ensure all systems support non-linear world interconnection
+- **Sanity Integration**: Every system must account for sanity-based reality distortion
+
+### Testing & Validation
+- **Mobile Device Testing**: Regular validation on Android devices
+- **Performance Profiling**: Continuous monitoring of 3D Gothic rendering performance
+- **Gothic Aesthetic Validation**: Ensure architectural authenticity throughout development
+- **Free-Exploration Testing**: Validate quest backtracking and area interconnection
+- **Extended Session Testing**: 2+ hour mobile gaming session validation
+
+---
+
+## Implementation Priorities
+
+### Immediate Next Steps (Task 3 - Virtual Controls UI)
+1. **Virtual Joystick Implementation**: 8-directional movement for Gothic cathedral exploration
+2. **Action Button Development**: Interact, attack, dodge buttons with Gothic styling
+3. **3D Integration**: Controls optimized for Hades-style perspective on Gothic architecture
+4. **Mobile Optimization**: Touch-friendly layouts for landscape orientation
+5. **Gothic Aesthetic**: UI styling that complements cathedral architecture theme
+
+### Short-Term Goals (Tasks 4-8)
+- Complete player controller and state machine for 3D Gothic movement
+- Implement combat system suitable for Gothic horror encounters
+- Develop mobile-optimized HUD with Gothic aesthetic
+- Create status effect framework for supernatural horror mechanics
+
+### Medium-Term Goals (Tasks 9-25)
+- Build 3D Gothic world generation systems
+- Implement AI framework for Gothic horror enemies
+- Create Act I content with authentic Gothic city architecture
+- Establish performance optimization for mobile 3D Gothic rendering
+
+### Long-Term Vision (Tasks 26-48)
+- Complete all three Gothic acts with unique architectural themes
+- Implement advanced sanity and corruption systems
+- Build hybrid procedural generation maintaining handcrafted Gothic quality
+- Deliver 50-70 hour epic Gothic mobile adventure
+
+---
+
+This PRD represents the current evolved state of **Depths of the Bastard God** - a project that has successfully completed its foundational touch input systems and 3D Gothic migration, now ready to build the next generation of mobile Gothic horror gaming with authentic cathedral architecture and meaningful free-exploration mechanics. 
