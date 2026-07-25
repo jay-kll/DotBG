@@ -1,16 +1,18 @@
 # Deletion manifest — canonization pass
 
-Proposed, **not executed.** Nothing in this file has been deleted yet.
+Proposed, **not executed.** Nothing here has been deleted yet.
 
-Companion to `CANON.md`. Rationale for each entry is the canon section it
-enforces.
+Revision 2 — updated after `CANON.md` merged Visions 2 and 3. **The merge shrank
+this list.** Several `project_info_export/` files that looked like duplicates are
+now canon sources.
 
 ---
 
 ## Tier 1 — code: the losing 2D branch and dead scenes
 
-`CANON.md` §5 decides 2.5D/3D. The 2D branch is the loser and is removed rather
-than archived, because agents read archives and will reintroduce it.
+`CANON.md` §1 fixes the game as 2D animated sprites over 3D Blender environments
+under a Hades-style orthogonal camera. The pure-2D branch is the loser, and is
+removed rather than archived because agents read archives and will reintroduce it.
 
 | Path | Lines | Why |
 |---|---|---|
@@ -24,29 +26,28 @@ Retained: `player_3d.gd`, `player_3d.tscn`, `scenes/test_3d_complete.tscn`.
 
 ---
 
-## Tier 2 — documents that contradict canon and carry no unique design content
+## Tier 2 — documents
 
-| Path | Why |
-|---|---|
-| `project_info_export/prd.md` | calls the game a roguelike; "the entire experience is procedurally generated" — directly contradicts `CANON.md` §1 |
-| `project_info_export/story_design.md` | alternate acts (The Schism / Sunken Cathedral / Womb of Creation) and alternate protagonist — contradicts `CANON.md` §2 |
-| `roadmap.md` | "Current Status: Pre-Development", `Last Updated: [Current Date]` never filled, every Phase 0/1 checkbox unchecked including work that is done, no mention of 3D. Superseded by `CANON.md` §3 and the 48 files in `.taskmaster/tasks/` |
+| Path | Action | Why |
+|---|---|---|
+| `roadmap.md` | **delete** | "Current Status: Pre-Development", `Last Updated: [Current Date]` never filled, every Phase 0/1 checkbox unchecked including finished work, no mention of 3D. Superseded by `CANON.md` §8 and the 48 files in `.taskmaster/tasks/` |
+| `project_info_export/story_design.md` | **delete** | alternate act names (The Schism / Sunken Cathedral / Womb of Creation) conflict with `CANON.md` §2. **Its narrative substance is preserved** — absorbed into the act table in §2, along with its protagonist framing |
+| `project_info_export/prd.md` | **edit, do not delete** | Only its opening framing is wrong ("the entire experience is procedurally generated", roguelike comparables). Its §4.2 describes the correct hybrid model and is canon. Fix the two offending lines in place — deleting the file would remove canon-aligned content |
 
 ---
 
 ## Tier 3 — DO NOT DELETE
 
-These look like duplicates on a fast read. They are not. **They carry the
-original author's design content, which `CANON.md` §0 protects.**
+These look like duplicates on a fast read. They are not.
 
 | Path | Why it stays |
 |---|---|
-| `story_design.md` (root) | This *is* the canonical story bible per `CANON.md` §2 — its acts are the ones `memory-bank/` cites |
-| `design.md` (root) | 447 lines of the author's systems design: Blood Echoes, Mutations, classes, weapon/armor/artifact tiers, endings. It omits the 3D pivot — an omission, not a contradiction. Needs a header pointing to `CANON.md`, not deletion |
-| `project_info_export/feature_description.md` | **Agrees** with canon: "Handcrafted World... Procedural generation is focused on specific gameplay segments." It is the file the failed `d8f0787` correction got right |
-| `project_info_export/executive_summary.md` | Needs review before any action — external-facing summary, may hold framing worth keeping |
-| `project_info_export/ui_style_description.md` | Needs review — art/UI direction, no known conflict with canon |
-| `memory-bank/**` | The 3D-pivot canon layer. Source of `CANON.md` §1, §2, §5 |
+| `story_design.md` (root) | source of the canonical act names in `CANON.md` §2 |
+| `design.md` (root) | 447 lines of the author's systems design — Blood Echoes, Mutations, classes, weapon/armor/artifact/curse vocabulary, enemy roster. Its combo combat is superseded by `CANON.md` §1; **everything else remains valid source material** |
+| `project_info_export/feature_description.md` | **now a canon source.** Describes the hybrid handcrafted+procedural model correctly — the file the failed `d8f0787` correction got right |
+| `project_info_export/ui_style_description.md` | **now a canon source.** Sole origin of the HUD layout and typography in `CANON.md` §6 |
+| `project_info_export/executive_summary.md` | external-facing framing and market positioning; no conflict with canon |
+| `memory-bank/**` | the art bible, tag system and generation model. Source of `CANON.md` §1, §2, §4, §5 |
 
 ---
 
@@ -56,18 +57,18 @@ original author's design content, which `CANON.md` §0 protects.**
 
 - `dotbg/scenes/main_menu.tscn` — *is* the project's `run/main_scene`, but its
   "Start Game" button only prints `"TODO: Implement game start"`.
-- `dotbg/scenes/main/main.tscn` + `main.gd` — more complete, has a working
+- `dotbg/scenes/main/main.tscn` + `main.gd` — more complete, with a working
   `start_new_game()` that resets `GameManager`/`PlayerStats` state — but it is
   **not** the `main_scene`, so it is unreachable in play, and it instances
   `test_level.tscn`, which Tier 1 removes.
 
-Neither can simply be deleted. The working `start_new_game()` logic from
-`main/main.gd` has to be carried over, and its 2D level reference replaced with
-a 3D scene, before the redundant menu is removed. Flagging rather than guessing.
+The working `start_new_game()` logic has to be carried over and its 2D level
+reference replaced with a 3D scene before the redundant menu goes. Flagging
+rather than guessing.
 
 ---
 
 ## Execution note
 
-Deletions are staged on branch `chore/canonization` and are recoverable from git
+Deletions are staged on branch `chore/canonization` and recoverable from git
 history. They are still deletions — confirm before running.
