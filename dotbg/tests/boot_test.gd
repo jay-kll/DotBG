@@ -116,6 +116,42 @@ func _check_gameplay_scene() -> void:
 		"player has not fallen out of the world (y=%.2f)" % player.global_position.y
 	)
 
+	_check_camera(scene)
+
+# CANON.md §1 requires a fixed orthogonal camera at ~45°. Asserting it here is
+# what stops that spec from being prose nobody checks.
+const CANON_CAMERA_PITCH_DEGREES := 45.0
+const CAMERA_PITCH_TOLERANCE := 5.0
+
+func _check_camera(scene: Node) -> void:
+	print("-- camera (CANON.md §1) --")
+
+	var cam := _find_first(scene, "Camera3D") as Camera3D
+	if cam == null:
+		_fail("no Camera3D found in the loaded scene")
+		return
+
+	_ok("Camera3D present: %s" % cam.name)
+	_check(
+		cam.projection == Camera3D.PROJECTION_ORTHOGONAL,
+		"camera is orthogonal, not perspective"
+	)
+
+	# Forward is -Z of the camera basis. Pitch is the angle below the horizon.
+	var forward: Vector3 = -cam.global_transform.basis.z
+	var pitch_deg: float = rad_to_deg(asin(clampf(-forward.y, -1.0, 1.0)))
+
+	print("    measured: forward=%s pitch=%.2f deg size=%.1f" % [
+		str(forward.snappedf(0.001)), pitch_deg, cam.size
+	])
+
+	_check(
+		absf(pitch_deg - CANON_CAMERA_PITCH_DEGREES) <= CAMERA_PITCH_TOLERANCE,
+		"camera pitch is %.1f±%.1f deg (measured %.2f)" % [
+			CANON_CAMERA_PITCH_DEGREES, CAMERA_PITCH_TOLERANCE, pitch_deg
+		]
+	)
+
 func _find_first(node: Node, type_name: String) -> Node:
 	if node.is_class(type_name):
 		return node
