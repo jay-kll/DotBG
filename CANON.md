@@ -411,13 +411,7 @@ is only struck from this list when a run proves it fixed (`AGENTS.md` §2).
 2. **All cross-autoload signal wiring is commented out** behind
    `# TODO: Fix signal connections after autoload initialization` — in
    `hybrid_generator.gd`, `input_manager.gd:118` and `sanity_manager.gd`.
-3. `sanity_manager.gd:151` emits `"sanity_corruption_reset"`, undeclared in
-   `event_bus.gd`.
-4. **2D leftovers in `player_stats.gd`:** `jump_force`, `max_jumps`,
-   `air_control`, and `base_speed = 200.0` — a pixels/second value on a 2m
-   capsule. No jump exists under a fixed orthogonal camera.
-5. **No CI, no art assets in the engine project, no audio.** One test file
-   exists (`dotbg/tests/boot_test.gd`); there is no `.github/workflows/` and no
+3. **No art assets in the engine project, and no audio.** There is no
    `dotbg/assets/`.
 
 **Closed by Phase 0** — kept as a record of what the audit found, so a later
@@ -432,6 +426,23 @@ session does not re-report them:
   gone.
 - *The 2D branch.* No `CharacterBody2D` remains; the player is
   `CharacterBody3D` (`scenes/characters/player/player_3d.tscn`).
+- *The `EventBus` mismatch.* `sanity_corruption_reset` is declared, and the
+  emission is typed rather than a string, so an undeclared signal now fails to
+  parse instead of silently doing nothing. `tests/signals_test.gd` scans the
+  source and forbids the unchecked `emit_signal("...")` form outright.
+- *2D leftovers in `player_stats.gd`.* `jump_force`, `max_jumps` and
+  `air_control` are gone — there is no jump under a fixed orthogonal camera —
+  and `base_speed` is metres per second from the signed contract in
+  `scripts/config/tuning.gd`, not the old 200.0 pixels per second.
+- *No test framework and no CI.* Three test files run in GitHub Actions on every
+  push, 57 assertions. A separate harness renders golden images (`ASSETS.md` §10).
+- *A second, competing source of movement truth.* `player_3d.gd` declared its
+  own `speed = 200.0` alongside `PlayerStats.base_speed = 200.0`. Both now
+  default from `Tuning`.
+- *`class_name VirtualJoystick` collided with a native Godot 4.7 class*, so the
+  script failed to parse and removed itself from the build. Renamed
+  `TouchJoystick`. Same defect family as open defect 1 — check a name before
+  claiming it.
 
 The orphaned procgen has executed zero times — a hypothesis, not an asset. It is
 cheap to run, so **test it early and reach a verdict; do not bet on it.** The

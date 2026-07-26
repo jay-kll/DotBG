@@ -151,12 +151,12 @@ Make what already exists correct and verified before building on it.
 
 | Work | Detail |
 |---|---|
-| Movement tuning | `base_speed = 200.0` is a 2D pixels/second value on a 2m capsule — 720 km/h. Retune for methodical Soulslike (`CANON.md` §1): walk, run, dodge, stamina cost |
-| Purge 2D leftovers | `PlayerStats` still carries `jump_force`, `max_jumps`, `air_control`. No jump exists under a fixed orthogonal camera |
-| Reconnect signals | Cross-autoload wiring in `hybrid_generator.gd`, `input_manager.gd` and `sanity_manager.gd` is commented out behind a TODO. Connect it or delete it |
-| Fix `EventBus` mismatch | `sanity_manager.gd:151` emits `sanity_corruption_reset`, undeclared in `event_bus.gd` |
-| **Procgen verdict** | Run the orphaned `scripts/hybrid/` (2,021 lines) against real input for the first time. It is cheap to test and has never executed. **Keep it or delete it — do not leave it in limbo** |
-| CI | GitHub Actions running the headless suite on every push. It must resolve Godot the way `tools/run_tests.ps1` does, not assume a `godot` on PATH |
+| ~~Movement tuning~~ | done — `scripts/config/tuning.gd`, asserted |
+| ~~Purge 2D leftovers~~ | done — jump stats deleted, asserted gone |
+| ~~Fix `EventBus` mismatch~~ | done — declared, typed, and the unchecked `emit_signal("...")` form now fails the suite |
+| ~~CI~~ | done — green on every push |
+| **Reconnect signals** | Cross-autoload wiring in `hybrid_generator.gd`, `input_manager.gd` and `sanity_manager.gd` is commented out behind a TODO. Connect it or delete it |
+| **Procgen verdict** | Run the orphaned `scripts/hybrid/` (2,021 lines) against real input for the first time. It is cheap to test and has never executed. **Keep it or delete it — do not leave it in limbo.** Tier two under `AGENTS.md` §7.1: measure and recommend, a human merges the deletion |
 
 **Gate:** test suite green in CI. Procgen either wired and asserted, or gone from
 the repo with the decision recorded in `CANON.md` §9.

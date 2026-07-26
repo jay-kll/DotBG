@@ -21,6 +21,10 @@ signal secret_found(secret_id: String)
 
 # Sanity Events
 signal sanity_effect_triggered(effect_id: String)
+## Emitted when sanity returns to its highest tier and every system holding a
+## corruption effect should drop it. Was emitted for months without being
+## declared here — CANON.md §9, open defect 3.
+signal sanity_corruption_reset
 signal hallucination_spawned(type: String, position: Vector2)
 signal reality_distortion(intensity: float)
 

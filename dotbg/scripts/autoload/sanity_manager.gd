@@ -148,7 +148,10 @@ func _apply_high_sanity_effects() -> void:
 	reality_distortion_active = false
 	
 	# Notify other systems to reset corruption
-	EventBus.emit_signal("sanity_corruption_reset")
+	# Typed emission, not emit_signal("..."). The string form is why this went
+	# unnoticed: it compiles whether or not the signal exists, so a typo or an
+	# undeclared signal silently does nothing forever.
+	EventBus.sanity_corruption_reset.emit()
 	_log_sanity_event("high_sanity_effects", {"message": "Reality stable"})
 
 func _apply_medium_sanity_effects() -> void:
