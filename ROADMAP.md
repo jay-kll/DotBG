@@ -27,13 +27,43 @@ Every phase below extends it.
 
 ## Phase 0 — Canonization and first boot ✅ COMPLETE (2026-07-25)
 
-One canon replacing three contradictory visions. 2D branch removed. `.gitignore`
-repaired, 5.7MB of editor cache untracked. `GameManager` given real run state.
-Menu consolidated. Project boots to a 3D scene.
+One canon replacing three contradictory visions, with a document registry so
+authority is explicit. 2D branch removed. `.gitignore` repaired, 5.7MB of editor
+cache untracked. `GameManager` given real run state. Menu consolidated. Project
+boots to a 3D scene. `ASSETS.md` established the asset lifecycle.
 
 **Gate — met:** 19 checks, 0 failures, exit 0. Seven autoloads load,
 `start_new_game()` resets run state and sanity, the 3D scene loads, the player is
 simulated and standing, the camera is orthogonal at a measured 45.00°.
+
+```bash
+godot --headless --path dotbg --script res://tests/boot_test.gd
+```
+
+### Art references — Stage 1 approved, Stage 2 queued
+
+Five approved references live in `art/approved/` with provenance sidecars: the
+cathedral hall at all four sanity-corruption tiers, plus the canonical Acolyte
+turnaround. These fix the visual target for Phase 3.
+
+Twenty-five Stage 2 requests are queued in
+`C:\Users\jovy2\Documents\Codex\claude-imagegen-inbox\pending` — Act I
+environments, enemies and combat moments, the three Architect phases, and UI
+screens including a dedicated canonical HUD reference. All twenty-five carry the
+byte-identical approved style header (`bc2329e4625f`).
+
+**The queue has no watcher.** Nothing processes it automatically. To run a
+request, in the FOREGROUND only:
+
+```bash
+timeout 540 codex exec -C "C:\Users\jovy2\Projects\DotBG" -s workspace-write "Genera UNA imagen y NO la copies. Lee <queue>\<name>.md, pasa todo el texto tras 'prompt:' tal cual a image_gen.imagegen, y reporta que terminaste." < /dev/null
+```
+
+Then count PNGs in `~/.codex/generated_images` before and after, copy the newest
+by mtime into `art/candidates/` yourself, and hash-verify. Codex has reported
+success while returning a stale copy — never trust its self-report or let it move
+files. Approved output moves to `art/approved/` with a sidecar; rejects keep the
+sidecar and lose the bytes, per `ASSETS.md` §4.
 
 ---
 
