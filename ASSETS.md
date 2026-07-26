@@ -99,7 +99,8 @@ Every asset carries a sidecar with the same basename and `.json`:
 - `derived_from` carries lineage through the pipeline:
   reference image → mesh → retopologised mesh → rigged → engine-ready. Each step
   names its parent.
-- `status` is one of `candidate`, `approved`, `rejected`, `superseded`.
+- `status` is one of `candidate`, `approved`, `rejected`, `superseded`. An asset
+  awaiting changes stays `candidate` and carries a `revision_request` — see §4.
 
 **An asset without a sidecar is treated as untrusted and is deleted on sight.**
 
@@ -108,12 +109,34 @@ Every asset carries a sidecar with the same basename and `.json`:
 ## 4. Lifecycle
 
 ```
+                       ┌──── revise ──┐
+                       │              ↓
 generate → candidate → [review] → approved → (superseded)
                           └─────→ rejected
 ```
 
+**A review has three outcomes, not two.** The reviewer looking at thirty kit
+pieces will find one whose arch is too flat. Approving it is wrong and
+discarding it wastes the other twenty-nine decisions that were fine. Without a
+third outcome the reviewer either lies or throws away good work, so *revise* is
+a first-class result, not an informal note.
+
 **candidate** — lives in `art/candidates/`. Gitignored. May be deleted at any
 time without discussion.
+
+**revise** — the reviewer wants this asset, changed. The sidecar gains a
+`revision_request` field in the reviewer's own words, and the asset stays a
+candidate. For a parametric asset the request is usually a parameter, which is
+why it is cheap:
+
+```json
+{ "asset": "kit-arch-nave-01.glb", "status": "candidate",
+  "revision_request": "arch reads too flat at the canonical camera; take rise from 2.4 to 2.9" }
+```
+
+An agent may act on a `revision_request` unattended — it is an instruction from
+a human, and regenerating is exactly the work the pipeline is for. It may not
+clear the field. The reviewer clears it by approving or rejecting.
 
 **approved** — a human looked at it and said yes. Moves to `art/approved/`,
 sidecar `status` set to `approved`, and it gets committed. Only approved assets
@@ -202,3 +225,49 @@ Binding, alongside `AGENTS.md`:
 Approved reference images run 2-3 MB each. Once `art/approved/` plus
 `dotbg/assets/` passes roughly 100 MB, move binary assets to **Git LFS** rather
 than letting clone time degrade. Revisit at that threshold, not before.
+
+---
+
+## 9. Autonomous batches
+
+Rules for producing assets in an unattended run. Every one of these exists
+because a specific situation was walked until it broke, or because it is what
+every mature pipeline of this shape — studio art review, render farms,
+human-in-the-loop labelling — independently converged on.
+
+**Stable IDs and an idempotent skip.** Every requested asset has an ID fixed
+before generation starts (`s2-14`, `kit-arch-nave-01`) and a predictable output
+path derived from it. Before doing any work on an item, check whether its output
+already exists and is valid; if it does, skip it and say so. A resumed run must
+be able to tell what is already done without redoing it, and it can only do that
+if the name was predictable in advance.
+
+**Leases expire.** A job moved to an in-progress state carries the time it
+started. An in-progress item older than **30 minutes** is not work in flight, it
+is a hung job — reclaim it and re-run. Without this rule an interrupted batch is
+indistinguishable from a busy one, and the item sits there forever. It already
+happened: `s2-03` sat in `processing/` after the generator hung silently, and
+nothing in the repo could tell the difference.
+
+**Never stream single assets at a human.** Review is batched by kit or category,
+and a batch is capped at **twenty items**. Reviewer fatigue degrades approval
+quality quietly, which is worse than a slow queue — a tired yes is indistinguishable
+from a considered one in the sidecar. Under the cap, ship the batch; over it,
+split it.
+
+**Filter before the gate.** Anything that fails §5 verification, or fails a
+mechanical check the asset class defines — a kit piece off its nominal
+dimensions, a mesh that is not closed, a seam that does not weld — is rejected
+by the agent and never reaches a human. Gates are for judgment. Broken output is
+not a judgment call, and spending human attention on it is how the gate stops
+being taken seriously.
+
+**A batch is presented as a contact sheet**, rendered under the canonical camera
+with each item labelled by ID, plus the mechanical numbers per item. A reviewer
+cannot judge thirty glTF files by filename, and an agent asserting "looks Gothic"
+is the model grading its own work.
+
+**The gate is a stop, not a policy.** An agent does not decide it has permission
+to continue past a review. The next batch does not start until the previous
+batch's sidecars carry a human decision. This is structural: it is what makes
+the difference between an autonomous run and an unsupervised one.

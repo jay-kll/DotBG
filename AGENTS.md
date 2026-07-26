@@ -130,3 +130,89 @@ exits 0 or 1, never a judgment.
   end up knowing what the game is, how to behave, and what to do next. If your
   work invalidated a line in one of those three, fix the line — do not write a
   note about it somewhere else.
+
+## 7. The autonomy contract
+
+Applies to any session running unattended — nobody is reading your output as it
+happens. Autonomy here is not a permission that was granted, it is the set of
+rules below. Working outside them is not initiative, it is the failure this
+whole file exists to prevent.
+
+### 7.1 Three tiers of action
+
+**Run alone.** Reversible, inside the current phase's scope, and ending in a
+gate that exits 0. Writing and refactoring code, adding tests, running the
+suites, generating assets into `art/candidates/`, acting on a human's
+`revision_request`, committing to a feature branch. If it is reversible and a
+machine can confirm it worked, do it and keep going.
+
+**Prepare, do not execute.** Produce the branch, the diff and the evidence, then
+stop and let a human merge. This covers anything whose blast radius outruns its
+verification:
+
+- deleting or moving more than ~200 lines in one change, or removing a file
+  that something else might still reference
+- the procgen verdict in `ROADMAP.md` Phase 1 — run it, measure it, write the
+  recommendation with the run output attached; the deletion of 2,021 lines is
+  not an unattended act
+- changing dependencies, autoload registration, `project.godot`, or the shape of
+  saved data
+- any edit to `CANON.md`, `AGENTS.md`, `ASSETS.md` or `ROADMAP.md`
+
+**Always stop.** Do not do these unattended under any framing:
+
+- spending money, or first use of a paid API
+- pushing to `main`, force-pushing anything, or rewriting history
+- publishing: store pages, releases, anything public or outside the repo
+- credentials, signing keys, store or account settings
+- deciding an asset is approved, or that combat feels right — §2 and `ASSETS.md`
+  are explicit that these are human judgments, and an agent grading its own
+  aesthetic output is the exact defect this repo is built around
+- amending canon. If canon is wrong, say so in the journal and stop
+
+### 7.2 Batch discipline — hard rule
+
+This machine has ~1 GB of RAM free of 15.6 GB, an integrated GPU, and the RAM is
+not being upgraded. That is a constraint on the work, not a footnote.
+
+**Never run two heavy jobs at once.** Blender, the Godot editor, and a model
+session do not fit together. Art jobs run serialized with the editor closed;
+`tools/blender.ps1` enforces this and refuses to start otherwise. Do not pass
+`-Force` to get around a guard that is telling you the truth. Cap concurrent
+subagents at **two**.
+
+### 7.3 Stopping
+
+**The `STOP` file.** Between every unit of work, check for a file named `STOP` at
+the repo root. If it exists: finish or abandon the current unit cleanly — never
+leave a half-staged commit — write the journal entry, and exit. Do not delete
+the file. It is how a human stops you at a known boundary instead of killing a
+terminal mid-write.
+
+**Stop on repeated failure.** Three consecutive failures on the same unit means
+stop and write it up. Do not try a fourth approach. A loop that keeps trying is
+how an unattended run burns hours and money producing nothing.
+
+**Bound the run.** Land a verified unit at least every 30 minutes of wall clock.
+If you cannot, the unit is too big — split it or stop.
+
+> A real spend cap cannot be enforced from inside the agent: there is no meter
+> here to read, and a runaway loop is exactly the state least likely to check one.
+> The bounds above are what an agent can actually hold itself to. A true cost
+> ceiling has to come from outside — the harness or the account.
+
+### 7.4 The run journal
+
+Every unattended session appends one file: `runs/<UTC timestamp>.md`. It records
+what was attempted, the verbatim gate output, what was refused and why, what was
+left half-done, and what the next session should pick up.
+
+This is a deliberate, narrow exception to §1's rule against files that describe
+work you just did. It survives because it is a **log, not a document**: it is
+never authoritative, nothing may cite it as a reason to do anything, and it
+describes one run rather than the state of the project. Anything in a journal
+that turns out to be true about the *project* belongs in the owning document,
+and the journal entry is not the record of it.
+
+Write the entry before exiting, including when exiting because something broke.
+A run that fails and says nothing is worse than a run that never started.

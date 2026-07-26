@@ -50,3 +50,8 @@ export_credentials.cfg
 # Generated asset candidates — disposable by design, see ASSETS.md §1
 # Prompts, approved work and rejection records ARE tracked; raw candidates are not.
 art/candidates/
+
+# The unattended-run stop signal, AGENTS.md §7.3. Local control, not repo state:
+# committing it would stop every clone. Run journals under runs/ ARE tracked —
+# they are the audit trail of what happened while nobody was watching.
+/STOP

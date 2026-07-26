@@ -12,8 +12,11 @@ function Resolve-Godot {
     if ($env:GODOT -and (Test-Path $env:GODOT)) { return $env:GODOT }
     $onPath = Get-Command godot -ErrorAction SilentlyContinue
     if ($onPath) { return $onPath.Source }
-    $winget = Join-Path $env:LOCALAPPDATA "Microsoft\WinGet\Packages"
-    if (Test-Path $winget) {
+    # $env:LOCALAPPDATA is null off Windows, and Join-Path throws on a null
+    # path. CI never reaches here because it sets $env:GODOT, but a resolver
+    # that explodes instead of reporting "not found" is a bad resolver.
+    $winget = if ($env:LOCALAPPDATA) { Join-Path $env:LOCALAPPDATA "Microsoft\WinGet\Packages" } else { $null }
+    if ($winget -and (Test-Path $winget)) {
         $exe = Get-ChildItem $winget -Filter "Godot_v*_console.exe" -Recurse -ErrorAction SilentlyContinue |
                Sort-Object Name -Descending | Select-Object -First 1
         if ($exe) { return $exe.FullName }

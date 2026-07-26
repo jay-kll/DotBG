@@ -14,11 +14,13 @@ briefing; nothing else in the repo has authority.
 
 ## You are here
 
-**Phase 0 is complete. Phase 1 is the next work.** Two tracks run in parallel:
+**Phase 0 is complete. The autonomy harness is being built. Phase 1 is next.**
+Three tracks:
 
 | Track | State | Next action |
 |---|---|---|
-| **Code** | boots to a playable 3D scene, 19 checks green | Phase 1 below — foundation integrity, starting with the open defects in `CANON.md` §9 |
+| **Autonomy harness** | in progress | finish the items below — it blocks unattended work on everything else |
+| **Code** | boots to a playable 3D scene, 19 checks green | Phase 1 — foundation integrity, starting with the open defects in `CANON.md` §9 |
 | **Art references** | Stage 1 approved (5 refs) | run the queued Stage 2 batch — see *Art references* below |
 
 First thing to do in any session: run the harness and confirm it is still green.
@@ -53,6 +55,49 @@ boots to a 3D scene. `ASSETS.md` established the asset lifecycle.
 `start_new_game()` resets run state and sanity, the 3D scene loads, the player is
 simulated and standing, the camera is orthogonal at a measured 45.00°. Re-run it
 with the harness in `AGENTS.md` §2.
+
+---
+
+## The autonomy harness — being built now
+
+Not a content phase. It is the infrastructure that makes running the phases
+below unattended something other than a bet, and it blocks that mode — not the
+work itself, which proceeds supervised meanwhile.
+
+The reasoning is in `AGENTS.md` §2 and §7. Short version: this project's
+founding defect is code written and never run, and an unattended agent does not
+fix that defect, it multiplies it. Every unit of work has to end in an assertion
+a machine can check, or autonomy just produces eight hours of "implemented".
+
+| Item | State |
+|---|---|
+| Godot resolver + headless suite (`tools/run_tests.ps1`) | done — 19 checks green |
+| Blender resolver + toolchain proof (`tools/blender.ps1`, `art/gen/smoke.py`) | done — 7 checks green |
+| CI running import + suite on every push | written, unverified until first push |
+| Autonomy contract — tiers, batch discipline, `STOP`, run journal | done — `AGENTS.md` §7 |
+| Gate mechanics — three outcomes, batching, leases, contact sheets | done — `ASSETS.md` §4 and §9 |
+| **Numeric contracts** | not started — see below |
+| Golden-image harness | not started |
+
+**Numeric contracts.** "Tune the movement" and "stamina-gated combat" are not
+assertable. An agent can set `base_speed = 4.5`, watch the test pass, and have
+proved nothing about whether it feels right. So before Phase 1 touches feel, one
+short table gets signed once: walk and run speed, dodge distance and duration,
+i-frame window, stamina cost per action and regeneration rate, base health,
+sanity drain rate. With numbers the work becomes mechanical and checkable, and
+Phases 1 and 2 stop needing continuous human judgment — they need one playtest
+at the end instead.
+
+**Golden-image harness.** Headless Godot renders a fixed test chapel under the
+canonical camera with corruption at 0.0 / 0.33 / 0.66 / 1.0, and diffs against
+approved images. This is the only thing that catches the slow failure mode:
+every per-asset assertion passing while the screen quietly rots — a seam opening
+where two kit pieces meet, a normal flipped, the shader breaking on new topology.
+Scaffold it before Phase 3 has geometry to feed it.
+
+**Gate:** CI green on a pushed branch, the numeric contract signed, and a
+deliberately broken commit demonstrated failing CI. A gate nobody has watched
+fail is not known to work.
 
 ---
 

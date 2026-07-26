@@ -1,0 +1,61 @@
+name: CI
+
+# The point of this file is that something other than the model which wrote the
+# code says the code runs. Every gate in ROADMAP.md ends here eventually.
+#
+# It deliberately calls tools/run_tests.ps1 rather than spelling out a Godot
+# command, so the harness has exactly one definition. When the suite grows, this
+# file does not change. Godot is passed in through $env:GODOT, which is the
+# first branch of the runner's resolution order.
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.7.1-stable
+
+jobs:
+  test:
+    name: Headless suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Godot binary
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: ~/godot
+          key: godot-${{ env.GODOT_VERSION }}-linux-x86_64
+
+      - name: Download Godot
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p ~/godot
+          url="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          curl -fsSL "$url" -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d ~/godot
+          mv ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 ~/godot/godot
+          chmod +x ~/godot/godot
+
+      - name: Report Godot version
+        run: ~/godot/godot --version
+
+      # Import must be its own step and must run first. Godot's first import is
+      # what populates dotbg/.godot/, and the suite loads scenes that do not
+      # resolve without it. It is also the step that surfaces a broken .tscn as
+      # a build failure rather than as a mysterious null later.
+      - name: Import project
+        run: ~/godot/godot --headless --path dotbg --import
+
+      - name: Run headless suite
+        env:
+          GODOT: /home/runner/godot/godot
+        shell: pwsh
+        run: ./tools/run_tests.ps1
