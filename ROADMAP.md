@@ -14,13 +14,12 @@ briefing; nothing else in the repo has authority.
 
 ## You are here
 
-**Phase 0 is complete. The autonomy harness is being built. Phase 1 is next.**
-Three tracks:
+**Phases 0 and 1 are complete. Phase 2 is the work.** Three tracks:
 
 | Track | State | Next action |
 |---|---|---|
-| **Autonomy harness** | in progress | finish the items below — it blocks unattended work on everything else |
-| **Code** | boots to a playable 3D scene, 19 checks green | Phase 1 — foundation integrity, starting with the open defects in `CANON.md` §9 |
+| **Code** | Phase 1 closed; 6 test files, 125 assertions green in CI | **Phase 2 — the core loop.** Stamina is done; next is the combat state machine, then one enemy, then death and restart |
+| **Autonomy harness** | built and audited | only one item left: nobody has watched CI actually fail |
 | **Art references** | Stage 1 approved (5 refs) | run the queued Stage 2 batch — see *Art references* below |
 
 First thing to do in any session: run the harness and confirm it is still green.
