@@ -1,0 +1,14 @@
+{
+  "asset": "bricks089_color.jpg, bricks089_roughness.jpg, bricks089_normalgl.jpg",
+  "source": "https://ambientcg.com/view?id=Bricks089",
+  "source_file": "Bricks089_1K-JPG.zip",
+  "source_bytes": 5317280,
+  "downloaded": "2026-07-26T03:13:00Z",
+  "license": "CC0 1.0 Universal (public domain)",
+  "license_verified": "https://ambientcg.com/view?id=Bricks089 — \"All assets are released under the Creative Commons CC0 license, making them free to use without attribution - even in commercial circumstances.\"",
+  "attribution_required": false,
+  "commercial_use": true,
+  "derived_from": null,
+  "status": "candidate",
+  "note": "First third-party asset in the project, downloaded as a capability probe: proof that CC0 material can be sourced, licensed, imported and rendered without a paid generation service. Three of the six maps kept — colour, roughness and the OpenGL-convention normal, which is the one Godot expects. Ambient occlusion, displacement and the DirectX normal were dropped rather than carried unused. Not art direction: whether 1K brick reads as authentic Gothic limestone at the canonical camera is a human's call, and CANON.md §5 asks for limestone rather than brick."
+}

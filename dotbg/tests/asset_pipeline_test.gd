@@ -112,8 +112,47 @@ func _process(_delta: float) -> bool:
 		aabb.size.y > aabb.size.z,
 		"%.2f m tall, %.2f m deep" % [aabb.size.y, aabb.size.z])
 
+	_check_free_material()
+
 	_report()
 	return true
+
+
+## The other half of the Phase 3 pipeline: surfaces we did not have to generate.
+##
+## The kit's geometry is parametric, but its stonework is texture, and paying a
+## generation service for tileable PBR is unnecessary — CC0 libraries already
+## have it. This asserts the sourced material is present, imports, and is the
+## resolution it claims, so a truncated download or a silently failed import
+## fails here rather than as flat grey geometry three weeks into Phase 3.
+func _check_free_material() -> void:
+	print("-- sourced CC0 material --")
+	var maps := {
+		"colour": "res://assets/materials/bricks089/bricks089_color.jpg",
+		"roughness": "res://assets/materials/bricks089/bricks089_roughness.jpg",
+		"normal": "res://assets/materials/bricks089/bricks089_normalgl.jpg",
+	}
+	for name in maps:
+		var tex: Texture2D = load(maps[name])
+		check("the %s map imports" % name, tex != null and tex.get_width() > 0,
+			"%dx%d" % [tex.get_width(), tex.get_height()] if tex != null else "failed to load")
+		if tex != null:
+			check("the %s map is 1K as sourced" % name, tex.get_width() == 1024,
+				"%d px" % tex.get_width())
+
+	# Provenance is not optional, and a downloaded asset needs it more than a
+	# generated one: without the recorded licence nobody can tell six months
+	# later whether this is safe to ship.
+	var sidecar := "res://assets/materials/bricks089/bricks089.json"
+	check("the material carries its provenance and licence", FileAccess.file_exists(sidecar),
+		sidecar)
+	if FileAccess.file_exists(sidecar):
+		var meta: Variant = JSON.parse_string(FileAccess.get_file_as_string(sidecar))
+		check("the licence is recorded as CC0 and attribution-free",
+			meta is Dictionary
+				and str(meta.get("license", "")).begins_with("CC0")
+				and meta.get("attribution_required", true) == false,
+			str(meta.get("license", "missing")) if meta is Dictionary else "unparsable")
 
 
 func _find_mesh(node: Node) -> MeshInstance3D:
