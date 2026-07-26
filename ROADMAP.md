@@ -126,6 +126,15 @@ tested and its evidence is an assertion in the suite, not a claim. The rule is
 | Android SDK absent | no AAB, Phase 5 only | SDK install, and Godot's Android export wants JDK 17 where this machine has 21 |
 | Paid 3D and voice generation | deferred by decision, not blocked | not required: architecture is parametric, characters come from CC0 or authoring |
 
+**Pixabay**, tested 2026-07-25 with a stored key (`PIXABAY_API_KEY`): `/api/`
+and `/api/videos/` return 200, `/api/audio/` returns **403 Access denied** — a
+different answer from the 404 that `/api/music/` and `/api/sound-effects/` give,
+so the audio endpoint exists and the key simply is not approved for it. Pixabay
+grants that separately on request, which is a human step. Worth knowing before
+asking: Pixabay's licence requires **visible attribution** in the product, where
+Freesound CC0 requires none, so Freesound stays the right source for anything
+that ships and Pixabay is a supplement at best.
+
 Ambience was recorded here as blocked on a human signup, and it was not: a
 Freesound API key was already in the environment. The inventory that declared it
 missing had searched for other vendors' variables and never searched for that
