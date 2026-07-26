@@ -7,7 +7,11 @@ enum PlayerClass {
 }
 
 # Base Stats
-var player_class: PlayerClass = PlayerClass.WARRIOR
+# CANON.md §8: v1.0 ships one class, and it is the Cultist — the only one that
+# matches the acolyte protagonist and the only one whose kit is built around
+# Sanity, which is the mechanic v1.0 ships. This defaulted to WARRIOR, which
+# nothing in the canon ever asked for.
+var player_class: PlayerClass = PlayerClass.CULTIST
 var level: int = 1
 var experience: int = 0
 var experience_required: int = 100
@@ -18,24 +22,24 @@ var current_health: float = 100.0
 var attack_power: float = 10.0
 var defense: float = 5.0
 
-# Movement Stats
-var base_speed: float = 200.0  # Base movement speed
-var current_speed: float = 200.0  # Modified by equipment/status
-var acceleration: float = 1000.0  # How quickly we reach max speed
-var air_control: float = 0.7  # Multiplier for air movement (0-1)
-var jump_force: float = 400.0
-var max_jumps: int = 1
+# Movement Stats — metres and seconds, sourced from Tuning.
+# These were pixels-per-second from the deleted 2D branch: base_speed 200.0 on a
+# 2 m capsule is 720 km/h. There is no jump under a fixed orthogonal camera, so
+# jump_force, max_jumps and air_control are gone rather than retuned.
+var base_speed: float = Tuning.RUN_SPEED
+var current_speed: float = Tuning.RUN_SPEED  # Modified by equipment/status
+var acceleration: float = Tuning.acceleration()
 
 # Combat Stats
 var attack_speed: float = 1.0  # Attack animation speed multiplier
 var combo_limit: int = 2  # Starting with 2-hit combos
-var dodge_distance: float = 300.0  # Base dodge roll distance
-var dodge_speed: float = 600.0  # How fast the dodge executes
-var dodge_iframes: float = 0.2  # Invincibility frame duration
-var dodge_recovery: float = 0.8  # Time before next action
-var stamina_max: float = 100.0
-var stamina_current: float = 100.0
-var stamina_regen: float = 20.0  # Per second
+var dodge_distance: float = Tuning.DODGE_DISTANCE
+var dodge_speed: float = Tuning.dodge_speed()
+var dodge_iframes: float = Tuning.DODGE_IFRAMES
+var dodge_recovery: float = Tuning.dodge_recovery()
+var stamina_max: float = Tuning.STAMINA_MAX
+var stamina_current: float = Tuning.STAMINA_MAX
+var stamina_regen: float = Tuning.STAMINA_REGEN
 
 # Class-specific stats
 var sanity_resistance: float = 0.0  # Cultist specialty
@@ -68,33 +72,43 @@ func _ready() -> void:
 	reset_stats()
 
 func reset_stats() -> void:
+	# Class differences are expressed as modifiers on Tuning rather than as raw
+	# numbers, so the signed contract stays the single source and the author's
+	# class design survives the change of scale. The old values were ratios of a
+	# 200.0 baseline — Cultist 1.10x, Warrior 0.90x — and those ratios are kept.
+	# Speeds scale multiplicatively; timing windows shift additively, because a
+	# 25% longer invincibility window means something very different at 0.45 s
+	# than it did at the old 0.20 s.
+	#
+	# Only the Cultist ships in v1.0 (CANON.md §8). The other two are kept
+	# because they are canon, not because they are tuned.
 	match player_class:
 		PlayerClass.CULTIST:
 			max_health = 80.0
 			sanity_resistance = 0.5
 			attack_power = 8.0
 			defense = 3.0
-			base_speed = 220.0  # Faster but fragile
-			stamina_max = 120.0  # Better stamina management
-			dodge_iframes = 0.25  # Better at avoiding damage
-			
+			base_speed = Tuning.RUN_SPEED * 1.10  # Faster but fragile
+			stamina_max = Tuning.STAMINA_MAX * 1.20  # Better stamina management
+			dodge_iframes = Tuning.DODGE_IFRAMES + 0.05  # Better at avoiding damage
+
 		PlayerClass.WARRIOR:
 			max_health = 120.0
 			physical_resistance = 0.3
 			attack_power = 12.0
 			defense = 7.0
-			base_speed = 180.0  # Slower but tougher
-			stamina_max = 100.0  # Standard stamina
-			dodge_distance = 250.0  # Shorter dodge
-			
+			base_speed = Tuning.RUN_SPEED * 0.90  # Slower but tougher
+			stamina_max = Tuning.STAMINA_MAX  # Standard stamina
+			dodge_distance = Tuning.DODGE_DISTANCE * 0.83  # Shorter dodge
+
 		PlayerClass.SCHOLAR:
 			max_health = 70.0
 			item_identification = true
 			attack_power = 7.0
 			defense = 2.0
-			base_speed = 200.0  # Standard speed
-			stamina_max = 90.0  # Lower stamina
-			dodge_recovery = 0.7  # Quicker recovery
+			base_speed = Tuning.RUN_SPEED  # Standard speed
+			stamina_max = Tuning.STAMINA_MAX * 0.90  # Lower stamina
+			dodge_recovery = Tuning.dodge_recovery() - 0.10  # Quicker recovery
 	
 	current_health = max_health
 	stamina_current = stamina_max

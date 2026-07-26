@@ -3,16 +3,20 @@
 # Adapted from 2D system but built for Hades-style perspective
 extends CharacterBody3D
 
-# Movement properties for mobile-optimized 3D movement
-@export var speed: float = 200.0
-@export var acceleration: float = 800.0
-@export var friction: float = 600.0
-@export var dodge_speed: float = 400.0
-@export var dodge_duration: float = 0.3
+# Movement properties, defaulted from the signed contract in Tuning.
+# These used to be a second set of numbers competing with PlayerStats — both
+# declared a speed of 200.0 and neither deferred to the other. They stay
+# exported so a scene can override for a test, but the default is the contract.
+@export var speed: float = Tuning.RUN_SPEED
+@export var acceleration: float = Tuning.acceleration()
+@export var friction: float = Tuning.deceleration()
+@export var dodge_speed: float = Tuning.dodge_speed()
+## Whole roll, invincible window plus vulnerable recovery.
+@export var dodge_duration: float = Tuning.DODGE_TOTAL
 
 # Combat properties
-@export var health: int = 100
-@export var max_health: int = 100
+@export var health: int = int(Tuning.HEALTH_MAX)
+@export var max_health: int = int(Tuning.HEALTH_MAX)
 @export var attack_damage: int = 25
 
 # State management
@@ -141,7 +145,9 @@ func _perform_attack() -> void:
 		
 		# Start attack timer
 		if attack_timer:
-			attack_timer.start(0.5)  # Attack duration
+			# The commitment window: nothing cancels it, which is the whole of
+			# the methodical combat model in CANON.md §1.
+			attack_timer.start(Tuning.light_commitment())
 		
 		# Visual attack effect
 		_play_attack_animation()

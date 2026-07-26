@@ -1,6 +1,10 @@
 extends Control
 
-class_name VirtualJoystick
+# Renamed from VirtualJoystick: Godot 4.7 ships a native class by that name, so
+# the declaration failed to parse and took this script down with it. Same defect
+# family as CANON.md §9 open defect 1 — a class_name colliding with something
+# that already owns the name. Check before declaring one.
+class_name TouchJoystick
 
 # Virtual joystick for mobile movement controls
 # Optimized for epic 50+ hour mobile campaigns
