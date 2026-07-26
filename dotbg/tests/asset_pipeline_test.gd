@@ -114,9 +114,49 @@ func _process(_delta: float) -> bool:
 
 	_check_free_material()
 	_check_rigged_asset()
+	_check_placeholder_audio()
 
 	_report()
 	return true
+
+
+## Placeholder audio exists and is playable.
+##
+## Synthesised locally by art/gen/placeholder_sfx.py with pyfxr (BSD): no
+## network, no account, no licence to audit. Real sound design is Phase 4;
+## these exist so combat can be built and tested with audible feedback before
+## then, and being obviously synthetic is deliberate — a placeholder that
+## sounds real quietly becomes final because nobody notices it was temporary.
+##
+##   python art/gen/placeholder_sfx.py
+func _check_placeholder_audio() -> void:
+	print("-- placeholder audio --")
+	var expected := ["player_hurt", "player_death", "attack_swing", "attack_impact",
+		"dodge_roll", "echoes_pickup", "ui_select", "ui_confirm"]
+
+	var loaded := 0
+	var silent: Array[String] = []
+	for name in expected:
+		var path := "res://assets/audio/placeholder/%s.wav" % name
+		var stream: AudioStream = load(path)
+		if stream == null:
+			continue
+		loaded += 1
+		# A zero-length stream is what a silently failed import looks like: the
+		# resource exists, the name is right, and nothing is ever heard.
+		if stream.get_length() <= 0.0:
+			silent.append(name)
+
+	check("every placeholder clip imports as audio", loaded == expected.size(),
+		"%d of %d" % [loaded, expected.size()])
+	check("none of them are silent", silent.is_empty(),
+		("zero length: " + ", ".join(silent)) if not silent.is_empty() else "all have duration")
+
+	# The clips Phase 2 needs to hear while it is being built.
+	for name in ["player_hurt", "attack_impact", "echoes_pickup"]:
+		var stream: AudioStream = load("res://assets/audio/placeholder/%s.wav" % name)
+		check("'%s' is playable" % name, stream != null and stream.get_length() > 0.0,
+			"%.3f s" % stream.get_length() if stream != null else "missing")
 
 
 ## Skinning and animation survive the trip.
