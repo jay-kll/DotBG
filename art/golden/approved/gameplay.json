@@ -1,0 +1,14 @@
+{
+  "asset": "gameplay.png",
+  "sha256": "95c69bedcb1160850d7080ee678602dc6ffc7ae106bf49b14cdac0cef348c10f",
+  "created": "2026-07-26T03:40:00Z",
+  "tool": "godot 4.7.1-stable / tools/run_golden.ps1",
+  "scene": "res://scenes/test_3d_complete.tscn",
+  "resolution": "640x360",
+  "environment": "Windows 11, Intel integrated GPU, Godot mobile renderer",
+  "derived_from": null,
+  "status": "approved",
+  "approved_by": "Gerson Aguero",
+  "approved_at": "2026-07-25",
+  "note": "First visual baseline. The placeholder gameplay scene under the canonical 45 degree orthogonal camera: platform, player capsule, migration-test overlay. Not art direction — a reference point for detecting drift. Expect it to be replaced wholesale in Phase 3 once a modular kit and the corruption shader exist, at which point the scene becomes a test chapel rendered at four corruption tiers. Strictly comparable only within the environment recorded above; the 0.02 threshold absorbs driver noise, not a different renderer."
+}
