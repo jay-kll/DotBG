@@ -53,7 +53,22 @@ Therefore:
 - Before adding a `class_name`, search the repo for that name first. The
   shadowing defect in `CANON.md` §7.1 was caused by duplicate class declarations.
 
-## 5. Session hygiene
+## 5. Asset rules
+
+`ASSETS.md` is binding. The short version:
+
+- Generated output goes to `art/candidates/` only — never straight to
+  `art/approved/` or `dotbg/assets/`.
+- Every asset gets its provenance sidecar written in the same step that creates
+  it. An asset without provenance cannot be regenerated and is deleted on sight.
+- Verify before reporting: the file exists, its hash is unique among siblings,
+  and the generator's output count incremented. **Generation tools fail
+  silently and have lied about success in this project** — never pass along a
+  tool's self-report as evidence.
+- Never overwrite an asset filename. A revision is a new variant.
+- Only a human marks an asset `approved`.
+
+## 6. Session hygiene
 
 - Agents lose coherence around the 40-minute mark and roughly 30k lines of
   context. Work in small, verifiable units and land them.

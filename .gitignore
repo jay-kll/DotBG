@@ -46,3 +46,7 @@ export/
 
 # Godot export credentials — never commit
 export_credentials.cfg
+
+# Generated asset candidates — disposable by design, see ASSETS.md §1
+# Prompts, approved work and rejection records ARE tracked; raw candidates are not.
+art/candidates/
