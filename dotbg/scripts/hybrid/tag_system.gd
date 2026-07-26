@@ -45,13 +45,21 @@ func _initialize_tag_synergies() -> void:
 
 func _initialize_tag_conflicts() -> void:
 	# Define tags that conflict with each other
+	# The first four entries are the forbidden pairs CANON.md §4 states as hard
+	# rules; the rest are this module's own additions and are welcome.
+	#
+	# Two of the canon pairs were missing when this code ran for the first time:
+	# fire conflicted with "ice" rather than "water", and real/hallucination was
+	# absent entirely — which is the sanity-critical one, since an entity that
+	# is both real and a hallucination makes the whole mechanic meaningless.
 	tag_conflicts = {
 		"fast": ["slow"],
+		"blessed": ["corrupted", "cursed"],
+		"fire": ["water", "ice"],
+		"real": ["hallucination"],
 		"large": ["small"],
 		"aggressive": ["defensive"],
 		"intelligent": ["mindless"],
-		"blessed": ["corrupted", "cursed"],
-		"fire": ["ice"],
 		"ancient": ["artificial"],
 		"common": ["rare", "epic", "legendary"]
 	}

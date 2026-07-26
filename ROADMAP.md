@@ -156,10 +156,18 @@ Make what already exists correct and verified before building on it.
 | ~~Fix `EventBus` mismatch~~ | done — declared, typed, and the unchecked `emit_signal("...")` form now fails the suite |
 | ~~CI~~ | done — green on every push |
 | ~~Reconnect signals~~ | done — SanityManager wiring connected and asserted; the GameManager half deleted, its signals never existed |
-| **Procgen verdict** | Run the orphaned `scripts/hybrid/` (2,021 lines) against real input for the first time. It is cheap to test and has never executed. **Keep it or delete it — do not leave it in limbo.** Tier two under `AGENTS.md` §7.1: measure and recommend, a human merges the deletion |
+| ~~Procgen verdict~~ | **keep** — it ran, it works, 0.07 ms per generation. But only a third of its output passes its own safety checker, and it is not adopted. See `CANON.md` §9 |
 
-**Gate:** test suite green in CI. Procgen either wired and asserted, or gone from
-the repo with the decision recorded in `CANON.md` §9.
+**Gate — met, with the wording amended.** The suite is green in CI across four
+files and 79 assertions.
+
+The gate originally read *"procgen either wired and asserted, or gone from the
+repo."* The evidence supported neither branch, so the wording is corrected here
+rather than stretched to fit: procgen is **asserted but deliberately not
+wired.** It runs in the suite on every push, and adoption waits for a playable
+loop because `AGENTS.md` §3 forbids depending on it before then. Wiring it now
+would have satisfied the sentence and broken the rule. The two open defects it
+left behind are in `CANON.md` §9.
 
 ---
 

@@ -401,14 +401,22 @@ is only struck from this list when a run proves it fixed (`AGENTS.md` §2).
 
 **Open:**
 
-1. **2,021 lines of procedural generation have never executed.**
-   `scripts/hybrid/*.gd` declares no `class_name`; the five class names are
-   declared *only* in `scripts/systems/*.gd`, which are 2-4 function stubs
-   returning hardcoded `{"name": "Placeholder ..."}` (see
-   `scripts/systems/procedural_manager.gd`, 32 lines). `HybridGenerator`
-   instantiates by class name, so Godot resolves to the stubs. Nothing in the
-   repo references `scripts/hybrid/` by path.
-2. **No art assets in the engine project, and no audio.** There is no
+1. **Procedural generation returns invalid dungeons about two thirds of the
+   time.** Measured over 40 seeded generations by `tests/procgen_test.gd`:
+   13 of 40 pass `SafetyChecker`, 24 fail for unreachable rooms and 4 for
+   having no entrance. The checker is right and does its job; the generator has
+   **no retry loop**, so an invalid layout is simply handed back. Fix before
+   anything depends on this — a retry-until-valid with a bounded attempt count
+   is most of the answer.
+2. **The real generator is still not adopted.** `HybridGenerator` instantiates
+   by class name and therefore still resolves to the 178 lines of stubs in
+   `scripts/systems/`, which return hardcoded placeholders. The gap is exactly
+   one method: `HybridGenerator` calls `TagSystem.apply_tags()`, which the real
+   module does not expose — it offers `generate_tags_for_entity()` and
+   `calculate_tag_effects()` instead. The other four calls line up. Adoption is
+   deliberately deferred: `AGENTS.md` §3 forbids depending on this code until a
+   playable loop exists.
+3. **No art assets in the engine project, and no audio.** There is no
    `dotbg/assets/`.
 
 **Closed by Phase 0** — kept as a record of what the audit found, so a later
@@ -450,10 +458,25 @@ session does not re-report them:
   `TouchJoystick`. Same defect family as open defect 1 — check a name before
   claiming it.
 
-The orphaned procgen has executed zero times — a hypothesis, not an asset. It is
-cheap to run, so **test it early and reach a verdict; do not bet on it.** The
-rule for agents is in `AGENTS.md` §3: run it for a keep-or-delete decision now,
-depend on it only once a playable loop exists.
+### The procgen verdict — keep, resolved 2026-07-25
+
+It ran for the first time and the answer is **keep.** All five modules load and
+initialise, the 35-tag vocabulary is real, tags resolve to actual stat and
+behaviour modifiers, the six-tag mobile ceiling in §4 is honoured, and the whole
+pipeline — template from `HandcraftedManager`, detail from `ProceduralManager`,
+validation by `SafetyChecker` — runs in **0.07 ms** against §4's 2,000 ms budget.
+It is the architecture this canon specifies, already written.
+
+Two of §4's four forbidden tag pairs were not enforced when it first ran: `fire`
+conflicted with `ice` rather than `water`, and `real`/`hallucination` was absent
+entirely — the sanity-critical one, since an entity that is both real and a
+hallucination makes the mechanic meaningless. Both are fixed and asserted.
+
+What keeps it from being an asset yet is defect 1 above: a third of its output
+is valid. That is a bounded, well-understood bug in a system whose own checker
+already detects it, not a reason to delete 2,021 working lines and write them
+again. `tests/procgen_test.gd` is now part of the suite so it cannot rot back
+into a hypothesis.
 
 ---
 
