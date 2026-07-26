@@ -117,13 +117,14 @@ tested and its evidence is an assertion in the suite, not a claim. The rule is
 | CC0 ambience sourced and licence-checked | **proven** | `art/gen/fetch_ambience.py` — six clips, filtered and then re-verified per file |
 | Headless test suite and CI | **proven** | green on every push |
 | Golden-image drift detection | **proven** | baseline approved, reports 0.00000 |
+| Producing a Windows build that runs | **proven** | templates installed, `dotbg/export_presets.cfg`, exported 109 MB + 8 MB pck, and the binary boots headless with all seven autoloads and exit 0 |
 
 **Not proven, and honest about why:**
 
 | Gap | Why it matters | What it needs |
 |---|---|---|
-| Export templates absent | no build of any kind can be produced | a 1,221 MB download; 31 GB free, so it fits |
 | Android SDK absent | no AAB, Phase 5 only | SDK install, and Godot's Android export wants JDK 17 where this machine has 21 |
+| Export is not in CI | a build reproducible from a clean clone is the Phase 5 gate | the templates are a 1.2 GB download per run; cache them, or use a prebuilt image |
 | Paid 3D and voice generation | deferred by decision, not blocked | not required: architecture is parametric, characters come from CC0 or authoring |
 
 **Pixabay**, tested 2026-07-25 with a stored key (`PIXABAY_API_KEY`): `/api/`
