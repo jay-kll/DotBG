@@ -24,6 +24,30 @@ briefing; nothing else in the repo has authority.
 
 First thing to do in any session: run the harness and confirm it is still green.
 
+### Executing a phase
+
+Each phase has an executable plan under `.claude/workflows/`. They are scripts
+rather than documents on purpose: a plan written as prose drifts from the repo
+and nobody notices, while a plan that runs either works or fails loudly. Launch
+one with the Workflow tool by name.
+
+| Run | Plan | Ends when |
+|---|---|---|
+| 1st | `phase2-core-loop` | its gate exits 0 — scripted input through *fight → win* and *die → restart* |
+| 2nd | `phase3-art-pipeline` | the kit exists and renders; the Android frame-rate half of the gate **cannot** be met here |
+| 3rd… | `phase4-act-one` | never in one run — it is built to be run repeatedly, resuming from what exists |
+| last | `phase5-ship` | the engineering half only; the commercial half is not an agent's to do |
+
+Each one is **goal-shaped**: agents receive the end state and the command that
+proves it, not a procedure. Each loops on its real gate rather than trusting a
+self-report, verifies itself adversarially from independent lenses, repairs what
+blocks, and writes a run journal ending in a note for the human.
+
+Run them in order. A later plan assumes the earlier gate is green and will
+produce confident nonsense if it is not. `phase4-act-one` takes an optional
+steer as `args` — a string naming what to work on — and surveys the repo before
+believing it.
+
 ```bash
 powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_tests.ps1
 ```
@@ -311,16 +335,29 @@ Canon, not cut. Staged delivery, not reduced scope.
 
 ## Honest timeline
 
-| Milestone | Cumulative |
-|---|---|
-| Phase 1-2 complete (it's a game) | ~6 weeks |
-| Phase 3 complete (it looks like the game) | ~4 months |
-| **v1.0 shipped** | **~9-12 months** |
-| All three acts | ~2 years |
+**The calendar estimates that used to sit here are deleted.** They were priced
+as human typing time — six weeks to a game, four months to Phase 3 — and that
+is the wrong unit. Well-specified systems code is written by an agent in
+minutes, and a schedule built on typing speed makes every phase look bigger
+than it is and invites scoping down work that is actually cheap.
 
-This assumes one person with agent assistance working steadily. It is not the
-"3-4 years for 50-70 hours" the original plan claimed, because that plan was
-never achievable — but neither is it fast. Content is content.
+**Phases are gated, not scheduled.** A phase is finished when its gate exits 0,
+and that is the only thing that decides when the next one starts. What actually
+limits throughput, in the order it bites:
+
+1. **Verification, not generation.** Every unit must end in an assertion. Ten
+   thousand lines nobody ran is this repo's founding defect at scale, and it is
+   the one failure mode that gets faster with more agents rather than slower.
+2. **Human judgment that cannot be delegated.** Whether combat feels deliberate,
+   whether stonework reads as authentically Gothic, whether an encounter is any
+   good. `AGENTS.md` §7.1 puts these in the always-stop tier because an agent
+   grading its own aesthetic output is the defect this project is built around.
+3. **Hardware and accounts.** Phase 3's gate wants 60 FPS measured on a physical
+   mid-range Android. Phase 5 wants Steam and Google Play accounts and signing
+   keys. No amount of speed produces either.
+
+Content is still content — but the constraint on it is taste and playtesting,
+not keystrokes.
 
 ---
 
