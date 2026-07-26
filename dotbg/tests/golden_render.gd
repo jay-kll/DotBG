@@ -48,21 +48,35 @@ func _init() -> void:
 	approved_dir = args[1]
 
 
-func _process(_delta: float) -> bool:
-	frames += 1
-	if frames == 1:
-		for key in SCENES:
-			var packed: PackedScene = load(SCENES[key])
-			if packed == null:
-				print("  FAIL  scene loads: %s" % SCENES[key])
-				failures += 1
-				checks += 1
-				continue
-			root.add_child(packed.instantiate())
-		return false
+var started := false
+var spawned: Array[Node] = []
 
-	if frames < WARMUP_FRAMES:
-		return false
+
+# The run is a coroutine because the shader probe has to wait for frames to be
+# drawn between setting a uniform and reading the pixels back. _process cannot
+# await — it would return at the first suspension and the summary would print
+# before the work finished — so it launches the run once and never quits itself.
+func _process(_delta: float) -> bool:
+	if not started:
+		started = true
+		_run()
+	return false
+
+
+func _run() -> void:
+	for key in SCENES:
+		var packed: PackedScene = load(SCENES[key])
+		if packed == null:
+			print("  FAIL  scene loads: %s" % SCENES[key])
+			failures += 1
+			checks += 1
+			continue
+		var instance := packed.instantiate()
+		spawned.append(instance)
+		root.add_child(instance)
+
+	for i in range(WARMUP_FRAMES):
+		await process_frame
 
 	print("=== golden_render: start ===")
 	print("  driver=%s display=%s" % [
@@ -75,10 +89,133 @@ func _process(_delta: float) -> bool:
 	for key in SCENES:
 		_capture_and_compare(key)
 
+	await _probe_corruption_shader()
+
 	print("=== golden_render: %d checks, %d failures ===" % [checks, failures])
 	print("RESULT: " + ("PASS" if failures == 0 else "FAIL"))
 	quit(1 if failures > 0 else 0)
-	return true
+
+
+## Proves the corruption shader compiles and visibly does something.
+##
+## CANON.md §5 specifies four discrete visual tiers driven by one 0–1 parameter,
+## and §5.4 rests the entire full-3D decision on that being a shader rather than
+## a repaint. Nothing had ever confirmed it was buildable. A compile check alone
+## would not: a shader that compiles and changes no pixels passes it happily.
+## So this renders the same geometry at full sanity and at zero and requires the
+## images to differ.
+func _probe_corruption_shader() -> void:
+	print("-- corruption shader (CANON.md §5) --")
+
+	# Clear the gameplay scenes first. Left in, they fill most of the frame and
+	# the arch changes a few hundred pixels out of 230,000 — the measurement
+	# comes back as 0.006 and reads as "the shader does nothing", when what it
+	# actually measured was how little of the screen the subject occupied.
+	for node in spawned:
+		if is_instance_valid(node):
+			node.free()
+	spawned.clear()
+
+	var shader: Shader = load("res://shaders/corruption.gdshader")
+	checks += 1
+	if shader == null:
+		failures += 1
+		print("  FAIL  the corruption shader loads")
+		return
+	print("  PASS  the corruption shader loads")
+
+	var packed: PackedScene = load("res://assets/probe/arch.glb")
+	var subject: Node3D
+	if packed != null:
+		subject = packed.instantiate()
+	else:
+		subject = MeshInstance3D.new()
+		(subject as MeshInstance3D).mesh = SphereMesh.new()
+
+	var stage := Node3D.new()
+	root.add_child(stage)
+	stage.add_child(subject)
+
+	var mesh_instance := _first_mesh(subject)
+	checks += 1
+	if mesh_instance == null:
+		failures += 1
+		print("  FAIL  found geometry to apply it to")
+		stage.queue_free()
+		return
+	print("  PASS  found geometry to apply it to")
+
+	var material := ShaderMaterial.new()
+	material.shader = shader
+	mesh_instance.material_override = material
+
+	var cam := Camera3D.new()
+	stage.add_child(cam)
+	cam.projection = Camera3D.PROJECTION_ORTHOGONAL
+	cam.size = 4.0
+	cam.global_position = Vector3(3.0, 3.0, 3.0)
+	cam.look_at(Vector3(0.0, 1.2, 0.0), Vector3.UP)
+	cam.make_current()
+
+	var light := DirectionalLight3D.new()
+	stage.add_child(light)
+	light.rotation_degrees = Vector3(-45.0, -35.0, 0.0)
+
+	var healthy := await _render_at(material, 1.0, "corruption-sanity-100")
+	var ruined := await _render_at(material, 0.0, "corruption-sanity-000")
+
+	checks += 1
+	if healthy == null or ruined == null:
+		failures += 1
+		print("  FAIL  rendered the shader at both extremes")
+		stage.queue_free()
+		return
+	print("  PASS  rendered the shader at both extremes")
+
+	# Deliberately not the mean used for drift detection. Averaged over the whole
+	# frame, a total repaint of the arch reads as 0.017 simply because the arch
+	# is a sixth of the image — that number measures how much screen the subject
+	# occupies, not how much it changed. Drift detection wants the mean; "did
+	# the shader do anything" wants to know how many pixels moved, and by how
+	# much. Same two images, different questions.
+	var changed := _changed_fraction(healthy, ruined, 0.1)
+	var mean := _mean_abs_diff(healthy, ruined)
+	checks += 1
+	if changed > 0.05:
+		print("  PASS  full corruption looks different from full sanity")
+		print("    %.1f%% of pixels changed by more than 0.1 (frame mean %.5f)" % [
+			changed * 100.0, mean])
+	else:
+		failures += 1
+		print("  FAIL  the shader compiles but changes almost nothing")
+		print("    only %.1f%% of pixels moved — a shader that renders identically is not a shader"
+			% (changed * 100.0))
+
+	stage.queue_free()
+
+
+func _render_at(material: ShaderMaterial, sanity: float, name: String) -> Image:
+	material.set_shader_parameter("sanity", sanity)
+	# Let the frame actually be drawn with the new parameter before grabbing it.
+	for i in range(4):
+		await process_frame
+	var tex := root.get_texture()
+	if tex == null:
+		return null
+	var img := tex.get_image()
+	if img != null:
+		img.save_png(out_dir.path_join("%s.png" % name))
+	return img
+
+
+func _first_mesh(node: Node) -> MeshInstance3D:
+	if node is MeshInstance3D:
+		return node
+	for child in node.get_children():
+		var found := _first_mesh(child)
+		if found != null:
+			return found
+	return null
 
 
 func _capture_and_compare(key: String) -> void:
@@ -133,6 +270,24 @@ func _capture_and_compare(key: String) -> void:
 		print("    approved: %s" % approved_path)
 		print("    If the change is intended, a human approves the new image. Never overwrite")
 		print("    the baseline to make this pass — that is how the screen rots unnoticed.")
+
+
+## Share of sampled pixels that moved by more than `threshold` on any channel.
+##
+## Insensitive to how much of the frame the subject fills, which is exactly what
+## the mean is not.
+func _changed_fraction(a: Image, b: Image, threshold: float) -> float:
+	var moved := 0
+	var samples := 0
+	for x in range(0, a.get_width(), 4):
+		for y in range(0, a.get_height(), 4):
+			var pa := a.get_pixel(x, y)
+			var pb := b.get_pixel(x, y)
+			var delta := maxf(maxf(absf(pa.r - pb.r), absf(pa.g - pb.g)), absf(pa.b - pb.b))
+			if delta > threshold:
+				moved += 1
+			samples += 1
+	return (float(moved) / float(samples)) if samples > 0 else 0.0
 
 
 func _mean_abs_diff(a: Image, b: Image) -> float:
