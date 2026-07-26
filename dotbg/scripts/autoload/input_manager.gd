@@ -114,17 +114,16 @@ func _configure_mobile_optimization() -> void:
 		gesture_threshold = 75.0  # Larger threshold for touch screens
 
 func _connect_epic_systems() -> void:
-	# Connect to SanityManager for sanity-influenced input
-	# TODO: Fix signal connections after autoload initialization
-	# if SanityManager:
-	#	SanityManager.reality_distortion_triggered.connect(_on_reality_distortion)
-	
-	# Connect to GameManager for act-specific input handling
-	# TODO: Fix signal connections after autoload initialization
-	# if GameManager:
-	#	GameManager.act_changed.connect(_on_act_changed)
-	
-	pass  # Placeholder until autoload connections are fixed
+	# SanityManager loads fifth and this autoload seventh, so it is already in
+	# the tree — the "fix connections after autoload initialization" TODO that
+	# guarded this was never a real ordering problem.
+	#
+	# This is the interface becoming a horror vector: at low sanity, input lag,
+	# false touches and corrupted gestures. CANON.md §6.
+	SanityManager.reality_distortion_triggered.connect(_on_reality_distortion)
+
+	# The GameManager act connection is deleted, not restored: `act_changed` was
+	# never declared anywhere, and v1.0 ships one act (CANON.md §8).
 
 func _input(event: InputEvent) -> void:
 	# Main input processing entry point
@@ -258,16 +257,6 @@ func _on_reality_distortion(distortion_type: String, intensity: float) -> void:
 		"gesture_corruption":
 			gesture_detector.set_corruption_level(intensity)
 
-func _on_act_changed(new_act: int) -> void:
-	# Adjust input handling for different acts
-	# TODO: Restore proper Act enum after GameManager expansion
-	match new_act:
-		1:  # GameManager.Act.DESCENDING_CITY:
-			gesture_threshold = 50.0  # Normal precision
-		2:  # GameManager.Act.DROWNING_DEPTHS:
-			gesture_threshold = 60.0  # Slightly less precise (water effects)
-		3:  # GameManager.Act.DREAM_REALM:
-			gesture_threshold = 40.0  # More sensitive (dream logic)
 
 func _on_gesture_recognized(gesture_type: String, gesture_data: Dictionary) -> void:
 	# Emit legacy signal for backwards compatibility

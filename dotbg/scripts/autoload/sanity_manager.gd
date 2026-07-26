@@ -42,17 +42,15 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	# Connect to GameManager for integration
-	# TODO: Fix signal connections after autoload initialization
-	# if GameManager:
-	#	GameManager.sanity_changed.connect(_on_game_manager_sanity_changed)
-	
+	# The GameManager.sanity_changed connection that sat here is deleted. That
+	# signal was never declared, and game_manager.gd states the boundary in its
+	# own header: sanity belongs to SanityManager. Listening to GameManager for
+	# it would have made two owners of one value, which is this repo's signature
+	# defect.
+
 	# Initialize sanity tracking
 	_update_sanity_level()
 	_log_sanity_event("sanity_manager_initialized", {"initial_sanity": current_sanity})
-
-func _on_game_manager_sanity_changed(new_value: float, max_value: float) -> void:
-	# Sync with GameManager sanity changes
-	set_sanity(new_value, max_value)
 
 func set_sanity(new_value: float, new_max: float = max_sanity) -> void:
 	var old_level = sanity_level

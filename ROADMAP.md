@@ -155,7 +155,7 @@ Make what already exists correct and verified before building on it.
 | ~~Purge 2D leftovers~~ | done — jump stats deleted, asserted gone |
 | ~~Fix `EventBus` mismatch~~ | done — declared, typed, and the unchecked `emit_signal("...")` form now fails the suite |
 | ~~CI~~ | done — green on every push |
-| **Reconnect signals** | Cross-autoload wiring in `hybrid_generator.gd`, `input_manager.gd` and `sanity_manager.gd` is commented out behind a TODO. Connect it or delete it |
+| ~~Reconnect signals~~ | done — SanityManager wiring connected and asserted; the GameManager half deleted, its signals never existed |
 | **Procgen verdict** | Run the orphaned `scripts/hybrid/` (2,021 lines) against real input for the first time. It is cheap to test and has never executed. **Keep it or delete it — do not leave it in limbo.** Tier two under `AGENTS.md` §7.1: measure and recommend, a human merges the deletion |
 
 **Gate:** test suite green in CI. Procgen either wired and asserted, or gone from

@@ -408,10 +408,7 @@ is only struck from this list when a run proves it fixed (`AGENTS.md` §2).
    `scripts/systems/procedural_manager.gd`, 32 lines). `HybridGenerator`
    instantiates by class name, so Godot resolves to the stubs. Nothing in the
    repo references `scripts/hybrid/` by path.
-2. **All cross-autoload signal wiring is commented out** behind
-   `# TODO: Fix signal connections after autoload initialization` — in
-   `hybrid_generator.gd`, `input_manager.gd:118` and `sanity_manager.gd`.
-3. **No art assets in the engine project, and no audio.** There is no
+2. **No art assets in the engine project, and no audio.** There is no
    `dotbg/assets/`.
 
 **Closed by Phase 0** — kept as a record of what the audit found, so a later
@@ -426,6 +423,15 @@ session does not re-report them:
   gone.
 - *The 2D branch.* No `CharacterBody2D` remains; the player is
   `CharacterBody3D` (`scenes/characters/player/player_3d.tscn`).
+- *The commented-out cross-autoload wiring.* `SanityManager.sanity_level_changed`
+  and `reality_distortion_triggered` now reach `HybridGenerator` and
+  `InputManager`, asserted by `tests/signals_test.gd`. The ordering fear in the
+  placeholder note was unfounded — `project.godot` already loaded SanityManager
+  before both. The `GameManager` half was **deleted, not restored**:
+  `act_changed`, `area_changed` and `sanity_changed` were never declared
+  anywhere, and v1.0 ships one act with no area concept. A live connection to
+  the first of those was also removed from `virtual_joystick.gd`, where it
+  would have thrown on the first run had the script ever parsed.
 - *The `EventBus` mismatch.* `sanity_corruption_reset` is declared, and the
   emission is typed rather than a string, so an undeclared signal now fails to
   parse instead of silently doing nothing. `tests/signals_test.gd` scans the

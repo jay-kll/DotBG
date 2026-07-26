@@ -74,35 +74,28 @@ func _configure_mobile_optimization() -> void:
 		template_system.set_cache_limit(50)  # Limit template cache
 
 func _connect_epic_systems() -> void:
-	# Connect to SanityManager for sanity-influenced generation
-	# TODO: Fix signal connections after autoload initialization
-	# if SanityManager:
-	#	SanityManager.sanity_level_changed.connect(_on_sanity_level_changed)
-	#	SanityManager.reality_distortion_triggered.connect(_on_reality_distortion)
-	
-	# Connect to GameManager for act-specific generation
-	# TODO: Fix signal connections after autoload initialization
-	# if GameManager:
-	#	GameManager.act_changed.connect(_on_act_changed)
-	#	GameManager.area_changed.connect(_on_area_changed)
-	
-	pass  # Placeholder until autoload connections are fixed
+	# These sat commented out behind a placeholder note about fixing connections
+	# after autoload initialization, since the original five-day burst in June
+	# 2025. The stated fear was unfounded:
+	# project.godot loads SanityManager fifth and this autoload sixth, so it is
+	# already in the tree by the time this runs. The connections were never
+	# broken, they were never tried.
+	SanityManager.sanity_level_changed.connect(_on_sanity_level_changed)
+	SanityManager.reality_distortion_triggered.connect(_on_reality_distortion)
 
-func _on_sanity_level_changed(old_level: SanityManager.SanityLevel, new_level: SanityManager.SanityLevel) -> void:
+	# The GameManager connections that lived here are deleted rather than
+	# restored. They referenced `act_changed` and `area_changed`, which
+	# GameManager has never declared — they were aspirational, not pending. And
+	# v1.0 ships one act with no area concept (CANON.md §8), so there is nothing
+	# for them to fire on. Write them when something can emit them.
+
+func _on_sanity_level_changed(_old_level: SanityManager.SanityLevel, new_level: SanityManager.SanityLevel) -> void:
 	if sanity_influenced_generation:
 		_update_generation_context_for_sanity(new_level)
 
 func _on_reality_distortion(distortion_type: String, intensity: float) -> void:
 	# Apply reality distortion to ongoing generations
 	_apply_distortion_to_generation(distortion_type, intensity)
-
-func _on_act_changed(new_act: int) -> void:
-	if act_specific_generation:
-		_update_generation_context_for_act(new_act)
-
-func _on_area_changed(area_id: String) -> void:
-	# Update generation context for new areas
-	_update_generation_context_for_area(area_id)
 
 # Core hybrid generation methods
 func generate_hybrid_content(content_type: String, base_template_id: String, context: Dictionary = {}) -> Dictionary:
@@ -379,12 +372,6 @@ func _apply_mutation_modifications(content: Dictionary, mutations: Array) -> voi
 
 func _update_generation_context_for_sanity(sanity_level: SanityManager.SanityLevel) -> void:
 	current_generation_context["sanity_level"] = sanity_level
-
-func _update_generation_context_for_act(act: int) -> void:
-	current_generation_context["current_act"] = act
-
-func _update_generation_context_for_area(area_id: String) -> void:
-	current_generation_context["current_area"] = area_id
 
 func _apply_distortion_to_generation(distortion_type: String, intensity: float) -> void:
 	# Apply real-time distortion to ongoing generations

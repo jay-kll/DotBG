@@ -106,10 +106,11 @@ func _connect_epic_systems() -> void:
 	if SanityManager:
 		SanityManager.reality_distortion_triggered.connect(_on_reality_distortion)
 		SanityManager.sanity_level_changed.connect(_on_sanity_level_changed)
-	
-	# Connect to GameManager for act-specific modifications
-	if GameManager:
-		GameManager.act_changed.connect(_on_act_changed)
+
+	# A live connection to GameManager.act_changed used to sit here, to a signal
+	# GameManager has never declared. It would have thrown the moment this ran —
+	# and it never ran, because the script's class_name collided with a native
+	# Godot 4.7 class and it failed to parse. Fixing that name exposed this.
 
 func _configure_mobile_settings() -> void:
 	# Optimize for mobile touch screens
@@ -331,20 +332,6 @@ func _on_sanity_level_changed(old_level: SanityManager.SanityLevel, new_level: S
 			sanity_distortion = 0.8
 			sensitivity = 0.6
 
-func _on_act_changed(new_act: int) -> void:
-	# Adjust joystick for different acts
-	# TODO: Restore proper Act enum after GameManager expansion
-	match new_act:
-		1:  # GameManager.Act.DESCENDING_CITY:
-			act_modifier = 1.0
-			base_color = Color(1, 1, 1, 0.3)
-		2:  # GameManager.Act.DROWNING_DEPTHS:
-			act_modifier = 0.8  # Slower movement in water
-			base_color = Color(0.7, 0.9, 1.0, 0.3)
-		3:  # GameManager.Act.DREAM_REALM:
-			act_modifier = 1.2  # Faster movement in dreams
-			base_color = Color(1.0, 0.7, 1.0, 0.3)
-	
 	# Update visuals
 	if visual_feedback:
 		joystick_base.queue_redraw()

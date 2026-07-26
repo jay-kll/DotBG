@@ -77,6 +77,35 @@ func _process(_delta: float) -> bool:
 	check("no signal is emitted that EventBus does not declare", undeclared.is_empty(),
 		"\n    ".join(undeclared) if not undeclared.is_empty() else "none")
 
+	# CANON.md §9, open defect 2: the cross-autoload wiring sat commented out
+	# behind a TODO since the original five-day burst. Asserting the connections
+	# exist is the difference between "wired" and "claimed to be wired".
+	print("-- cross-autoload wiring (CANON.md §9, defect 2) --")
+	var sanity := root.get_node_or_null(NodePath("SanityManager"))
+	if sanity == null:
+		check("SanityManager autoload present", false)
+	else:
+		var wiring := {
+			"sanity_level_changed": ["HybridGenerator"],
+			"reality_distortion_triggered": ["HybridGenerator", "InputManager"],
+		}
+		for signal_name in wiring:
+			var targets: Array[String] = []
+			for c in sanity.get_signal_connection_list(signal_name):
+				var obj = c["callable"].get_object()
+				if obj != null:
+					targets.append(str(obj.name))
+			for expected in wiring[signal_name]:
+				check("SanityManager.%s reaches %s" % [signal_name, expected],
+					targets.has(expected), "connected to: " + str(targets))
+
+	var stale := 0
+	for path in files:
+		if FileAccess.get_file_as_string(path).contains("TODO: Fix signal connections"):
+			stale += 1
+	check("no connection is still parked behind a TODO", stale == 0,
+		"%d file(s) still carry the placeholder" % stale)
+
 	check("nothing uses the unchecked EventBus.emit_signal(\"...\") form",
 		offenders.is_empty(),
 		("use EventBus.<signal>.emit() instead — it fails to parse when the signal\n"
