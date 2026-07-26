@@ -172,18 +172,58 @@ func level_up() -> void:
 	level_up_achieved.emit(level)
 	stats_updated.emit()
 
-func modify_stamina(amount: float) -> bool:
-	if amount < 0 and stamina_current < abs(amount):
+# Seconds left before regeneration resumes. Counted down rather than compared
+# against a wall clock so the behaviour can be driven with explicit deltas in a
+# test instead of raced against the frame rate.
+var _stamina_regen_cooldown: float = 0.0
+
+
+## Pay for an action. Returns false only when the pool is already empty.
+##
+## An action may be started with any stamina above zero and may drive the pool
+## negative — Tuning.STAMINA_ALLOW_OVERDRAW. Refusing to let the player overspend
+## would be the system protecting them from a commitment the combat model in
+## CANON.md §1 is built on. The cost of the mistake is the longer climb back.
+func spend_stamina(cost: float) -> bool:
+	if stamina_current <= 0.0:
 		return false
-		
-	stamina_current = clamp(stamina_current + amount, 0, stamina_max)
+	stamina_current -= cost
+	if not Tuning.STAMINA_ALLOW_OVERDRAW:
+		stamina_current = maxf(0.0, stamina_current)
+	_stamina_regen_cooldown = Tuning.STAMINA_REGEN_DELAY
 	stamina_changed.emit(stamina_current, stamina_max)
 	return true
 
+
+## True when an action could be started right now.
+func can_spend_stamina() -> bool:
+	return stamina_current > 0.0
+
+
+func reset_stamina_cooldown() -> void:
+	_stamina_regen_cooldown = 0.0
+
+
+## Advance the stamina clock. Split so a delta longer than the remaining pause
+## spends its remainder regenerating, instead of a long frame silently costing
+## the player a whole tick of recovery.
+func advance_stamina(delta: float) -> void:
+	if delta <= 0.0:
+		return
+	if _stamina_regen_cooldown > 0.0:
+		var consumed: float = minf(delta, _stamina_regen_cooldown)
+		_stamina_regen_cooldown -= consumed
+		delta -= consumed
+		if delta <= 0.0:
+			return
+	if stamina_current >= stamina_max:
+		return
+	stamina_current = minf(stamina_max, stamina_current + stamina_regen * delta)
+	stamina_changed.emit(stamina_current, stamina_max)
+
+
 func _process(delta: float) -> void:
-	if stamina_current < stamina_max:
-		stamina_current = min(stamina_max, stamina_current + stamina_regen * delta)
-		stamina_changed.emit(stamina_current, stamina_max)
+	advance_stamina(delta)
 
 func take_damage(amount: float) -> void:
 	var actual_damage = amount * (1.0 - (defense / (defense + 100.0)))
