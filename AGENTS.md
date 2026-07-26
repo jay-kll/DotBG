@@ -20,6 +20,16 @@ Everything else — `README.md`, `design.md`, `story_design.md`, `memory-bank/`,
 `.taskmaster/`, `project_info_export/` — is **source material with zero
 authority.** Read it for the author's intent; never take direction from it.
 
+Where things live:
+
+| Path | What it is |
+|---|---|
+| `dotbg/` | **the Godot 4 project.** All engine code, scenes and tests. Godot's `res://` is this directory |
+| `dotbg/tests/` | the headless suite (§2) |
+| `art/` | art references and candidates, governed by `ASSETS.md` — not imported by the engine |
+| `tools/` | repo scripts (test runner) |
+| `memory-bank/`, `project_info_export/`, `.taskmaster/` | source material, zero authority |
+
 - **`CANON.md` wins** over any file that contradicts it. Do not "reconcile" by
   splitting the difference — fix the wrong file or delete it.
 - **Do not create a new binding document.** If you believe one is needed, it
@@ -35,8 +45,8 @@ authority.** Read it for the author's intent; never take direction from it.
 ## 2. Verification rules
 
 The defining defect of this codebase is that **code was written and never run.**
-~2,026 lines of procedural generation have executed zero times. All autoload
-signal wiring sits commented out. The main menu's start button loads nothing.
+2,021 lines of procedural generation have executed zero times. All cross-autoload
+signal wiring still sits commented out. See `CANON.md` §9.
 
 Therefore:
 
@@ -49,12 +59,36 @@ Therefore:
   its own work.
 - If you cannot run it, say so explicitly and mark the work unverified.
 
+### The harness — run this
+
+```bash
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_tests.ps1
+```
+
+Exits 0 on pass, non-zero on failure, and prints which Godot binary it used.
+Currently 19 checks: seven autoloads, run-state reset, the 3D scene loading, the
+player simulated and standing, and the camera orthogonal at a measured 45°.
+
+**Do not invoke a bare `godot`.** It is not on PATH on this machine (installed
+via winget, which creates no shim), so the bare command fails with *command not
+found* — the runner resolves the binary via `$env:GODOT` → PATH → winget. If you
+need Godot for something the runner does not cover, resolve it the same way.
+Current version: **4.7.1-stable**.
+
+Every phase gate in `ROADMAP.md` extends this suite. A gate is a command that
+exits 0 or 1, never a judgment.
+
 ## 3. Scope rules
 
-- v1.0 is **Act I only, 3-5 hours**. See `CANON.md` §3.
+- v1.0 is **Act I only, 3-5 hours**. See `CANON.md` §8.
 - Do not implement Acts II/III, mutations, companions, the Black Market,
   additional classes, or additional endings. They are canon but post-v1.0.
-- **Do not resurrect `scripts/hybrid/`** until a playable loop exists.
+- **`scripts/hybrid/`: test it, do not build on it.** Running the orphaned
+  procgen against real input to reach a keep-or-delete verdict is Phase 1 work
+  and is wanted now — it is cheap and has executed zero times. What is forbidden
+  is *adopting* it: wiring it into scenes, generating content with it, or
+  writing anything that depends on it, before a playable loop exists. Verdict
+  now, dependency later.
 - No new systems until the existing ones run.
 
 ## 4. Code rules
@@ -67,7 +101,8 @@ Therefore:
 - One `main_scene`. One main menu. If you find a second of anything structural,
   that is a bug — report it.
 - Before adding a `class_name`, search the repo for that name first. The
-  shadowing defect in `CANON.md` §7.1 was caused by duplicate class declarations.
+  shadowing defect in `CANON.md` §9, open defect 1, was caused by duplicate
+  class declarations.
 
 ## 5. Asset rules
 
@@ -88,5 +123,10 @@ Therefore:
 
 - Agents lose coherence around the 40-minute mark and roughly 30k lines of
   context. Work in small, verifiable units and land them.
-- Update `CANON.md` §7 when an integrity defect is actually fixed. Do not mark
-  it fixed until §2 is satisfied.
+- Move a defect from Open to Closed in `CANON.md` §9 when it is actually fixed.
+  Do not mark it fixed until §2 is satisfied.
+- **Leave the repo readable by a session that has none of your context.** Before
+  you finish, a cold reader going `CANON.md` → `AGENTS.md` → `ROADMAP.md` must
+  end up knowing what the game is, how to behave, and what to do next. If your
+  work invalidated a line in one of those three, fix the line — do not write a
+  note about it somewhere else.

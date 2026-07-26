@@ -383,6 +383,12 @@ staged.
 **v1.0 budget:** one act · one class · 8-12 enemy types · 3 bosses ending with
 The Architect · one ending path · Sanity active · Blood Echoes active.
 
+**The one class is the Cultist.** It is the only one of the three that matches
+the §2 protagonist — an acolyte of a forgotten faith — and the only one whose
+kit is built around Sanity, which is the mechanic v1.0 is shipping. Warrior and
+Scholar are post-v1.0. This was a maintainer's call, not something the source
+documents settle; overrule it here if wrong.
+
 **Post-v1.0:** Mutations, companions, Black Market, remaining classes, remaining
 endings, Acts II-III.
 
@@ -390,27 +396,47 @@ endings, Acts II-III.
 
 ## 9. Known integrity defects
 
-Verified by code audit 2026-07-25. State of the repo as inherited.
+Audited 2026-07-25 as inherited, re-verified against disk after Phase 0. A defect
+is only struck from this list when a run proves it fixed (`AGENTS.md` §2).
 
-1. **~2,026 lines of procedural generation never execute.** `scripts/hybrid/*.gd`
-   declares no `class_name`; the five class names are declared *only* in
-   `scripts/systems/*.gd`, which are 2-4 function stubs returning hardcoded
-   `{"name": "Placeholder ..."}`. `HybridGenerator` instantiates by class name,
-   so Godot resolves to the stubs. Nothing loads `scripts/hybrid/` by path.
+**Open:**
+
+1. **2,021 lines of procedural generation have never executed.**
+   `scripts/hybrid/*.gd` declares no `class_name`; the five class names are
+   declared *only* in `scripts/systems/*.gd`, which are 2-4 function stubs
+   returning hardcoded `{"name": "Placeholder ..."}` (see
+   `scripts/systems/procedural_manager.gd`, 32 lines). `HybridGenerator`
+   instantiates by class name, so Godot resolves to the stubs. Nothing in the
+   repo references `scripts/hybrid/` by path.
 2. **All cross-autoload signal wiring is commented out** behind
-   `# TODO: Fix signal connections after autoload initialization`.
-3. **No playable loop.** `main_menu.tscn` is `run/main_scene`; its Start Game
-   button prints `"TODO: Implement game start"` and loads nothing.
-4. **A second, more complete main menu** (`scenes/main/main.tscn`) has a working
-   `start_new_game()` — and is unreachable, not being the `main_scene`.
-5. `scenes/test_input.tscn` references `res://scripts/ui/touch_button.gd`, absent.
-6. `sanity_manager.gd:151` emits `"sanity_corruption_reset"`, undeclared in
+   `# TODO: Fix signal connections after autoload initialization` — in
+   `hybrid_generator.gd`, `input_manager.gd:118` and `sanity_manager.gd`.
+3. `sanity_manager.gd:151` emits `"sanity_corruption_reset"`, undeclared in
    `event_bus.gd`.
-7. No test framework, no CI, no art assets, no audio.
+4. **2D leftovers in `player_stats.gd`:** `jump_force`, `max_jumps`,
+   `air_control`, and `base_speed = 200.0` — a pixels/second value on a 2m
+   capsule. No jump exists under a fixed orthogonal camera.
+5. **No CI, no art assets in the engine project, no audio.** One test file
+   exists (`dotbg/tests/boot_test.gd`); there is no `.github/workflows/` and no
+   `dotbg/assets/`.
 
-**Do not resurrect the orphaned procgen until a running game exists to put it
-in.** It has executed zero times — a hypothesis, not an asset. Re-enabling is
-cheap, which is a reason to *test* it early, not to bet on it.
+**Closed by Phase 0** — kept as a record of what the audit found, so a later
+session does not re-report them:
+
+- *No playable loop.* `main_menu.tscn` is still `run/main_scene`, but its Start
+  button now calls `GameManager.start_new_game()`, which loads
+  `res://scenes/test_3d_complete.tscn`. Asserted by the boot test.
+- *A second, unreachable main menu* at `scenes/main/main.tscn` — that directory
+  no longer exists.
+- *`scenes/test_input.tscn` referencing an absent `touch_button.gd`* — both are
+  gone.
+- *The 2D branch.* No `CharacterBody2D` remains; the player is
+  `CharacterBody3D` (`scenes/characters/player/player_3d.tscn`).
+
+The orphaned procgen has executed zero times — a hypothesis, not an asset. It is
+cheap to run, so **test it early and reach a verdict; do not bet on it.** The
+rule for agents is in `AGENTS.md` §3: run it for a keep-or-delete decision now,
+depend on it only once a playable loop exists.
 
 ---
 
@@ -432,7 +458,7 @@ cheap, which is a reason to *test* it early, not to bet on it.
 |---|---|
 | `project_info_export/prd.md` | **header only** — "entire experience is procedurally generated" and roguelike framing. Its §4.2 hybrid detail is canon |
 | `project_info_export/story_design.md` | alternate act *names*; content absorbed into §2 |
-| `roadmap.md` | "Pre-Development", unfilled `[Current Date]`, all Phase 0/1 unchecked, no 3D |
+| ~~`roadmap.md`~~ — **deleted** in `21079f5`, replaced by `ROADMAP.md` | "Pre-Development", unfilled `[Current Date]`, all Phase 0/1 unchecked, no 3D. **This filesystem is case-insensitive: `roadmap.md` now resolves to the binding `ROADMAP.md`. Do not act on the lowercase name** |
 | `design.md` (root) | pre-3D concept; **combo combat superseded by §1**. Systems and item vocabulary remain valid source material |
 | `.taskmaster/tasks/task_001.txt` | portrait orientation, marked done |
 | `README.md` | declares `.taskmaster/tasks/tasks.json` canonical; that file does not exist |
@@ -445,13 +471,16 @@ typography), all of `memory-bank/`.
 
 ## 12. The only metric that counts
 
-~8,700 lines of code. **Zero seconds of gameplay.**
+~8,700 lines of code. For thirteen months: **zero seconds of gameplay.**
 
 Until v1.0, progress is measured in **seconds of verified, running, replayable
 gameplay** — not lines, not tasks closed, not percent complete.
 
-First milestone: `main_scene` boots → a sprite character walks through a 3D
-Gothic space → a headless test asserts it.
+The first milestone is met: `main_scene` boots, a 3D character stands in a 3D
+space under the canonical camera, and a headless test asserts it. The number is
+above zero for the first time. It is still close to zero — nothing yet fights,
+dies, or can be lost. `ROADMAP.md` Phase 1 makes what exists correct; Phase 2 is
+where this number starts growing.
 
 ---
 

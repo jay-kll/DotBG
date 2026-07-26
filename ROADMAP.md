@@ -6,6 +6,27 @@ only sequences the work and defines how each phase proves it is done.
 Written 2026-07-25. Supersedes the deleted `roadmap.md`, which was a checklist of
 unchecked boxes with no gates and no dates.
 
+If you are a fresh session, you should have read `CANON.md` (what the game is)
+and `AGENTS.md` (how to behave here) before this file. Those three are the whole
+briefing; nothing else in the repo has authority.
+
+---
+
+## You are here
+
+**Phase 0 is complete. Phase 1 is the next work.** Two tracks run in parallel:
+
+| Track | State | Next action |
+|---|---|---|
+| **Code** | boots to a playable 3D scene, 19 checks green | Phase 1 below — foundation integrity, starting with the open defects in `CANON.md` §9 |
+| **Art references** | Stage 1 approved (5 refs) | run the queued Stage 2 batch — see *Art references* below |
+
+First thing to do in any session: run the harness and confirm it is still green.
+
+```bash
+powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_tests.ps1
+```
+
 ---
 
 ## The rule that makes this different from the last roadmap
@@ -15,13 +36,9 @@ a screenshot judged by the model that wrote the code — a command that exits 0 
 1. The previous roadmap had 60+ checkboxes and the project shipped zero seconds
 of gameplay in 13 months. The gates are the whole point.
 
-Current harness:
-
-```bash
-godot --headless --path dotbg --script res://tests/boot_test.gd
-```
-
-Every phase below extends it.
+The harness and how to invoke it are owned by `AGENTS.md` §2 — do not restate the
+command anywhere else, that is how it went stale before. Every phase below
+extends that suite.
 
 ---
 
@@ -34,23 +51,36 @@ boots to a 3D scene. `ASSETS.md` established the asset lifecycle.
 
 **Gate — met:** 19 checks, 0 failures, exit 0. Seven autoloads load,
 `start_new_game()` resets run state and sanity, the 3D scene loads, the player is
-simulated and standing, the camera is orthogonal at a measured 45.00°.
+simulated and standing, the camera is orthogonal at a measured 45.00°. Re-run it
+with the harness in `AGENTS.md` §2.
 
-```bash
-godot --headless --path dotbg --script res://tests/boot_test.gd
-```
+---
 
-### Art references — Stage 1 approved, Stage 2 queued
+## Art references — live work, runs alongside Phase 1
+
+Not part of a phase gate. It is the long-lead input to Phase 3 and the reason
+Phase 3 is de-riskable at all, so it advances in parallel with code work.
 
 Five approved references live in `art/approved/` with provenance sidecars: the
 cathedral hall at all four sanity-corruption tiers, plus the canonical Acolyte
 turnaround. These fix the visual target for Phase 3.
 
-Twenty-five Stage 2 requests are queued in
-`C:\Users\jovy2\Documents\Codex\claude-imagegen-inbox\pending` — Act I
+Twenty-five Stage 2 requests were written as `s2-01`…`s2-25` — Act I
 environments, enemies and combat moments, the three Architect phases, and UI
 screens including a dedicated canonical HUD reference. All twenty-five carry the
 byte-identical approved style header (`bc2329e4625f`).
+
+They live in a **queue shared with other projects**, so filter by the `s2-` prefix
+and trust the directory over this paragraph for counts:
+
+```
+C:\Users\jovy2\Documents\Codex\claude-imagegen-inbox\{pending,processing,done,failed}
+```
+
+As of 2026-07-25: `s2-01` and `s2-02` produced the three files sitting in
+`art/candidates/` and awaiting human approval; **`s2-03` is stranded in
+`processing/`** — that is the silent-hang failure mode, not work in flight, and
+it needs re-running; `s2-04`…`s2-25` are pending.
 
 **The queue has no watcher.** Nothing processes it automatically. To run a
 request, in the FOREGROUND only:
@@ -74,12 +104,12 @@ Make what already exists correct and verified before building on it.
 
 | Work | Detail |
 |---|---|
-| Movement tuning | `speed = 200.0` is a 2D pixels/second value on a 2m capsule — 720 km/h. Retune for methodical Soulslike (`CANON.md` §1): walk, run, dodge, stamina cost |
+| Movement tuning | `base_speed = 200.0` is a 2D pixels/second value on a 2m capsule — 720 km/h. Retune for methodical Soulslike (`CANON.md` §1): walk, run, dodge, stamina cost |
 | Purge 2D leftovers | `PlayerStats` still carries `jump_force`, `max_jumps`, `air_control`. No jump exists under a fixed orthogonal camera |
-| Reconnect signals | All cross-autoload wiring in `hybrid_generator.gd` is commented out behind a TODO. Connect it or delete it |
+| Reconnect signals | Cross-autoload wiring in `hybrid_generator.gd`, `input_manager.gd` and `sanity_manager.gd` is commented out behind a TODO. Connect it or delete it |
 | Fix `EventBus` mismatch | `sanity_manager.gd:151` emits `sanity_corruption_reset`, undeclared in `event_bus.gd` |
-| **Procgen verdict** | Run the orphaned `scripts/hybrid/` (~2,026 lines) against real input for the first time. It is cheap to test and has never executed. **Keep it or delete it — do not leave it in limbo** |
-| CI | GitHub Actions running the headless suite on every push |
+| **Procgen verdict** | Run the orphaned `scripts/hybrid/` (2,021 lines) against real input for the first time. It is cheap to test and has never executed. **Keep it or delete it — do not leave it in limbo** |
+| CI | GitHub Actions running the headless suite on every push. It must resolve Godot the way `tools/run_tests.ps1` does, not assume a `godot` on PATH |
 
 **Gate:** test suite green in CI. Procgen either wired and asserted, or gone from
 the repo with the decision recorded in `CANON.md` §9.

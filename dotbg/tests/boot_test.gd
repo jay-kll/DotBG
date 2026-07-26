@@ -2,8 +2,10 @@ extends SceneTree
 
 # Automated headless boot test.
 #
-# Run:
-#   godot --headless --path dotbg --script res://tests/boot_test.gd
+# Run it through the repo harness, which resolves the Godot binary (it is not on
+# PATH on the maintainer's machine) — see AGENTS.md §2:
+#
+#   powershell -NoProfile -ExecutionPolicy Bypass -File tools/run_tests.ps1
 #
 # Exits 0 on pass, 1 on failure, so CI and agents can trust the result rather
 # than reading a screenshot. This is the harness AGENTS.md §2 requires: a claim
