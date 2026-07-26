@@ -3,8 +3,9 @@
 **This is the single source of truth for this project.** Where any other document
 disagrees with this file, this file wins and the other document is wrong.
 
-Established 2026-07-25. Revision 2 — merges Vision 2 (`project_info_export/`)
-and Vision 3 (`memory-bank/` + `.taskmaster/docs/prd.txt`) into one spec.
+Established 2026-07-25. Revision 3 — merges Vision 2 (`project_info_export/`)
+and Vision 3 (`memory-bank/` + `.taskmaster/docs/prd.txt`) into one spec, and
+resolves character rendering to full 3D.
 
 ---
 
@@ -34,15 +35,23 @@ are seams where a rewrite stopped halfway.
 systems and item design remain valid input, its run-based structure and combo
 combat do not.
 
+**On presentation, this canon supersedes both.** V2 and V3 each said "2.5D" and
+meant different things; V3's reading (2D sprites in a 3D world) was adopted in
+revision 2 and is now itself superseded. Characters are **3D models**. See §1
+and §5, and the reasoning in §5.4.
+
 ---
 
 ## 1. What the game is
 
-A **2.5D Gothic horror action-adventure**: 2D animated sprite characters moving
-through real 3D Gothic environments, under a fixed orthogonal camera at ~45°
-(Hades-style). Eight-directional movement. Locked references: **Hades**
-(perspective, animation, atmosphere, proven touch ports) and **Hyper Light
-Drifter** (8-directional fluid movement).
+A **3D Gothic horror action-adventure** under a fixed orthogonal camera at ~45°.
+Environments and characters are both 3D, modelled in Blender. Eight-directional
+movement.
+
+**Hades** and **Hyper Light Drifter** remain the locked references — but for
+*perspective, animation feel, atmosphere and control*, not for art pipeline.
+Both of those games are 2D throughout; this one is not. Do not cite them as
+justification for a sprite-based approach.
 
 ### Structure: free exploration, NOT a roguelike
 
@@ -209,9 +218,42 @@ Four-layer 3D composition: Foreground (columns, interactive objects) · Middle
 Ground (floor, altars, navigation) · Background (distant arches, stained glass,
 depth) · Vertical (ceilings, buttresses, tower interiors).
 
-Environments modeled in **Blender**. Characters are **2D animated sprites**, not
-3D models. Mobile: LOD by distance, ETC2/ASTC compression, texture atlases,
-managed poly counts.
+Environments **and characters** modelled in **Blender**. Mobile: LOD by distance,
+ETC2/ASTC compression, texture atlases, managed poly counts.
+
+### 5.4 Why full 3D, not sprites
+
+Recorded because this reverses revision 2 and the reasoning must survive.
+
+**Animation arithmetic.** Eight-directional movement multiplies every 2D asset.
+One character walking = 8 directions × ~10 frames = 80 frames. Add idle, attack,
+dodge, hit and death ≈ 320 frames — for one character. Times 8-12 enemies ≈ 3,000
+frames. Times the four sanity-corruption tiers in §5 ≈ 12,000 frames, every one
+of which must read as the same character. Frame-to-frame and angle-to-angle
+identity consistency is the known failure mode of AI image generation.
+
+In 3D: model once, rig once, five animation clips. The camera generates every
+angle for free.
+
+**Corruption is a shader, not a repaint.** The four-tier corruption system is the
+strongest design artifact in this repo and it was written assuming real geometry
+— breathing stone, writhing flesh, non-Euclidean space. On 3D meshes that is one
+shader applied everywhere. On sprites it is repainting every frame four times.
+
+**Agent tooling favours 3D.** Meshy ships first-party agent skills (image→3D,
+PBR, auto-rig, engine export); Tripo3D ships a first-party SDK; AccuRig rigs for
+free; `ahujasid/blender-mcp` is at ~24.8k stars and lets an agent drive Blender
+directly. The 2D sprite MCPs exist but none solves 8-directional animated
+identity consistency. Sprites also force two art disciplines and two pipelines;
+3D needs one.
+
+**The accepted cost.** A mediocre 2D sprite reads as *stylised*; a mediocre 3D
+model reads as *bad*. HD-2D exists commercially because it hides fidelity
+problems, and generated 3D has a recognisable quality ceiling. This is an
+art-direction risk, not an engineering one, and it is mitigated by the fact that
+Gothic architecture is hard, modular, repetitive geometry — the category where
+generated 3D holds up best. Flying buttresses survive the process; faces do not.
+Budget human art attention accordingly: characters first, architecture last.
 
 **Canonical palette** (`memory-bank/sprite_list.md`): `#1a1a1a` deep black ·
 `#4a4a4a` stone gray · `#8b0000` burgundy · `#cd7f32` tarnished bronze ·
