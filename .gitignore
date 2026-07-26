@@ -51,6 +51,11 @@ export_credentials.cfg
 # Prompts, approved work and rejection records ARE tracked; raw candidates are not.
 art/candidates/
 
+# Golden renders awaiting a decision. The approved baselines under
+# art/golden/approved/ ARE tracked — they are what drift is measured against,
+# and a baseline nobody committed protects nothing.
+art/golden/current/
+
 # The unattended-run stop signal, AGENTS.md §7.3. Local control, not repo state:
 # committing it would stop every clone. Run journals under runs/ ARE tracked —
 # they are the audit trail of what happened while nobody was watching.

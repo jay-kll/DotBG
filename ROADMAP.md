@@ -76,24 +76,26 @@ a machine can check, or autonomy just produces eight hours of "implemented".
 | CI running import + suite on every push | written, unverified until first push |
 | Autonomy contract — tiers, batch discipline, `STOP`, run journal | done — `AGENTS.md` §7 |
 | Gate mechanics — three outcomes, batching, leases, contact sheets | done — `ASSETS.md` §4 and §9 |
-| **Numeric contracts** | not started — see below |
-| Golden-image harness | not started |
+| Numeric contracts | done — `scripts/config/tuning.gd`, 33 assertions |
+| Golden-image harness | built — `tools/run_golden.ps1`; **first baseline awaits human approval** |
+| CI watched failing | not done — no gate has been seen to fail |
 
-**Numeric contracts.** "Tune the movement" and "stamina-gated combat" are not
-assertable. An agent can set `base_speed = 4.5`, watch the test pass, and have
-proved nothing about whether it feels right. So before Phase 1 touches feel, one
-short table gets signed once: walk and run speed, dodge distance and duration,
-i-frame window, stamina cost per action and regeneration rate, base health,
-sanity drain rate. With numbers the work becomes mechanical and checkable, and
-Phases 1 and 2 stop needing continuous human judgment — they need one playtest
-at the end instead.
+**Numeric contracts — signed 2026-07-25.** "Tune the movement" and
+"stamina-gated combat" are not assertable; an agent can set a number, watch a
+test pass, and have proved nothing. The values now live in
+`dotbg/scripts/config/tuning.gd` as the single source, asserted by
+`tests/tuning_test.gd`. Run speed, the invincibility window and the attack
+commitment window are the three a playtest decides; everything else is
+arithmetic around them.
 
-**Golden-image harness.** Headless Godot renders a fixed test chapel under the
-canonical camera with corruption at 0.0 / 0.33 / 0.66 / 1.0, and diffs against
-approved images. This is the only thing that catches the slow failure mode:
-every per-asset assertion passing while the screen quietly rots — a seam opening
-where two kit pieces meet, a normal flipped, the shader breaking on new topology.
-Scaffold it before Phase 3 has geometry to feed it.
+**Golden-image harness.** `tools/run_golden.ps1` renders the canonical scene and
+diffs it against `art/golden/approved/`. Corruption tiers 0.0 / 0.33 / 0.66 /
+1.0 join it once the shader exists in Phase 3; a modular test chapel replaces the
+current placeholder scene once there is a kit. See `ASSETS.md` §10.
+
+It does **not** run in the headless suite, and cannot: Godot's headless display
+driver does not rasterise and returns a null image. It opens a real window, so
+it also obeys the batch discipline in `AGENTS.md` §7.2.
 
 **Gate:** CI green on a pushed branch, the numeric contract signed, and a
 deliberately broken commit demonstrated failing CI. A gate nobody has watched

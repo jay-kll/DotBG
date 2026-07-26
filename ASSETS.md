@@ -220,6 +220,9 @@ Binding, alongside `AGENTS.md`:
 | `art/candidates/` | **no** | noisy, large, disposable by design |
 | `art/approved/` | yes | the decisions worth keeping |
 | `art/rejected/` | yes (sidecars only) | the memory of what failed |
+| `art/gen/` | yes | the scripts that build the parametric kit |
+| `art/golden/approved/` | yes | what visual drift is measured against |
+| `art/golden/current/` | **no** | this run's renders, awaiting a decision |
 | `dotbg/assets/` | yes | the game |
 
 Approved reference images run 2-3 MB each. Once `art/approved/` plus
@@ -271,3 +274,29 @@ is the model grading its own work.
 to continue past a review. The next batch does not start until the previous
 batch's sidecars carry a human decision. This is structural: it is what makes
 the difference between an autonomous run and an unsupervised one.
+
+## 10. Golden images
+
+`art/golden/approved/` holds one render per scene, and every change to the game
+is measured against them by `tools/run_golden.ps1`. They are the only check that
+catches the slow failure: every per-asset assertion passing while the screen
+quietly rots — a seam opening between two kit pieces, a flipped normal, a shader
+breaking on new topology, the camera drifting off its canonical 45°.
+
+They follow the same lifecycle as any other asset. The agent renders into
+`art/golden/current/` and reports the difference; **only a human moves an image
+into `approved/`.** Never overwrite a baseline to make the check pass — an agent
+approving its own render is the model grading its own work, and a baseline that
+tracks whatever was rendered last measures nothing.
+
+Practical notes, verified on Godot 4.7.1:
+
+- **It cannot run headless.** Godot's headless display driver does not rasterise
+  and `get_image()` on the viewport returns `null`. The harness opens a real
+  window; on a machine without a display, drive it through `xvfb`.
+- Resolution is pinned at 640×360. A harness that renders at whatever size the
+  window happens to be compares nothing.
+- The threshold is a mean absolute channel difference of 0.02, loose enough to
+  survive driver noise between machines and far tighter than any structural
+  change. A baseline is only strictly comparable within the environment that
+  produced it — record which one that was in the sidecar.
