@@ -416,8 +416,13 @@ is only struck from this list when a run proves it fixed (`AGENTS.md` §2).
    `calculate_tag_effects()` instead. The other four calls line up. Adoption is
    deliberately deferred: `AGENTS.md` §3 forbids depending on this code until a
    playable loop exists.
-3. **No art assets in the engine project, and no audio.** There is no
-   `dotbg/assets/`.
+3. **No production art or sound.** `dotbg/assets/` now exists and holds enough
+   to prove the pipelines work — a probe arch, a rigged probe, one CC0 PBR
+   material, eight synthesised placeholder SFX and six CC0 ambience clips — but
+   none of it is the game. Still missing: the modular Gothic kit, the player
+   character and the 8-12 enemies, and any real sound design. Phases 3 and 4.
+   The placeholders are deliberately obvious so they cannot quietly become
+   final; see `ASSETS.md` and `art/gen/`.
 
 **Closed by Phase 0** — kept as a record of what the audit found, so a later
 session does not re-report them:
