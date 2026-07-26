@@ -6,7 +6,7 @@
 
 **Project Title:** Depths of the Bastard God
 
-**Vision:** To deliver a console-quality, free-exploration Gothic horror game exclusively for the mobile platform. "Depths of the Bastard God" combines the oppressive atmosphere of classic horror titles with the replayability of modern roguelikes, all built around a non-linear, quest-driven world. The entire experience is procedurally generated and tailored for landscape-oriented, touch-based play.
+**Vision:** To deliver a console-quality, free-exploration Gothic horror game for Android and PC. "Depths of the Bastard God" combines the oppressive atmosphere of classic horror titles with a non-linear, quest-driven world built on a handcrafted, persistent map. **This is not a roguelike.** The world, its landmarks and the connections between areas are authored; procedural generation is scoped to dungeon interiors, enemy variants and loot, layered onto handcrafted anchors — see §4.2 below, which this vision statement previously contradicted. Landscape orientation on both platforms; touch on Android, gamepad and keyboard/mouse on PC.
 
 ## 2. Target Audience
 
