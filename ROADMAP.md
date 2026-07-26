@@ -114,6 +114,7 @@ tested and its evidence is an assertion in the suite, not a claim. The rule is
 | CC0 material sourced, licensed, imported | **proven** | ambientCG Bricks089, licence verified against source, provenance recorded |
 | Rigging, skinning, animation into Godot | **proven** | `art/gen/probe_rig.py` — skeleton, weights, a clip with real duration and tracks |
 | Placeholder SFX with no licence to audit | **proven** | `art/gen/placeholder_sfx.py`, pyfxr, synthesised locally |
+| CC0 ambience sourced and licence-checked | **proven** | `art/gen/fetch_ambience.py` — six clips, filtered and then re-verified per file |
 | Headless test suite and CI | **proven** | green on every push |
 | Golden-image drift detection | **proven** | baseline approved, reports 0.00000 |
 
@@ -123,8 +124,13 @@ tested and its evidence is an assertion in the suite, not a claim. The rule is
 |---|---|---|
 | Export templates absent | no build of any kind can be produced | a 1,221 MB download; 31 GB free, so it fits |
 | Android SDK absent | no AAB, Phase 5 only | SDK install, and Godot's Android export wants JDK 17 where this machine has 21 |
-| Ambience, wind, whispers, drones | Phase 4 atmosphere; local synthesis cannot make them | Freesound's CC0 filter — preview URLs need no OAuth, but the API key needs **one human signup** |
 | Paid 3D and voice generation | deferred by decision, not blocked | not required: architecture is parametric, characters come from CC0 or authoring |
+
+Ambience was recorded here as blocked on a human signup, and it was not: a
+Freesound API key was already in the environment. The inventory that declared it
+missing had searched for other vendors' variables and never searched for that
+one. **An absence nobody looked for is not a finding** — check the specific
+thing before reporting it gone.
 
 **The standing constraint** is unchanged and is not a tooling gap: ~1 GB of RAM
 free of 15.6 GB, integrated GPU, no upgrade planned. Batch discipline in
