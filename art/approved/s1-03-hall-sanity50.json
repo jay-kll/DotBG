@@ -1,0 +1,18 @@
+{
+  "asset": "s1-03-hall-sanity50.png",
+  "sha256": "ba69be4e6dc4fd81732fc5648792a6bb9d375d1cd7d9b159d3dd45ad37c30d8f",
+  "created": "2026-07-26T02:22:38Z",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-03-hall-sanity50.md",
+  "prompt_sha256": "422793bf955ba750975da94c7f9c43fd96a9bc6b4928749478eb0ace16a23829",
+  "derived_from": null,
+  "status": "approved",
+  "approved_by": "Gerson Aguero",
+  "approved_at": "2026-07-25",
+  "note": "Best execution of CANON.md 5's 'disturbing stained-glass imagery' - the window becomes a lattice of skulls - while the architecture stays legible.",
+  "selected_variant": "vB",
+  "competed_against": [
+    "base",
+    "vA"
+  ]
+}

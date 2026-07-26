@@ -1,0 +1,18 @@
+{
+  "asset": "s1-04-hall-sanity00.png",
+  "sha256": "a2b9feb7cb2c78c6b772dcda9bce2d2a88a1c48251968dbcebe80eb56cf953b4",
+  "created": "2026-07-26T02:22:38Z",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-04-hall-sanity00.md",
+  "prompt_sha256": "c2c1e0a806e51cb4d6a72938d52a6f463cfb4e250861b7d354edf6726651b821",
+  "derived_from": null,
+  "status": "approved",
+  "approved_by": "Gerson Aguero",
+  "approved_at": "2026-07-25",
+  "note": "Only version that satisfies CANON.md 5's requirement that the room stay unmistakably recognisable at total collapse. Alien sky through the window.",
+  "selected_variant": "vB",
+  "competed_against": [
+    "base",
+    "vA"
+  ]
+}

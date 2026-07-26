@@ -1,0 +1,11 @@
+{
+  "asset": "s1-03-hall-sanity50-vA.png",
+  "sha256": "7d6568521ce3ce147dcacaa37a028410e6e2f182312962ede29346eed23c3b87",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-03-hall-sanity50.md",
+  "status": "rejected",
+  "rejected_at": "2026-07-25",
+  "superseded_by": "art/approved/s1-03-hall-sanity50.png",
+  "reason": "Spends the full visual budget at the halfway tier - heavy veining everywhere, window already a mass of eyes - leaving no headroom for 0%. A four-step progression collapses into two if the middle step looks like the end state.",
+  "bytes_deleted": true
+}

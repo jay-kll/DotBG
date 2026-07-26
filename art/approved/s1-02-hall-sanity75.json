@@ -1,0 +1,18 @@
+{
+  "asset": "s1-02-hall-sanity75.png",
+  "sha256": "41e816534c2bb2c02dd987905f5089e375201b42b15537c678724b0c60258517",
+  "created": "2026-07-26T02:22:38Z",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-02-hall-sanity75.md",
+  "prompt_sha256": "8c9a21171f9720c425b871cddb5a719056ec427d2501cd896f3f1ec1c0be09fd",
+  "derived_from": null,
+  "status": "approved",
+  "approved_by": "Gerson Aguero",
+  "approved_at": "2026-07-25",
+  "note": "Drains colour from the stained glass and withdraws the light, so the step down from 100% actually reads. vA stayed too close to the pristine state.",
+  "selected_variant": "vB",
+  "competed_against": [
+    "base",
+    "vA"
+  ]
+}

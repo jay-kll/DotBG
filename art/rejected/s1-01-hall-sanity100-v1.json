@@ -1,0 +1,11 @@
+{
+  "asset": "s1-01-hall-sanity100-v1.png",
+  "sha256": "58bcc8b05d84fb1cae4cb4f973afadc77f2952cac4c03d02e8f19a70abd887b7",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-01-hall-sanity100.md",
+  "status": "rejected",
+  "rejected_at": "2026-07-25",
+  "superseded_by": "art/approved/s1-01-hall-sanity100.png",
+  "reason": "Generated before the locked style block was corrected. Its header still said 'mid-range mobile fidelity', which contradicted CANON.md 7 once PC was added as a target, and it lacked the framing instruction, so the character read too small for a phone screen.",
+  "bytes_deleted": true
+}

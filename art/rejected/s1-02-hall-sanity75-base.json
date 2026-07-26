@@ -1,0 +1,11 @@
+{
+  "asset": "s1-02-hall-sanity75-base.png",
+  "sha256": "2667391d2e460fa375c79731e0da15645b2983f7f31495aae076ce636129db3c",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-02-hall-sanity75.md",
+  "status": "rejected",
+  "rejected_at": "2026-07-25",
+  "superseded_by": "art/approved/s1-02-hall-sanity75.png",
+  "reason": "Generated from the pre-correction header. Superseded by the vA/vB round.",
+  "bytes_deleted": true
+}

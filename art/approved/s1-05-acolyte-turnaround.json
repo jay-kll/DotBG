@@ -1,0 +1,13 @@
+{
+  "asset": "s1-05-acolyte-turnaround.png",
+  "sha256": "8cee41032eb0a3a4e8110a5ba0c8a1cba0368fc345f7b35542bbbbb88ac5902e",
+  "created": "2026-07-26T02:22:38Z",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-05-acolyte-turnaround.md",
+  "prompt_sha256": "4a625b42b9573c5b6e69b28ac5a3c32d4e1909d61aa3930981f37728c5646c21",
+  "derived_from": null,
+  "status": "approved",
+  "approved_by": "Gerson Aguero",
+  "approved_at": "2026-07-25",
+  "note": "Canonical player character reference. Eight directions plus three control silhouettes, consistent across all views."
+}

@@ -1,0 +1,11 @@
+{
+  "asset": "s1-04-hall-sanity00-vA.png",
+  "sha256": "cb862e1b21fa6d8ed94622d7a6b8ea229dc3d2181d15c6daf97d17f60898e43b",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-04-hall-sanity00.md",
+  "status": "rejected",
+  "rejected_at": "2026-07-25",
+  "superseded_by": "art/approved/s1-04-hall-sanity00.png",
+  "reason": "Turned the columns into flesh-trees and lost the cathedral entirely. CANON.md 5 is explicit that at 0% the room must stay unmistakably the same room, because that recognition is the horror.",
+  "bytes_deleted": true
+}

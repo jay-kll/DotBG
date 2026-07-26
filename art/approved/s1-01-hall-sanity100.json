@@ -1,0 +1,17 @@
+{
+  "asset": "s1-01-hall-sanity100.png",
+  "sha256": "68035bd82490611f8f2b71882a1d0271f696a62277e2d365ec339a9d6b8cd5f1",
+  "created": "2026-07-26T02:22:38Z",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-01-hall-sanity100.md",
+  "prompt_sha256": "30703dc3fb0af4967184e35fb84f8e8a2d1e7e489197320f935cdeb928fed495",
+  "derived_from": null,
+  "status": "approved",
+  "approved_by": "Gerson Aguero",
+  "approved_at": "2026-07-25",
+  "note": "Baseline at full sanity. Selected after the locked style block was corrected for projection, framing and PC-tier fidelity.",
+  "selected_variant": "v2",
+  "competed_against": [
+    "v1"
+  ]
+}

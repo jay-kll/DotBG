@@ -1,0 +1,11 @@
+{
+  "asset": "s1-02-hall-sanity75-vA.png",
+  "sha256": "98451dcc8b5143b4b4d8366867a0bfbcb540c6985608dc51d9a948c2c6208cb9",
+  "tool": "codex-cli 0.129.0 / image_gen.imagegen",
+  "prompt_file": "art/prompts/s1-02-hall-sanity75.md",
+  "status": "rejected",
+  "rejected_at": "2026-07-25",
+  "superseded_by": "art/approved/s1-02-hall-sanity75.png",
+  "reason": "Too close to the 100% state: kept the warm amber key light and full stained-glass colour, so the step down does not read. CANON.md 5 requires muted glass and shadows slightly too long at this tier.",
+  "bytes_deleted": true
+}
