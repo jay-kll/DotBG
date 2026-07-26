@@ -25,5 +25,24 @@ node_modules/
 .DS_Store
 
 # Task files
-tasks.json
-tasks/ # Godot editor files\n.godot/\n*.tmp\n\n# Godot executable\nGodot_*\n*.appimage
+# NOTE: tasks.json was previously ignored here. README declared it the canonical
+# task source, which is why it never existed in the repo. It is now tracked.
+tasks/
+
+# Godot editor cache and imports
+.godot/
+*.tmp
+*.translation
+
+# Godot exports and binaries
+Godot_*
+*.appimage
+build/
+export/
+*.apk
+*.aab
+*.pck
+*.exe
+
+# Godot export credentials — never commit
+export_credentials.cfg
