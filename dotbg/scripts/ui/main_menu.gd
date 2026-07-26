@@ -71,8 +71,9 @@ func _test_autoload_systems() -> void:
 		print("✗ HybridGenerator failed to load")
 
 func _on_start_pressed() -> void:
-	print("MainMenu: Start game pressed - TODO: Implement game start")
-	# TODO: Load first game scene
+	print("MainMenu: starting new game...")
+	if not GameManager.start_new_game():
+		print("MainMenu: start failed, staying on menu")
 
 func _on_options_pressed() -> void:
 	print("MainMenu: Loading touch input settings...")
