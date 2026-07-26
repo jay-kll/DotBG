@@ -3,9 +3,57 @@
 **This is the single source of truth for this project.** Where any other document
 disagrees with this file, this file wins and the other document is wrong.
 
-Established 2026-07-25. Revision 3 — merges Vision 2 (`project_info_export/`)
-and Vision 3 (`memory-bank/` + `.taskmaster/docs/prd.txt`) into one spec, and
-resolves character rendering to full 3D.
+Established 2026-07-25. Revision 4 — merges Vision 2 (`project_info_export/`)
+and Vision 3 (`memory-bank/` + `.taskmaster/docs/prd.txt`) into one spec,
+resolves character rendering to full 3D, and registers the binding documents.
+
+---
+
+## Document authority — READ THIS BEFORE ANY OTHER FILE
+
+This project died once of document proliferation: two PRDs disagreeing about
+whether it was a roguelike, two story bibles with different acts, and the code
+faithfully implemented both. The defect was never *"more than one file exists"*.
+The defect was **two files claiming authority over the same question.**
+
+So the rule is not "one document". The rule is:
+
+> **Every question has exactly one owning document, and this section says which.
+> A document not listed here has no authority over anything.**
+
+### The binding documents
+
+| Document | Owns the question | Changes |
+|---|---|---|
+| **`CANON.md`** (this file) | *What is this game?* Identity, story, systems, art direction, platform, scope. | rarely |
+| **`AGENTS.md`** | *How must an agent session behave here?* Verification, scope discipline, code rules. | rarely |
+| **`ASSETS.md`** | *How is any produced file handled?* Naming, provenance, lifecycle, discarding. | rarely |
+| **`ROADMAP.md`** | *In what order is the work done, and how does each phase prove it is finished?* | every phase |
+
+Nothing else in this repository is binding. `README.md`, `design.md`,
+`story_design.md`, everything under `memory-bank/`, `.taskmaster/` and
+`project_info_export/` are **source material**: valuable as the original author's
+intent, with zero authority. Where they disagree with a binding document, they
+are wrong.
+
+### Rules that keep this true
+
+1. **A new binding document may not be created without adding a row to the table
+   above in the same commit.** An unregistered document is invisible to agents
+   reading the canon and is the exact mechanism that produced this repo's
+   original contradictions. If it isn't in the table, delete it or register it.
+2. **Two binding documents may never answer the same question.** If they
+   overlap, one of them is wrong — fix the owner, do not split the difference.
+   Reconciling by compromise is how `project_info_export/prd.md` ended up
+   contradicting its own §4.2.
+3. **Prefer editing an existing document to writing a new one.** The urge to
+   write a fresh file is almost always the urge to avoid resolving a conflict in
+   an old one.
+4. **A document that describes a completed action is deleted once it is
+   executed.** Its outcome belongs in git history and in the owning document, not
+   in a file that reads as current three months later.
+5. Source material is never edited to match the canon. It is a historical
+   record. The canon simply outranks it.
 
 ---
 
@@ -409,6 +457,9 @@ Gothic space → a headless test asserts it.
 
 ## 13. Amendment rule
 
-This document may be **edited**. New documents restating scope, story, platform
-or art direction may **not** be created. If this canon is wrong, fix it here — do
-not write a second opinion elsewhere. That failure mode produced §9 and §11.
+This document may be **edited**. If this canon is wrong, fix it here — do not
+write a second opinion elsewhere. That failure mode produced §9 and §11.
+
+New documents are governed by the **Document authority** section at the top of
+this file: a new binding document requires a row in that table, added in the
+same commit, or it has no authority and gets deleted.

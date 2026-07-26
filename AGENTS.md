@@ -6,15 +6,31 @@ Read `CANON.md` first, every session. It is the single source of truth.
 
 ## 1. Document rules
 
-- **`CANON.md` wins.** If any file in this repo contradicts it, the other file
-  is wrong. Do not "reconcile" by splitting the difference — fix the wrong file
-  or delete it.
-- **Do not create new design, scope, story, or PRD documents.** Edit `CANON.md`.
-  This repo already died once of document proliferation: two PRDs, two story
-  bibles, two main menus, two player controllers. Contradictory specs produce
-  contradictory code at machine speed.
-- Files listed as superseded in `CANON.md` §6 are **not** valid context. Do not
-  read them for direction; do not cite them; do not restore behavior from them.
+**Exactly four documents bind you**, and `CANON.md`'s *Document authority*
+section is the registry that says so:
+
+| Read it for | Document |
+|---|---|
+| what the game is | `CANON.md` |
+| how to behave in this repo | `AGENTS.md` (this file) |
+| how to handle any file you produce | `ASSETS.md` |
+| what to build next and how to prove it | `ROADMAP.md` |
+
+Everything else — `README.md`, `design.md`, `story_design.md`, `memory-bank/`,
+`.taskmaster/`, `project_info_export/` — is **source material with zero
+authority.** Read it for the author's intent; never take direction from it.
+
+- **`CANON.md` wins** over any file that contradicts it. Do not "reconcile" by
+  splitting the difference — fix the wrong file or delete it.
+- **Do not create a new binding document.** If you believe one is needed, it
+  requires a row in the canon's registry table added in the same commit.
+  An unregistered document has no authority and will be deleted. In practice
+  the answer is almost always: edit the document that already owns the question.
+- **Never write a document that describes work you just did.** Put the outcome
+  in the commit message and in the owning document. Files like
+  `PLAN.md` / `SUMMARY.md` / `CHANGES.md` read as current three months later and
+  are how this repo accumulated contradictions the first time.
+- Files listed as superseded in `CANON.md` §11 are not valid context.
 
 ## 2. Verification rules
 
