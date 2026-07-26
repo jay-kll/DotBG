@@ -113,9 +113,65 @@ func _process(_delta: float) -> bool:
 		"%.2f m tall, %.2f m deep" % [aabb.size.y, aabb.size.z])
 
 	_check_free_material()
+	_check_rigged_asset()
 
 	_report()
 	return true
+
+
+## Skinning and animation survive the trip.
+##
+## CANON.md §5.4 rests the entire full-3D decision on "model once, rig once,
+## five animation clips — the camera generates every angle for free", against
+## roughly 12,000 sprite frames for the same coverage. That is the load-bearing
+## claim of the art direction and nothing had tested it. A skeleton and a
+## playable clip arriving in the engine is what makes it true.
+##
+## Produced by art/gen/probe_rig.py. Regenerate with:
+##
+##   tools\\blender.ps1 -Script art\\gen\\probe_rig.py
+func _check_rigged_asset() -> void:
+	print("-- skinning and animation --")
+	const RIGGED := "res://assets/probe/rigged.glb"
+
+	check("the rigged asset exists", FileAccess.file_exists(RIGGED), RIGGED)
+	if not FileAccess.file_exists(RIGGED):
+		print("    run: tools\\blender.ps1 -Script art\\gen\\probe_rig.py")
+		return
+
+	var packed: PackedScene = load(RIGGED)
+	check("Godot imported the rigged glTF", packed != null)
+	if packed == null:
+		return
+
+	var node := packed.instantiate()
+	root.add_child(node)
+
+	var skeleton := _find_node_of_type(node, "Skeleton3D") as Skeleton3D
+	check("a skeleton came through", skeleton != null,
+		"%d bones" % skeleton.get_bone_count() if skeleton != null else "no Skeleton3D")
+	if skeleton != null:
+		check("the bones are the ones that were authored", skeleton.get_bone_count() == 2,
+			"bones: %s" % [range(skeleton.get_bone_count()).map(
+				func(i): return skeleton.get_bone_name(i))])
+
+	var player := _find_node_of_type(node, "AnimationPlayer") as AnimationPlayer
+	check("an AnimationPlayer came through", player != null)
+	if player == null:
+		return
+
+	var clips := player.get_animation_list()
+	check("the clip is there", clips.size() > 0, "animations: %s" % str(clips))
+	if clips.size() == 0:
+		return
+
+	var clip: Animation = player.get_animation(clips[0])
+	# A zero-length clip is what a dropped keyframe export looks like: the
+	# animation exists, the name is right, and nothing ever moves.
+	check("the clip has real duration", clip != null and clip.length > 0.0,
+		"%.3f s, %d tracks" % [clip.length, clip.get_track_count()] if clip != null else "null")
+	check("the clip drives the skeleton", clip != null and clip.get_track_count() > 0,
+		"%d track(s)" % clip.get_track_count() if clip != null else "0")
 
 
 ## The other half of the Phase 3 pipeline: surfaces we did not have to generate.
@@ -160,6 +216,16 @@ func _find_mesh(node: Node) -> MeshInstance3D:
 		return node
 	for child in node.get_children():
 		var found := _find_mesh(child)
+		if found != null:
+			return found
+	return null
+
+
+func _find_node_of_type(node: Node, type_name: String) -> Node:
+	if node.is_class(type_name):
+		return node
+	for child in node.get_children():
+		var found := _find_node_of_type(child, type_name)
 		if found != null:
 			return found
 	return null
