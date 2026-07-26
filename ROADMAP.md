@@ -101,6 +101,36 @@ it also obeys the batch discipline in `AGENTS.md` §7.2.
 deliberately broken commit demonstrated failing CI. A gate nobody has watched
 fail is not known to work.
 
+### Capability audit — what is proven, and what is not
+
+Run 2026-07-25, before granting any unattended stretch. Every row below was
+tested and its evidence is an assertion in the suite, not a claim. The rule is
+`AGENTS.md` §2: a capability nobody has exercised is a hypothesis.
+
+| Capability | State | Evidence |
+|---|---|---|
+| Parametric geometry → glTF → Godot | **proven** | `art/gen/probe_arch.py`, `tests/asset_pipeline_test.gd` — exact dimensions, UVs, material, axis conversion |
+| Corruption shader compiles and is visible | **proven** | `shaders/corruption.gdshader`, `tools/run_golden.ps1` — 6.6% of pixels move between sanity 1.0 and 0.0 |
+| CC0 material sourced, licensed, imported | **proven** | ambientCG Bricks089, licence verified against source, provenance recorded |
+| Rigging, skinning, animation into Godot | **proven** | `art/gen/probe_rig.py` — skeleton, weights, a clip with real duration and tracks |
+| Placeholder SFX with no licence to audit | **proven** | `art/gen/placeholder_sfx.py`, pyfxr, synthesised locally |
+| Headless test suite and CI | **proven** | green on every push |
+| Golden-image drift detection | **proven** | baseline approved, reports 0.00000 |
+
+**Not proven, and honest about why:**
+
+| Gap | Why it matters | What it needs |
+|---|---|---|
+| Export templates absent | no build of any kind can be produced | a 1,221 MB download; 31 GB free, so it fits |
+| Android SDK absent | no AAB, Phase 5 only | SDK install, and Godot's Android export wants JDK 17 where this machine has 21 |
+| Ambience, wind, whispers, drones | Phase 4 atmosphere; local synthesis cannot make them | Freesound's CC0 filter — preview URLs need no OAuth, but the API key needs **one human signup** |
+| Paid 3D and voice generation | deferred by decision, not blocked | not required: architecture is parametric, characters come from CC0 or authoring |
+
+**The standing constraint** is unchanged and is not a tooling gap: ~1 GB of RAM
+free of 15.6 GB, integrated GPU, no upgrade planned. Batch discipline in
+`AGENTS.md` §7.2 is what makes that survivable, and `tools/blender.ps1` enforces
+it rather than trusting anyone to remember.
+
 ---
 
 ## Art references — live work, runs alongside Phase 1
