@@ -1,0 +1,17 @@
+{
+  "asset": "water-dripping.mp3",
+  "sha256": "5eb30983e2caaeaaa4cf716bb14ba1fb1e9cfa4d35ac22de449fc01c43f4d445",
+  "bytes": 1586304,
+  "source": "https://freesound.org/people/Andy_Gardner/sounds/196717/",
+  "source_id": 196717,
+  "source_name": "Sea Cave 2",
+  "uploader": "Andy_Gardner",
+  "duration_seconds": 67.488,
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution_required": false,
+  "commercial_use": true,
+  "quality": "preview-hq-mp3 \u2014 the original needs OAuth, which needs a browser",
+  "search_query": "water dripping cave",
+  "status": "candidate",
+  "note": "Placeholder ambience. Only a human approves it into art/approved/, per ASSETS.md \u00a74."
+}

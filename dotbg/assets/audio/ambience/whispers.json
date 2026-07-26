@@ -1,0 +1,17 @@
+{
+  "asset": "whispers.mp3",
+  "sha256": "fcf9ef9ee2263a25866d30809b0fa9b8572a713179939aa9ff62bfde0c2f3b69",
+  "bytes": 673248,
+  "source": "https://freesound.org/people/HOrvi64/sounds/832266/",
+  "source_id": 832266,
+  "source_name": "Whispers02",
+  "uploader": "HOrvi64",
+  "duration_seconds": 31.261,
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution_required": false,
+  "commercial_use": true,
+  "quality": "preview-hq-mp3 \u2014 the original needs OAuth, which needs a browser",
+  "search_query": "whisper voices creepy",
+  "status": "candidate",
+  "note": "Placeholder ambience. Only a human approves it into art/approved/, per ASSETS.md \u00a74."
+}

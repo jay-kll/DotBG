@@ -158,6 +158,33 @@ func _check_placeholder_audio() -> void:
 		check("'%s' is playable" % name, stream != null and stream.get_length() > 0.0,
 			"%.3f s" % stream.get_length() if stream != null else "missing")
 
+	# Ambience is the class local synthesis cannot make, so it is sourced.
+	# Freesound is a mixed-licence library and these are the files most likely
+	# to reach a shipped build unexamined, so every one is re-checked here
+	# against its recorded licence rather than trusted to the fetch that wrote it.
+	print("-- sourced CC0 ambience --")
+	var ambience := ["cathedral-ambience", "water-dripping", "wind-hollow",
+		"bell-distant", "whispers", "heartbeat"]
+	var playable := 0
+	var non_cc0: Array[String] = []
+	for name in ambience:
+		var stream: AudioStream = load("res://assets/audio/ambience/%s.mp3" % name)
+		if stream != null and stream.get_length() > 0.0:
+			playable += 1
+		var sidecar := "res://assets/audio/ambience/%s.json" % name
+		if not FileAccess.file_exists(sidecar):
+			non_cc0.append("%s (no sidecar)" % name)
+			continue
+		var meta: Variant = JSON.parse_string(FileAccess.get_file_as_string(sidecar))
+		if not (meta is Dictionary and str(meta.get("license", "")).contains("publicdomain/zero")):
+			non_cc0.append(name)
+
+	check("every ambience clip imports and has duration", playable == ambience.size(),
+		"%d of %d" % [playable, ambience.size()])
+	check("every ambience clip is CC0 with provenance", non_cc0.is_empty(),
+		("not verifiably CC0: " + ", ".join(non_cc0)) if not non_cc0.is_empty()
+			else "%d clips, all public domain" % ambience.size())
+
 
 ## Skinning and animation survive the trip.
 ##

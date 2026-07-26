@@ -1,0 +1,17 @@
+{
+  "asset": "heartbeat.mp3",
+  "sha256": "bed5ba153e2f67ec861d6731e6c4237fd049b78c10ac61f0b4956eeaa512baff",
+  "bytes": 177870,
+  "source": "https://freesound.org/people/mezcel/sounds/390425/",
+  "source_id": 390425,
+  "source_name": "249716__daandraait__slow-heartbeat(mezcelized).mp3",
+  "uploader": "mezcel",
+  "duration_seconds": 14.799,
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution_required": false,
+  "commercial_use": true,
+  "quality": "preview-hq-mp3 \u2014 the original needs OAuth, which needs a browser",
+  "search_query": "heartbeat slow",
+  "status": "candidate",
+  "note": "Placeholder ambience. Only a human approves it into art/approved/, per ASSETS.md \u00a74."
+}

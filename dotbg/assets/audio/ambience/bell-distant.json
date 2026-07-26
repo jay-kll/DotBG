@@ -1,0 +1,17 @@
+{
+  "asset": "bell-distant.mp3",
+  "sha256": "6ab69f8073901f4032bf845e7655d5c5533776490b832ded257ef6ff5c28cd75",
+  "bytes": 836191,
+  "source": "https://freesound.org/people/florianreichelt/sounds/451731/",
+  "source_id": 451731,
+  "source_name": "City Ambience with distant church bells",
+  "uploader": "florianreichelt",
+  "duration_seconds": 36.529,
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution_required": false,
+  "commercial_use": true,
+  "quality": "preview-hq-mp3 \u2014 the original needs OAuth, which needs a browser",
+  "search_query": "church bell distant",
+  "status": "candidate",
+  "note": "Placeholder ambience. Only a human approves it into art/approved/, per ASSETS.md \u00a74."
+}

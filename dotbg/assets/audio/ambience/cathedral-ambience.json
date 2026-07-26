@@ -1,0 +1,17 @@
+{
+  "asset": "cathedral-ambience.mp3",
+  "sha256": "0f7ef094c0e86a07d5ad650c7f7935476eab58e23a4f91c03ff6cb757fb69d53",
+  "bytes": 979046,
+  "source": "https://freesound.org/people/staticpony1/sounds/727751/",
+  "source_id": 727751,
+  "source_name": "Ship Construction Outside",
+  "uploader": "staticpony1",
+  "duration_seconds": 44.0,
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution_required": false,
+  "commercial_use": true,
+  "quality": "preview-hq-mp3 \u2014 the original needs OAuth, which needs a browser",
+  "search_query": "cathedral reverb ambience",
+  "status": "candidate",
+  "note": "Placeholder ambience. Only a human approves it into art/approved/, per ASSETS.md \u00a74."
+}

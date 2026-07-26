@@ -1,0 +1,17 @@
+{
+  "asset": "wind-hollow.mp3",
+  "sha256": "222b6b68caa2f828975f0bc822d0d3eaeafb50063fd4581caea82d2e63d538d2",
+  "bytes": 510048,
+  "source": "https://freesound.org/people/Fupicat/sounds/607205/",
+  "source_id": 607205,
+  "source_name": "ooooo + Chorus and Reverb",
+  "uploader": "Fupicat",
+  "duration_seconds": 25.43,
+  "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution_required": false,
+  "commercial_use": true,
+  "quality": "preview-hq-mp3 \u2014 the original needs OAuth, which needs a browser",
+  "search_query": "wind ambience",
+  "status": "candidate",
+  "note": "Placeholder ambience. Only a human approves it into art/approved/, per ASSETS.md \u00a74."
+}
